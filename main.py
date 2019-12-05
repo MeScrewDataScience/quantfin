@@ -7,10 +7,10 @@ Created on Tue Mar 12 02:11:46 2019
 
 import datetime
 import pandas as pd
-from StockData import StockData
+import stockdata as sd
 
 
-stock_data = StockData()
+stock_data = sd.StockData()
 
 # =============================================================================
 # ########## Scrape tickers history info & events ##########
@@ -94,22 +94,22 @@ print(tickers_data)
 # =============================================================================
 # ######### Data validation ##########
 
-#merged = pd.merge(mt4_data,
-#                  xls_data,
-#                  how='outer',
-#                  on=['<Ticker>', '<DTYYYYMMDD>'],
-#                  suffixes=('_mt4', '_xls'))
-#base_cols = ['<Open>_mt4', '<High>_mt4', '<Low>_mt4', '<Close>_mt4']
-#ref_cols = ['<Open>_xls', '<High>_xls', '<Low>_xls', '<Close>_xls']
-#
-#validation = validate_data(same_df=True,
-#                           df_base=merged,
-#                           df_ref=merged,
-#                           base_cols=base_cols,
-#                           ref_cols=ref_cols)
-#merged['mt4_null'] = validation['base_null']
-#merged['xls_null'] = validation['ref_null']
-#merged['data_mismatch'] = validation['data_mismatch']
+# merged = pd.merge(mt4_data,
+#                   xls_data,
+#                   how='outer',
+#                   on=['<Ticker>', '<DTYYYYMMDD>'],
+#                   suffixes=('_mt4', '_xls'))
+# base_cols = ['<Open>_mt4', '<High>_mt4', '<Low>_mt4', '<Close>_mt4']
+# ref_cols = ['<Open>_xls', '<High>_xls', '<Low>_xls', '<Close>_xls']
+
+# validation = validate_data(same_df=True,
+#                            df_base=merged,
+#                            df_ref=merged,
+#                            base_cols=base_cols,
+#                            ref_cols=ref_cols)
+# merged['mt4_null'] = validation['base_null']
+# merged['xls_null'] = validation['ref_null']
+# merged['data_mismatch'] = validation['data_mismatch']
 
 # =============================================================================
 
