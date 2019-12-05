@@ -6,89 +6,94 @@ Created on Tue Mar 12 02:11:46 2019
 """
 
 import datetime
-from stock_data import *
 import pandas as pd
+from StockData import StockData
 
+
+stock_data = StockData()
 
 # =============================================================================
 # ########## Scrape tickers history info & events ##########
-#main_url = 'https://cophieu68.vn/companylist.php?currentPage=1&o=s&ud=a'
-#form_url = None
-#ticker_table = {'tag_type': 'table',
-#                'attr': None,
-#                'attr_val': None,
-#                'pos': 3,
-#                'lookup_type': 'find_all'}
-#row_col_pair = ['tr', 'td']
-#header_row = 0
-#exclude = {'rows': [0],
-#           'cols': [0, 2, 13]}
-#pagination = {'tag_type': 'ul',
-#              'attr': 'id',
-#              'attr_val': 'navigator',
-#              'pos': 2,
-#              'lookup_type': 'find'}
-#pg_start_string = "?currentPage="
-#pg_end_string = '&amp;o=s&amp;ud=a'
-#columns = ['symbol',
-#           'ipo_date',
-#           'ipo_vol',
-#           'ipo_price',
-#           'outstanding_shares',
-#           'treasury_stock',
-#           'listed_shares',
-#           'foreign_shares_lim',
-#           'remaining_foreign_shares',
-#           'market_price',
-#           'market_cap']
-#form = {}
-#tickers = scrape_table(main_url=main_url,
-#                       form_url=form_url,
-#                       form=form,
-#                       multi_pages=True,
-#                       main_table=ticker_table,
-#                       row_col_pair=row_col_pair,
-#                       header_row=header_row,
-#                       pagination_box=pagination,
-#                       page_start_string=pg_start_string,
-#                       page_end_string=pg_end_string,
-#                       exclude_rows=exclude['rows'],
-#                       exclude_cols=exclude['cols'],
-#                       df_columns=columns)
+
+stock_data.main_url = 'https://cophieu68.vn/companylist.php?currentPage=1&o=s&ud=a'
+stock_data.row_col_pair = ['tr', 'td']
+stock_data.multi_pages = True
+stock_data.page_start_string = "?currentPage="
+stock_data.page_end_string = '&amp;o=s&amp;ud=a'
+stock_data.main_table_config = {
+    'tag_type': 'table',
+    'attr': None,
+    'attr_val': None,
+    'pos': 3,
+    'lookup_type': 'find_all'
+}
+stock_data.pagination_config = {
+    'tag_type': 'ul',
+    'attr': 'id',
+    'attr_val': 'navigator',
+    'pos': 2,
+    'lookup_type': 'find'
+}
+
+excluded_rows = [0]
+excluded_cols = [0, 2, 13]
+result_column_names = [
+    'symbol',
+    'ipo_date',
+    'ipo_vol',
+    'ipo_price',
+    'outstanding_shares',
+    'treasury_stock',
+    'listed_shares',
+    'foreign_shares_lim',
+    'remaining_foreign_shares',
+    'market_price',
+    'market_cap'
+]
+
+tickers_data = stock_data.get_live_snapshot(excluded_rows, excluded_cols, result_column_names)
+print(tickers_data)
+
 # =============================================================================
 
 
 
 # =============================================================================
 #  ########## Download stock data ##########
-dwl_directory = 'C:/Users/baoloc.lam/1-LocLam/Spyder Projects/vn_stock_trading/raw_data'
-main_url = 'https://www.cophieu68.vn/export.php'
-form_url = 'https://www.cophieu68.vn/account/login.php'
-dwl_table = {'tag_type': 'table',
-             'attr': None,
-             'attr_val': None,
-             'pos': 1,
-             'lookup_type': 'find_all',}
-form = {'pos': 2,
-        'fields': {'username': 'loc.lam92@gmail.com',
-                   'tpassword': 'homesweethome92'}}
-get_link_from_cols = [1, 2, 3, 4, 5]
-exclude_rows = [1]
 
-start = datetime.datetime.now()
-dwl_data(dwl_directory=dwl_directory,
-         main_url=main_url,
-         form_url=form_url,
-         dwl_table=dwl_table,
-         get_link_from_cols=get_link_from_cols,
-         exclude_rows=exclude_rows,
-         form=form)
-print('Process time:', datetime.datetime.now() - start)
+# stock_data.main_url = 'https://www.cophieu68.vn/export.php'
+# stock_data.form_url = 'https://www.cophieu68.vn/account/login.php'
+# stock_data.main_table_config = {
+#     'tag_type': 'table',
+#     'attr': None,
+#     'attr_val': None,
+#     'pos': 1,
+#     'lookup_type': 'find_all'
+# }
+# stock_data.form_config = {
+#     'pos': 2,
+#     'fields': {
+#         'username': 'loc.lam92@gmail.com',
+#         'tpassword': 'homesweethome92'
+#     }
+# }
+
+# ticker_col = 0
+# excluded_rows = [0, 1]
+# excluded_cols = []
+# get_link_from_cols = [1, 2, 3, 4, 5]
+# save_folder_directory = 'C:/Users/baoloc.lam/1-LocLam/Spyder Projects/vn_stock_trading/raw_data'
+
+# start = datetime.datetime.now()
+# stock_data.dwl_data(ticker_col, excluded_rows, excluded_cols, get_link_from_cols, save_folder_directory)
+# print('Process time:', datetime.datetime.now() - start)
+
 # =============================================================================
 
 
 # =============================================================================
 # ######### Data validation ##########
+
 #merged = pd.merge(mt4_data,
 #                  xls_data,
 #                  how='outer',
@@ -105,14 +110,17 @@ print('Process time:', datetime.datetime.now() - start)
 #merged['mt4_null'] = validation['base_null']
 #merged['xls_null'] = validation['ref_null']
 #merged['data_mismatch'] = validation['data_mismatch']
+
 # =============================================================================
 
 
 # =============================================================================
 # ########## Data verification ##########
+
 #show_cols = ['<Ticker>', '<DTYYYYMMDD>']
 #data_verify = merged[merged['data_mismatch'] == True][show_cols]
 #data_verify = data_verify.reset_index()
+
 # =============================================================================
 
 
@@ -185,4 +193,5 @@ print('Process time:', datetime.datetime.now() - start)
 #    print('Progress:', ''.join([str(round(count*100/total_lines, 2)), '%']))
 #    print('='*79)
 #    count +=1
+
 # =============================================================================
