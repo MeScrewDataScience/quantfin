@@ -127,12 +127,12 @@ def make_symbols_array(obj):
     return obj
     
 
-def concat_dedup(original_df, additive_df, first_on=None, second_on=None):
+def merge_dedup(original_df, additive_df, method):
 
-    is_df_orig = isinstance(original_df, pd.DataFrame)
-    is_df_add = isinstance(additive_df, pd.DataFrame)
-    cond_1 = original_df is None or original_df.empty or not is_df_orig
-    cond_2 = additive_df is None or additive_df.empty or not is_df_add
+    ori_is_df = isinstance(original_df, pd.DataFrame)
+    add_is_df = isinstance(additive_df, pd.DataFrame)
+    cond_1 = original_df is None or original_df.empty or not ori_is_df
+    cond_2 = additive_df is None or additive_df.empty or not add_is_df
 
     if not cond_1 and cond_2:
         return original_df
@@ -145,13 +145,12 @@ def concat_dedup(original_df, additive_df, first_on=None, second_on=None):
     
     else:
         try:
-            if not first_on:
-                original_df = original_df.loc[:, first_on]
-            
-            if not second_on:
-                additive_df = additive_df.loc[:, second_on]
-            
-            original_df = pd.concat([original_df, additive_df], sort=True)
+            if method == 'concat':
+                original_df = pd.concat([original_df, additive_df], sort=True)
+            elif method == 'join':
+                original_df = original_df.join(additive_df, how='outer', rsuffix='_add')
+            else:
+                logger.error('The data joining method is not recognized')
         
         except:
             logger.error('Cannot append the additional dataframe '
@@ -345,7 +344,7 @@ def _validate_symbol_items(symbol_data, date_format):
         elif len(symbol_data) == 2:
             symbol_data.append(symbol_data[1])
         
-        else:
+        elif len(symbol_data) > 3:
             symbol_data = symbol_data[:3]
             logger.warning(f'{symbol_data[0]} - The provided data elements '
                         f'are more than required: {symbol_data}. '

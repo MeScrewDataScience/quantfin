@@ -1,0 +1,2153 @@
+2020-04-28 02:33:06,447 - qfutils - INFO - Start validating symbols array...
+2020-04-28 02:33:06,448 - qfutils - INFO - Symbols array validation done
+2020-04-28 02:33:06,450 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:33:06,455 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:33:06,455 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:33:06,464 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:33:06,464 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:33:06,465 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:33:06,491 - quantfin - INFO - vnd - Joining results
+2020-04-28 02:33:06,492 - quantfin - ERROR - vnd - Method returns null dataframe
+2020-04-28 02:33:06,494 - quantfin - ERROR - Cannot extract data from web with assigned method vnd
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\quantfin.py", line 1607, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-04-28 02:39:05,011 - quantfin - WARNING - The number of workers (5) exceeds the number of symbols (3). Number of workers will be reduced to 3
+2020-04-28 02:39:05,012 - qfutils - INFO - Start validating symbols array...
+2020-04-28 02:39:05,013 - qfutils - INFO - Symbols array validation done
+2020-04-28 02:39:05,016 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:39:05,021 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:39:05,024 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:39:05,031 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:39:05,031 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:39:05,031 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:39:05,048 - quantfin - INFO - vnd - Joining results
+2020-04-28 02:39:05,049 - quantfin - ERROR - vnd - Method returns null dataframe
+2020-04-28 02:43:29,307 - qfutils - INFO - Start validating symbols array...
+2020-04-28 02:43:29,308 - qfutils - INFO - Symbols array validation done
+2020-04-28 02:43:29,309 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:43:29,312 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:43:29,312 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:43:29,323 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:43:29,323 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:43:29,323 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:43:29,339 - quantfin - INFO - vnd - Joining results
+2020-04-28 02:43:29,340 - quantfin - ERROR - vnd - Method returns null dataframe
+2020-04-28 02:43:29,342 - quantfin - ERROR - Cannot extract data from web with assigned method vnd
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\quantfin.py", line 1607, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-04-28 02:43:59,927 - quantfin - WARNING - The number of workers (5) exceeds the number of symbols (3). Number of workers will be reduced to 3
+2020-04-28 02:43:59,928 - qfutils - INFO - Start validating symbols array...
+2020-04-28 02:43:59,929 - qfutils - INFO - Symbols array validation done
+2020-04-28 02:43:59,930 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:43:59,933 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:43:59,935 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:43:59,941 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:43:59,942 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:43:59,943 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:43:59,958 - quantfin - INFO - vnd - Joining results
+2020-04-28 02:43:59,958 - quantfin - ERROR - vnd - Method returns null dataframe
+2020-04-28 02:44:40,357 - quantfin - WARNING - The number of workers (5) exceeds the number of symbols (3). Number of workers will be reduced to 3
+2020-04-28 02:44:40,358 - qfutils - INFO - Start validating symbols array...
+2020-04-28 02:44:40,359 - qfutils - INFO - Symbols array validation done
+2020-04-28 02:44:40,361 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:44:40,364 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:44:40,367 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:44:40,374 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:44:40,375 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:44:40,376 - qfbrowsing - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 170, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1148, in _execute_child
+    args = list2cmdline(args)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 555, in list2cmdline
+    needquote = (" " in arg) or ("\t" in arg) or not arg
+TypeError: argument of type 'NoneType' is not iterable
+2020-04-28 02:44:40,392 - quantfin - INFO - vnd - Joining results
+2020-04-28 02:44:40,393 - quantfin - ERROR - vnd - Method returns null dataframe
+2020-04-28 02:45:46,646 - quantfin - WARNING - The number of workers (5) exceeds the number of symbols (3). Number of workers will be reduced to 3
+2020-04-28 02:45:46,648 - qfutils - INFO - Start validating symbols array...
+2020-04-28 02:45:46,649 - qfutils - INFO - Symbols array validation done
+2020-04-28 02:45:46,651 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:45:46,654 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:45:46,654 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:46:01,870 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 02:46:01,995 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 02:46:03,201 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 02:46:03,294 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 02:46:03,950 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 02:46:04,210 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 02:46:04,291 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 02:46:04,293 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 02:46:04,303 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 02:46:04,305 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 02:46:04,345 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 02:46:04,347 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 02:46:04,385 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 02:46:04,691 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 02:46:07,909 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 02:46:07,910 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 02:46:07,915 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 02:46:07,916 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 02:46:07,944 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 02:46:07,946 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 02:46:18,532 - qfbrowsing - ERROR - VIC - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 377, in _query_symbol
+    symbol_filter = self.find_element_by_xpath(xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="symbolID"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 02:46:18,534 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 02:46:22,774 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 02:46:22,853 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 02:46:24,688 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 02:46:24,853 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 02:46:24,903 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 02:46:24,904 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 02:46:24,910 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 02:46:24,912 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 02:46:24,936 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 02:46:24,938 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 02:46:24,946 - quantfin - INFO - vnd - Joining results
+2020-04-28 02:46:24,951 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 02:46:24,957 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 02:46:24,964 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 02:46:24,965 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 02:46:24,967 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 02:46:24,967 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 02:46:50,788 - qfutils - INFO - Start validating symbols array...
+2020-04-28 02:46:50,789 - qfutils - INFO - Symbols array validation done
+2020-04-28 02:46:50,790 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:46:50,794 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:46:50,799 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 02:47:02,526 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 02:47:02,665 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 02:47:03,012 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 02:47:03,847 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 02:47:03,971 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 02:47:03,986 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 02:47:04,100 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 02:47:05,810 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 02:47:05,995 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 02:47:06,058 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 02:47:06,060 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 02:47:06,066 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 02:47:06,068 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 02:47:06,103 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 02:47:06,105 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 02:47:06,284 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 02:47:06,565 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 02:47:09,515 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 02:47:09,517 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 02:47:09,522 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 02:47:09,523 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 02:47:09,550 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 02:47:09,551 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 02:47:23,034 - qfbrowsing - WARNING - VIC - Empty data
+2020-04-28 02:47:23,035 - quantfin - WARNING - VIC - Data are NOT loaded completely
+2020-04-28 02:47:23,036 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 02:47:23,037 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 02:47:23,039 - quantfin - INFO - Retry to get data for 1 unloadable symbol(s). Attempt 1
+2020-04-28 02:47:43,079 - qfbrowsing - ERROR - VIC - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 377, in _query_symbol
+    symbol_filter = self.find_element_by_xpath(xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="symbolID"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 02:47:43,081 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 02:47:46,612 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 02:47:46,683 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 02:47:47,866 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 02:47:48,030 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 02:47:48,076 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 02:47:48,078 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 02:47:48,084 - quantfin - INFO - VIC - Data are successfully loaded. To be removed from unloadables list
+2020-04-28 02:47:48,085 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 02:47:48,085 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 02:47:48,113 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 02:47:48,115 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 02:47:48,121 - quantfin - INFO - vnd - Joining results
+2020-04-28 02:47:48,126 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 02:47:48,133 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 02:47:48,137 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 02:47:48,139 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 02:47:48,140 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 02:47:48,142 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 02:47:48,145 - quantfin - ERROR - Cannot append web-extracted data to original dataframe
+2020-04-28 03:15:59,579 - qfutils - ERROR - Cannot append the additional dataframe to the original one
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexes\base.py", line 2646, in get_loc
+    return self._engine.get_loc(key)
+  File "pandas\_libs\index.pyx", line 111, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1619, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1627, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: None
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 149, in merge_dedup
+    original_df = original_df.loc[:, first_on]
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1762, in __getitem__
+    return self._getitem_tuple(key)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1272, in _getitem_tuple
+    return self._getitem_lowerdim(tup)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1389, in _getitem_lowerdim
+    section = self._getitem_axis(key, axis=i)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1965, in _getitem_axis
+    return self._get_label(key, axis=axis)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 625, in _get_label
+    return self.obj._xs(label, axis=axis)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\generic.py", line 3529, in xs
+    return self[key]
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 2800, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexes\base.py", line 2648, in get_loc
+    return self._engine.get_loc(self._maybe_cast_indexer(key))
+  File "pandas\_libs\index.pyx", line 111, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1619, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1627, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: None
+2020-04-28 03:15:59,581 - qfutils - ERROR - Cannot remove duplicated records from dataframe
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 167, in merge_dedup
+    level=original_df.index.names
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 5810, in groupby
+    observed=observed,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\groupby.py", line 409, in __init__
+    mutated=self.mutated,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\grouper.py", line 499, in get_grouper
+    elif level > 0 or level < -1:
+TypeError: '>' not supported between instances of 'NoneType' and 'int'
+2020-04-28 03:16:38,840 - qfutils - ERROR - Cannot remove duplicated records from dataframe
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 167, in merge_dedup
+    level=original_df.index.names
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 5810, in groupby
+    observed=observed,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\groupby.py", line 409, in __init__
+    mutated=self.mutated,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\grouper.py", line 499, in get_grouper
+    elif level > 0 or level < -1:
+TypeError: '>' not supported between instances of 'NoneType' and 'int'
+2020-04-28 03:17:33,734 - qfutils - ERROR - Cannot append the additional dataframe to the original one
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexes\base.py", line 2646, in get_loc
+    return self._engine.get_loc(key)
+  File "pandas\_libs\index.pyx", line 111, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1619, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1627, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: None
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 149, in merge_dedup
+    original_df = original_df.loc[:, first_on]
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1762, in __getitem__
+    return self._getitem_tuple(key)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1272, in _getitem_tuple
+    return self._getitem_lowerdim(tup)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1389, in _getitem_lowerdim
+    section = self._getitem_axis(key, axis=i)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1965, in _getitem_axis
+    return self._get_label(key, axis=axis)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 625, in _get_label
+    return self.obj._xs(label, axis=axis)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\generic.py", line 3529, in xs
+    return self[key]
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 2800, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexes\base.py", line 2648, in get_loc
+    return self._engine.get_loc(self._maybe_cast_indexer(key))
+  File "pandas\_libs\index.pyx", line 111, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1619, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1627, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: None
+2020-04-28 03:17:33,737 - qfutils - ERROR - Cannot remove duplicated records from dataframe
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 167, in merge_dedup
+    level=original_df.index.names
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 5810, in groupby
+    observed=observed,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\groupby.py", line 409, in __init__
+    mutated=self.mutated,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\grouper.py", line 499, in get_grouper
+    elif level > 0 or level < -1:
+TypeError: '>' not supported between instances of 'NoneType' and 'int'
+2020-04-28 03:18:58,770 - qfutils - ERROR - Cannot append the additional dataframe to the original one
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexes\base.py", line 2646, in get_loc
+    return self._engine.get_loc(key)
+  File "pandas\_libs\index.pyx", line 111, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1619, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1627, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: None
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 149, in merge_dedup
+    original_df = original_df.loc[:, first_on]
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1762, in __getitem__
+    return self._getitem_tuple(key)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1272, in _getitem_tuple
+    return self._getitem_lowerdim(tup)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1389, in _getitem_lowerdim
+    section = self._getitem_axis(key, axis=i)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1965, in _getitem_axis
+    return self._get_label(key, axis=axis)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 625, in _get_label
+    return self.obj._xs(label, axis=axis)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\generic.py", line 3529, in xs
+    return self[key]
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 2800, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexes\base.py", line 2648, in get_loc
+    return self._engine.get_loc(self._maybe_cast_indexer(key))
+  File "pandas\_libs\index.pyx", line 111, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1619, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1627, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: None
+2020-04-28 03:18:58,772 - qfutils - ERROR - Cannot remove duplicated records from dataframe
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 167, in merge_dedup
+    level=original_df.index.names
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 5810, in groupby
+    observed=observed,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\groupby.py", line 409, in __init__
+    mutated=self.mutated,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\grouper.py", line 499, in get_grouper
+    elif level > 0 or level < -1:
+TypeError: '>' not supported between instances of 'NoneType' and 'int'
+2020-04-28 03:20:21,117 - qfutils - ERROR - Cannot append the additional dataframe to the original one
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexes\base.py", line 2646, in get_loc
+    return self._engine.get_loc(key)
+  File "pandas\_libs\index.pyx", line 111, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1619, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1627, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: None
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 149, in merge_dedup
+    original_df = original_df.loc[:, first_on]
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1762, in __getitem__
+    return self._getitem_tuple(key)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1272, in _getitem_tuple
+    return self._getitem_lowerdim(tup)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1389, in _getitem_lowerdim
+    section = self._getitem_axis(key, axis=i)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 1965, in _getitem_axis
+    return self._get_label(key, axis=axis)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexing.py", line 625, in _get_label
+    return self.obj._xs(label, axis=axis)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\generic.py", line 3529, in xs
+    return self[key]
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 2800, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\indexes\base.py", line 2648, in get_loc
+    return self._engine.get_loc(self._maybe_cast_indexer(key))
+  File "pandas\_libs\index.pyx", line 111, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\index.pyx", line 138, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1619, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\_libs\hashtable_class_helper.pxi", line 1627, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: None
+2020-04-28 03:23:33,664 - qfutils - ERROR - Cannot append the additional dataframe to the original one
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 151, in merge_dedup
+    original_df = original_df.join(additive_df, how='outer')
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 7209, in join
+    other, on=on, how=how, lsuffix=lsuffix, rsuffix=rsuffix, sort=sort
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 7232, in _join_compat
+    sort=sort,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\reshape\merge.py", line 88, in merge
+    return op.get_result()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\reshape\merge.py", line 649, in get_result
+    ldata.items, lsuf, rdata.items, rsuf
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\reshape\merge.py", line 2026, in _items_overlap_with_suffix
+    "{rename}".format(rename=to_rename)
+ValueError: columns overlap but no suffix specified: Index(['b', 'c'], dtype='object')
+2020-04-28 03:30:47,840 - qfutils - ERROR - Cannot append the additional dataframe to the original one
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 151, in merge_dedup
+    original_df = original_df.join(additive_df, how='outer')
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 7209, in join
+    other, on=on, how=how, lsuffix=lsuffix, rsuffix=rsuffix, sort=sort
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 7232, in _join_compat
+    sort=sort,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\reshape\merge.py", line 88, in merge
+    return op.get_result()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\reshape\merge.py", line 649, in get_result
+    ldata.items, lsuf, rdata.items, rsuf
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\reshape\merge.py", line 2026, in _items_overlap_with_suffix
+    "{rename}".format(rename=to_rename)
+ValueError: columns overlap but no suffix specified: Index(['b_add', 'c_add'], dtype='object')
+2020-04-28 03:32:58,393 - qfutils - INFO - Start validating symbols array...
+2020-04-28 03:32:58,394 - qfutils - INFO - Symbols array validation done
+2020-04-28 03:32:58,395 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:32:58,398 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:32:58,398 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:33:11,624 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 03:33:11,729 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 03:33:12,426 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 03:33:12,519 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 03:33:12,757 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 03:33:12,787 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 03:33:12,938 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 03:33:12,994 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 03:33:12,996 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 03:33:13,002 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 03:33:13,003 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:33:13,036 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:33:13,037 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:33:13,433 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 03:33:13,520 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 03:33:14,548 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 03:33:14,718 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 03:33:16,791 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 03:33:16,793 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 03:33:16,797 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 03:33:16,799 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:33:16,824 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:33:16,826 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:33:32,804 - qfbrowsing - WARNING - CTB - Empty data
+2020-04-28 03:33:32,806 - quantfin - WARNING - CTB - Data are NOT loaded completely
+2020-04-28 03:33:32,808 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 03:33:32,810 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 03:33:32,812 - quantfin - INFO - Retry to get data for 1 unloadable symbol(s). Attempt 1
+2020-04-28 03:33:52,831 - qfbrowsing - ERROR - CTB - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 377, in _query_symbol
+    symbol_filter = self.find_element_by_xpath(xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="symbolID"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 03:33:52,836 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 03:33:56,369 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 03:33:56,445 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 03:33:58,177 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 03:33:58,334 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 03:33:58,381 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 03:33:58,383 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 03:34:00,548 - quantfin - INFO - CTB - Data are successfully loaded. To be removed from unloadables list
+2020-04-28 03:34:00,550 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 03:34:00,552 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:34:00,587 - quantfin - INFO - vnd - Joining results
+2020-04-28 03:34:00,592 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 03:34:00,597 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 03:34:00,599 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 03:34:00,601 - quantfin - ERROR - Cannot extract data from web with assigned method vnd
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\quantfin.py", line 1607, in update_data
+    workers=workers
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\quantfin.py", line 712, in multithreading
+    self._update_class_df(method, result_df)
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\quantfin.py", line 1343, in _update_class_df
+    self.vnd_df = qfutils.concat_dedup(self.vnd_df, additive_df)
+AttributeError: module 'qfutils' has no attribute 'concat_dedup'
+2020-04-28 03:35:02,306 - qfutils - INFO - Start validating symbols array...
+2020-04-28 03:35:02,308 - qfutils - INFO - Symbols array validation done
+2020-04-28 03:35:02,309 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:35:02,312 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:35:02,313 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:35:15,762 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 03:35:15,869 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 03:35:16,511 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 03:35:16,656 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 03:35:18,073 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 03:35:18,318 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 03:35:18,426 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 03:35:18,429 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 03:35:18,430 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 03:35:18,438 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 03:35:18,440 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:35:18,489 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:35:18,491 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:35:18,605 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 03:35:18,858 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 03:35:19,093 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 03:35:20,391 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 03:35:20,566 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 03:35:20,617 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 03:35:20,618 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 03:35:20,623 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 03:35:20,624 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:35:20,648 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:35:20,649 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:35:21,908 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 03:35:21,909 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 03:35:21,915 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 03:35:21,916 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:35:21,949 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:35:21,951 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:35:21,959 - quantfin - INFO - vnd - Joining results
+2020-04-28 03:35:21,964 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 03:35:21,972 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 03:35:21,979 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 03:35:21,980 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 03:35:21,993 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 03:35:21,994 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 03:44:53,672 - qfutils - INFO - Start validating symbols array...
+2020-04-28 03:44:53,673 - qfutils - INFO - Symbols array validation done
+2020-04-28 03:44:53,674 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:44:53,677 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:44:53,680 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:45:06,558 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 03:45:06,712 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 03:45:07,937 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 03:45:08,022 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 03:45:08,788 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 03:45:09,029 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 03:45:09,112 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 03:45:09,114 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 03:45:09,122 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 03:45:09,123 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:45:09,153 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:45:09,154 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:45:09,205 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 03:45:09,477 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 03:45:09,552 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 03:45:09,554 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 03:45:09,562 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 03:45:09,564 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:45:09,593 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:45:09,594 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:45:22,628 - qfbrowsing - ERROR - VIC - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 377, in _query_symbol
+    symbol_filter = self.find_element_by_xpath(xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="symbolID"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 03:45:22,629 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 03:45:27,411 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 03:45:27,492 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 03:45:29,056 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 03:45:29,240 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 03:45:29,291 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 03:45:29,293 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 03:45:29,298 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 03:45:29,299 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:45:29,330 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:45:29,332 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:45:29,338 - quantfin - INFO - vnd - Joining results
+2020-04-28 03:45:29,343 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 03:45:29,348 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 03:45:29,354 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 03:45:29,356 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 03:45:29,357 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 03:45:29,359 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 03:48:36,709 - qfutils - INFO - Start validating symbols array...
+2020-04-28 03:48:36,711 - qfutils - INFO - Symbols array validation done
+2020-04-28 03:48:36,712 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:48:36,716 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:48:36,716 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:48:49,871 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 03:48:49,978 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 03:48:50,170 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 03:48:50,253 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 03:48:51,173 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 03:48:51,186 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 03:48:51,305 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 03:48:51,408 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 03:48:51,464 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 03:48:51,528 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 03:48:51,530 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 03:48:51,536 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 03:48:51,537 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:48:51,564 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:48:51,566 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:48:51,702 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 03:48:53,618 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 03:48:53,805 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 03:48:53,866 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 03:48:53,868 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 03:48:53,875 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 03:48:53,876 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:48:53,905 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:48:53,907 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:48:55,144 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 03:48:55,146 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 03:48:55,152 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 03:48:55,154 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:48:55,183 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:48:55,184 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:48:55,193 - quantfin - INFO - vnd - Joining results
+2020-04-28 03:48:55,199 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 03:48:55,206 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 03:48:55,214 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 03:48:55,215 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 03:48:55,227 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 03:48:55,229 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 03:49:19,216 - qfutils - INFO - Start validating symbols array...
+2020-04-28 03:49:19,217 - qfutils - INFO - Symbols array validation done
+2020-04-28 03:49:19,219 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:49:19,222 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:49:19,223 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:49:31,650 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 03:49:31,774 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 03:49:33,116 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 03:49:33,214 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 03:49:33,433 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 03:49:33,901 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 03:49:34,094 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 03:49:34,151 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 03:49:34,153 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 03:49:34,159 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 03:49:34,160 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:49:34,189 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:49:34,190 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:49:49,079 - qfbrowsing - ERROR - VIC - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 377, in _query_symbol
+    symbol_filter = self.find_element_by_xpath(xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="symbolID"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 03:49:49,081 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 03:49:53,004 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 03:49:53,102 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 03:49:53,441 - qfbrowsing - WARNING - CTB - Empty data
+2020-04-28 03:49:53,443 - quantfin - WARNING - CTB - Data are NOT loaded completely
+2020-04-28 03:49:53,444 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 03:49:53,445 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 03:49:53,446 - quantfin - INFO - Retry to get data for 1 unloadable symbol(s). Attempt 1
+2020-04-28 03:49:54,822 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 03:49:55,030 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 03:49:55,099 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 03:49:55,100 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 03:49:55,106 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 03:49:55,106 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 03:49:55,107 - quantfin - INFO - Retry to get data for 1 unloadable symbol(s). Attempt 1
+2020-04-28 03:49:57,044 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 03:49:57,134 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 03:49:58,710 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 03:49:58,922 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 03:49:58,984 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 03:49:58,986 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 03:49:58,992 - quantfin - INFO - CTB - Data are successfully loaded. To be removed from unloadables list
+2020-04-28 03:49:58,993 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 03:49:58,994 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:49:59,000 - qfutils - ERROR - Cannot remove duplicated records from dataframe
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 161, in merge_dedup
+    level=original_df.index.names
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 5810, in groupby
+    observed=observed,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\groupby.py", line 409, in __init__
+    mutated=self.mutated,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\grouper.py", line 499, in get_grouper
+    elif level > 0 or level < -1:
+TypeError: '>' not supported between instances of 'NoneType' and 'int'
+2020-04-28 03:49:59,034 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:49:59,036 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:50:13,451 - qfbrowsing - ERROR - CTB - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 377, in _query_symbol
+    symbol_filter = self.find_element_by_xpath(xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="symbolID"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 03:50:13,453 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 03:50:17,578 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 03:50:17,673 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 03:50:19,191 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 03:50:19,366 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 03:50:19,422 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 03:50:19,423 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 03:50:19,429 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 03:50:19,430 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:50:19,458 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:50:19,460 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:50:19,468 - quantfin - INFO - vnd - Joining results
+2020-04-28 03:50:19,474 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 03:50:19,482 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 03:50:19,489 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 03:50:19,491 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 03:50:19,508 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 03:50:19,511 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 03:50:20,577 - qfutils - INFO - Start validating symbols array...
+2020-04-28 03:50:20,579 - qfutils - INFO - Symbols array validation done
+2020-04-28 03:50:20,582 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:50:20,586 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:50:20,587 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:50:34,953 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 03:50:35,095 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 03:50:36,501 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 03:50:36,623 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 03:50:36,871 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 03:50:37,529 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 03:50:37,810 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 03:50:37,824 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 03:50:37,940 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 03:50:37,942 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 03:50:37,952 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 03:50:37,954 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:50:37,997 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 03:50:37,998 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:50:38,001 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:50:39,458 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 03:50:39,723 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 03:50:39,802 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 03:50:39,804 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 03:50:39,811 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 03:50:39,812 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:50:39,848 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:50:39,850 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:50:56,904 - qfbrowsing - WARNING - SSI - Empty data
+2020-04-28 03:50:56,905 - quantfin - WARNING - SSI - Data are NOT loaded completely
+2020-04-28 03:50:56,907 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 03:50:56,908 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 03:50:56,909 - quantfin - INFO - Retry to get data for 1 unloadable symbol(s). Attempt 1
+2020-04-28 03:51:16,950 - qfbrowsing - ERROR - SSI - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 377, in _query_symbol
+    symbol_filter = self.find_element_by_xpath(xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="symbolID"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 03:51:16,953 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 03:51:20,908 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 03:51:20,984 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 03:51:22,218 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 03:51:22,403 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 03:51:22,452 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 03:51:22,454 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 03:51:22,458 - quantfin - INFO - SSI - Data are successfully loaded. To be removed from unloadables list
+2020-04-28 03:51:22,459 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 03:51:22,460 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:51:22,539 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:51:22,540 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:51:22,549 - quantfin - INFO - vnd - Joining results
+2020-04-28 03:51:22,553 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 03:51:22,564 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 03:51:22,570 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 03:51:22,572 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 03:51:22,582 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 03:51:22,584 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 03:51:23,381 - qfutils - INFO - Start validating symbols array...
+2020-04-28 03:51:23,383 - qfutils - INFO - Symbols array validation done
+2020-04-28 03:51:23,385 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:51:23,388 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:51:23,389 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 03:51:36,105 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 03:51:36,205 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 03:51:36,758 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 03:51:36,860 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 03:51:37,467 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 03:51:37,576 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 03:51:37,926 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 03:51:38,473 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 03:51:38,671 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 03:51:38,729 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 03:51:38,731 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 03:51:38,737 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 03:51:38,738 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:51:38,772 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:51:38,774 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:51:39,027 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 03:51:39,334 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 03:51:39,457 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 03:51:39,460 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 03:51:39,471 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 03:51:39,473 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:51:39,524 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:51:39,527 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:51:57,969 - qfbrowsing - WARNING - CTB - Empty data
+2020-04-28 03:51:57,970 - quantfin - WARNING - CTB - Data are NOT loaded completely
+2020-04-28 03:51:57,971 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 03:51:57,972 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 03:51:57,972 - quantfin - INFO - Retry to get data for 1 unloadable symbol(s). Attempt 1
+2020-04-28 03:52:17,987 - qfbrowsing - ERROR - CTB - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 377, in _query_symbol
+    symbol_filter = self.find_element_by_xpath(xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="symbolID"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 03:52:17,989 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 03:52:21,855 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 03:52:21,956 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 03:52:23,374 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 03:52:23,601 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 03:52:23,691 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 03:52:23,694 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 03:52:23,702 - quantfin - INFO - CTB - Data are successfully loaded. To be removed from unloadables list
+2020-04-28 03:52:23,704 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 03:52:23,705 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 03:52:23,740 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 03:52:23,742 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 03:52:23,752 - quantfin - INFO - vnd - Joining results
+2020-04-28 03:52:23,759 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 03:52:23,768 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 03:52:23,782 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 03:52:23,783 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 03:52:23,796 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 03:52:23,798 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 04:00:41,303 - qfutils - INFO - Start validating symbols array...
+2020-04-28 04:00:41,304 - qfutils - WARNING - VIC - The provided data elements are more than required: ['VIC', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 04:00:41,305 - qfutils - WARNING - VIC - The date formats are not correct: ['VIC', '2020-04-01', '2020-04-27', 'to_check']
+2020-04-28 04:00:41,306 - qfutils - WARNING - SSI - The provided data elements are more than required: ['SSI', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 04:00:41,307 - qfutils - WARNING - SSI - The date formats are not correct: ['SSI', '2020-04-01', '2020-04-27', 'to_check']
+2020-04-28 04:00:41,308 - qfutils - WARNING - CTB - The provided data elements are more than required: ['CTB', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 04:00:41,309 - qfutils - WARNING - CTB - The date formats are not correct: ['CTB', '2020-04-01', '2020-04-27', 'to_check']
+2020-04-28 04:00:41,310 - quantfin - ERROR - Cannot extract data from web with assigned method vnd
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\quantfin.py", line 1608, in update_data
+    workers=workers
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\quantfin.py", line 619, in multithreading
+    self._update_class_symbols(method, symbols_array, date_format)
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\quantfin.py", line 1369, in _update_class_symbols
+    symbols_array = qfutils.validate_symbols(symbols_array, date_format)
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 76, in validate_symbols
+    symbols_array.remove(symbol_data) for symbol_data in invalid_array
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 76, in <listcomp>
+    symbols_array.remove(symbol_data) for symbol_data in invalid_array
+ValueError: list.remove(x): x not in list
+2020-04-28 09:09:30,007 - qfutils - INFO - Start validating symbols array...
+2020-04-28 09:09:30,008 - qfutils - WARNING - VIC - The provided data elements are more than required: ['VIC', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:09:30,009 - qfutils - WARNING - VIC - The date formats are not correct: ['VIC', '2020-04-01', '2020-04-27', 'to_check']
+2020-04-28 09:09:30,010 - qfutils - WARNING - SSI - The provided data elements are more than required: ['SSI', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:09:30,010 - qfutils - WARNING - SSI - The date formats are not correct: ['SSI', '2020-04-01', '2020-04-27', 'to_check']
+2020-04-28 09:09:30,011 - qfutils - WARNING - CTB - The provided data elements are more than required: ['CTB', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:09:30,013 - qfutils - WARNING - CTB - The date formats are not correct: ['CTB', '2020-04-01', '2020-04-27', 'to_check']
+2020-04-28 09:09:30,014 - quantfin - ERROR - Cannot extract data from web with assigned method vnd
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\quantfin.py", line 1608, in update_data
+    workers=workers
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\quantfin.py", line 619, in multithreading
+    self._update_class_symbols(method, symbols_array, date_format)
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\quantfin.py", line 1369, in _update_class_symbols
+    symbols_array = qfutils.validate_symbols(symbols_array, date_format)
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 76, in validate_symbols
+    symbols_array.remove(symbol_data) for symbol_data in invalid_array
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 76, in <listcomp>
+    symbols_array.remove(symbol_data) for symbol_data in invalid_array
+ValueError: list.remove(x): x not in list
+2020-04-28 09:10:03,144 - qfutils - INFO - Start validating symbols array...
+2020-04-28 09:10:03,145 - qfutils - WARNING - VIC - The provided data elements are more than required: ['VIC', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:10:03,149 - qfutils - WARNING - SSI - The provided data elements are more than required: ['SSI', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:10:03,153 - qfutils - WARNING - CTB - The provided data elements are more than required: ['CTB', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:10:03,155 - qfutils - INFO - Symbols array validation done
+2020-04-28 09:10:03,158 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:10:03,162 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:10:03,171 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:10:21,077 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 09:10:21,532 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 09:10:21,643 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 09:10:21,979 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 09:10:23,729 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 09:10:23,961 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 09:10:34,274 - qfbrowsing - ERROR - VIC - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 377, in _query_symbol
+    symbol_filter = self.find_element_by_xpath(xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="symbolID"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 09:10:34,276 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 09:10:41,146 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 09:10:41,669 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 09:10:42,858 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 09:11:03,859 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 09:11:03,905 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 09:11:03,907 - qfbrowsing - INFO - CTB - Successfully reach to last page
+2020-04-28 09:11:03,914 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 09:11:03,914 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:11:03,989 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:11:03,991 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:11:04,083 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 09:11:04,153 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 09:11:04,155 - qfbrowsing - INFO - SSI - Successfully reach to last page
+2020-04-28 09:11:04,163 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 09:11:04,164 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:11:04,230 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:11:04,232 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:11:22,992 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 09:11:23,044 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 09:11:23,045 - qfbrowsing - INFO - VIC - Successfully reach to last page
+2020-04-28 09:11:23,049 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 09:11:23,050 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:11:23,079 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:11:23,080 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:11:23,088 - quantfin - INFO - vnd - Joining results
+2020-04-28 09:11:23,093 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 09:11:23,099 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 09:11:23,105 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 09:11:23,107 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 09:11:23,121 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 09:11:23,122 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 09:16:29,769 - quantfin - WARNING - The number of workers (5) exceeds the number of symbols (3). Number of workers will be reduced to 3
+2020-04-28 09:16:29,770 - qfutils - INFO - Start validating symbols array...
+2020-04-28 09:16:29,771 - qfutils - WARNING - VIC - The provided data elements are more than required: ['VIC', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:16:29,772 - qfutils - WARNING - SSI - The provided data elements are more than required: ['SSI', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:16:29,773 - qfutils - WARNING - CTB - The provided data elements are more than required: ['CTB', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:16:29,774 - qfutils - INFO - Symbols array validation done
+2020-04-28 09:16:29,776 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:16:29,781 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:16:29,784 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:16:44,190 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 09:16:44,619 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 09:16:45,887 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 09:16:46,276 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 09:16:47,064 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 09:16:47,408 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 09:16:48,272 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 09:16:48,625 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 09:16:50,098 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 09:17:27,171 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 09:17:27,224 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 09:17:27,225 - qfbrowsing - INFO - SSI - Successfully reach to last page
+2020-04-28 09:17:27,231 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 09:17:27,232 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:17:27,258 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:17:27,260 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:17:27,536 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 09:17:27,589 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 09:17:27,591 - qfbrowsing - INFO - VIC - Successfully reach to last page
+2020-04-28 09:17:27,598 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 09:17:27,600 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:17:27,633 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:17:27,635 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:17:30,251 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 09:17:30,310 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 09:17:30,311 - qfbrowsing - INFO - CTB - Successfully reach to last page
+2020-04-28 09:17:30,318 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 09:17:30,319 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:17:30,348 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:17:30,350 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:17:30,358 - quantfin - INFO - vnd - Joining results
+2020-04-28 09:17:30,364 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 09:17:30,371 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 09:17:30,381 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 09:17:30,383 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 09:17:30,394 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 09:17:30,397 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 09:20:35,930 - qfutils - INFO - Start validating symbols array...
+2020-04-28 09:20:35,932 - qfutils - WARNING - VIC - The provided data elements are more than required: ['VIC', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:20:35,934 - qfutils - WARNING - SSI - The provided data elements are more than required: ['SSI', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:20:35,936 - qfutils - WARNING - CTB - The provided data elements are more than required: ['CTB', '2020-04-01', '2020-04-27']. It will be reduced to 3 elements.
+2020-04-28 09:20:35,937 - qfutils - INFO - Symbols array validation done
+2020-04-28 09:34:11,574 - quantfin - WARNING - The number of workers (5) exceeds the number of symbols (3). Number of workers will be reduced to 3
+2020-04-28 09:34:11,575 - qfutils - INFO - Start validating symbols array...
+2020-04-28 09:34:11,576 - qfutils - INFO - Symbols array validation done
+2020-04-28 09:34:11,577 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:34:11,580 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:34:11,581 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:34:26,380 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 09:34:26,381 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 09:34:26,780 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 09:34:26,831 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 09:34:26,876 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 09:34:27,369 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 09:34:27,688 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 09:34:28,831 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 09:34:29,100 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 09:35:07,981 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 09:35:08,031 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 09:35:08,033 - qfbrowsing - INFO - VIC - Successfully reach to last page
+2020-04-28 09:35:08,040 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 09:35:08,042 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:35:08,072 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:35:08,074 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:35:09,141 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 09:35:09,408 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 09:35:09,472 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 09:35:09,474 - qfbrowsing - INFO - SSI - Successfully reach to last page
+2020-04-28 09:35:09,481 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 09:35:09,482 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:35:09,514 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:35:09,515 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:35:11,612 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 09:35:11,613 - qfbrowsing - INFO - CTB - Successfully reach to last page
+2020-04-28 09:35:11,618 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 09:35:11,619 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:35:11,648 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:35:11,649 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:35:11,658 - quantfin - INFO - vnd - Joining results
+2020-04-28 09:35:11,664 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 09:35:11,673 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 09:35:11,680 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 09:35:11,681 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 09:35:11,690 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 09:35:11,693 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 09:36:13,218 - qfutils - INFO - Start validating symbols array...
+2020-04-28 09:36:13,219 - qfutils - INFO - Symbols array validation done
+2020-04-28 09:36:13,220 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:36:13,223 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:36:13,223 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:36:26,026 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 09:36:27,715 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 09:36:27,716 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 09:36:28,094 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 09:36:28,209 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 09:36:28,827 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 09:36:29,504 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 09:36:46,066 - qfbrowsing - ERROR - CTB - Unable to fill the Date query form
+Traceback (most recent call last):
+  File "c:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 342, in _query_dates
+    from_date_filter = self.find_element_by_xpath(self.prop['from_date_xpath'])
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="fHistoricalPrice_FromDate"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 09:36:46,069 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 09:36:50,123 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 09:36:50,439 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 09:36:51,135 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 09:37:08,934 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 09:37:08,972 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 09:37:08,974 - qfbrowsing - INFO - SSI - Successfully reach to last page
+2020-04-28 09:37:08,978 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 09:37:08,980 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:37:09,007 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:37:09,008 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:37:09,636 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 09:37:09,680 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 09:37:09,680 - qfbrowsing - INFO - VIC - Successfully reach to last page
+2020-04-28 09:37:09,686 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 09:37:09,688 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:37:09,715 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:37:09,717 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:37:31,273 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 09:37:35,335 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 09:37:35,336 - qfbrowsing - INFO - CTB - Successfully reach to last page
+2020-04-28 09:37:35,340 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 09:37:35,341 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:37:35,366 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:37:35,368 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:37:35,375 - quantfin - INFO - vnd - Joining results
+2020-04-28 09:37:35,380 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 09:37:35,387 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 09:37:35,391 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 09:37:35,392 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 09:37:35,400 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 09:37:35,402 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 09:59:18,241 - qfutils - INFO - Start validating symbols array...
+2020-04-28 09:59:18,242 - qfutils - INFO - Symbols array validation done
+2020-04-28 09:59:18,245 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:59:18,250 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:59:18,251 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 09:59:37,071 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 09:59:37,297 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 09:59:37,420 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 09:59:37,768 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 09:59:39,805 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 09:59:40,015 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 09:59:40,105 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 09:59:40,593 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 09:59:40,599 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 09:59:40,738 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 09:59:40,742 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 09:59:40,759 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 09:59:40,760 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:59:40,821 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:59:40,824 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:59:41,055 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 09:59:41,164 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 09:59:41,166 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 09:59:41,175 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 09:59:41,177 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:59:41,224 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:59:41,227 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:59:42,110 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 09:59:42,588 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 09:59:42,752 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 09:59:42,752 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 09:59:42,765 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 09:59:42,770 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 09:59:42,826 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 09:59:42,828 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 09:59:42,839 - quantfin - INFO - vnd - Joining results
+2020-04-28 09:59:42,849 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 09:59:42,858 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 09:59:42,869 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 09:59:42,871 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 09:59:42,873 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 09:59:42,875 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 11:41:53,436 - qfutils - INFO - Start validating symbols array...
+2020-04-28 11:41:53,439 - qfutils - INFO - Symbols array validation done
+2020-04-28 11:41:53,441 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 11:41:53,445 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 11:41:53,449 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 11:42:17,106 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 11:42:18,681 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 11:42:18,892 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 11:42:23,276 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 11:42:23,678 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 11:42:23,810 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 11:42:23,813 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 11:42:23,824 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 11:42:23,825 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:42:25,973 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 11:42:26,116 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 11:42:27,794 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 11:42:28,191 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 11:42:28,362 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 11:42:28,366 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 11:42:28,378 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 11:42:28,380 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:42:28,458 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:42:28,460 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:42:37,182 - qfbrowsing - ERROR - SSI - Unable to fill the Date query form
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 342, in _query_dates
+    from_date_filter = self.find_element_by_xpath(self.prop['from_date_xpath'])
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="fHistoricalPrice_FromDate"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 11:42:37,193 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 11:42:42,984 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 11:42:43,113 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 11:42:45,056 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 11:42:45,418 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 11:42:45,532 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 11:42:45,536 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 11:42:45,547 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 11:42:45,550 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:42:45,637 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:42:45,638 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:42:45,649 - quantfin - INFO - vnd - Joining results
+2020-04-28 11:42:45,658 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 11:42:45,665 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 11:42:45,678 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 11:42:45,684 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 11:42:45,697 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 11:42:45,707 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 11:44:05,141 - qfutils - INFO - Start validating symbols array...
+2020-04-28 11:44:05,141 - qfutils - INFO - Symbols array validation done
+2020-04-28 11:44:05,147 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 11:44:05,153 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 11:44:05,155 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 11:44:24,155 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 11:44:24,571 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 11:44:24,747 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 11:44:26,061 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 11:44:26,525 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 11:44:26,719 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 11:44:26,723 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 11:44:26,739 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 11:44:26,742 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:44:26,810 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:44:26,813 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:44:28,545 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 11:44:28,769 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 11:44:31,316 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 11:44:31,818 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 11:44:32,008 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 11:44:32,008 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 11:44:32,022 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 11:44:32,024 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:44:32,085 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:44:32,089 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:44:44,187 - qfbrowsing - ERROR - SSI - Unable to fill the Date query form
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 342, in _query_dates
+    from_date_filter = self.find_element_by_xpath(self.prop['from_date_xpath'])
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="fHistoricalPrice_FromDate"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 11:44:44,195 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 11:44:50,423 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 11:44:50,595 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 11:44:52,555 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 11:44:53,207 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 11:44:53,430 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 11:44:53,435 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 11:44:53,453 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 11:44:53,458 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:44:53,541 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:44:53,543 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:44:53,553 - quantfin - INFO - vnd - Joining results
+2020-04-28 11:44:53,561 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 11:44:53,571 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 11:44:53,581 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 11:44:53,584 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 11:44:53,595 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 11:44:53,598 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 11:46:08,966 - qfutils - INFO - Start validating symbols array...
+2020-04-28 11:46:08,974 - qfutils - INFO - Symbols array validation done
+2020-04-28 11:46:08,976 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 11:46:08,982 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 11:46:08,989 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 11:46:37,637 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 11:46:38,918 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 11:46:41,008 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 11:46:41,573 - qfbrowsing - ERROR - VIC - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 377, in _query_symbol
+    symbol_filter = self.find_element_by_xpath(xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="symbolID"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 11:46:41,578 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 11:46:54,470 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 11:46:55,510 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 11:46:57,312 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 11:47:08,451 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 11:47:09,777 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 11:47:12,153 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 11:47:21,268 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 11:47:21,466 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 11:47:21,469 - qfbrowsing - INFO - SSI - Successfully reach to last page
+2020-04-28 11:47:21,477 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 11:47:21,479 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:47:21,568 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:47:21,570 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:47:37,459 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 11:47:39,580 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 11:47:39,583 - qfbrowsing - INFO - VIC - Successfully reach to last page
+2020-04-28 11:47:39,591 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 11:47:39,593 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:47:39,683 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:47:39,686 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:47:52,352 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 11:47:52,467 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 11:47:52,469 - qfbrowsing - INFO - CTB - Successfully reach to last page
+2020-04-28 11:47:52,481 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 11:47:52,483 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:47:52,579 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:47:52,583 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:47:52,600 - quantfin - INFO - vnd - Joining results
+2020-04-28 11:47:52,611 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 11:47:52,625 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 11:47:52,637 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 11:47:52,640 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 11:47:52,659 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 11:47:52,663 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 11:49:07,352 - qfutils - INFO - Start validating symbols array...
+2020-04-28 11:49:07,352 - qfutils - INFO - Symbols array validation done
+2020-04-28 11:49:07,357 - quantfin - INFO - CafeF - cafef_get_data method is triggered
+2020-04-28 11:49:07,363 - quantfin - INFO - CafeF - cafef_get_data method is triggered
+2020-04-28 11:49:07,370 - quantfin - INFO - CafeF - cafef_get_data method is triggered
+2020-04-28 11:49:27,995 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 11:49:28,098 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 11:49:28,344 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 11:49:28,461 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 11:49:29,512 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 11:49:29,790 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 11:49:30,087 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 11:49:30,224 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 11:49:30,517 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 11:49:32,965 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 11:49:33,129 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 11:49:33,709 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 11:49:34,064 - qfbrowsing - WARNING - VIC - Cannot get data with table attribute: {'id': 'GirdTable'}
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 421, in _pd_get_tabular_data
+    na_values=na_values
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 1100, in read_html
+    displayed_only=displayed_only,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 915, in _parse
+    raise retained
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 895, in _parse
+    tables = p.parse_tables()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 213, in parse_tables
+    tables = self._parse_tables(self._build_doc(), self.match, self.attrs)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 545, in _parse_tables
+    raise ValueError("No tables found")
+ValueError: No tables found
+2020-04-28 11:49:34,074 - qfbrowsing - INFO - VIC - Trying with another table attribute
+2020-04-28 11:49:34,131 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 11:49:34,428 - qfbrowsing - INFO - CTB - Next page selected
+2020-04-28 11:49:34,617 - qfbrowsing - WARNING - VIC - Cannot get data with table attribute: {'id': 'GridTable'}
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 421, in _pd_get_tabular_data
+    na_values=na_values
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 1100, in read_html
+    displayed_only=displayed_only,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 915, in _parse
+    raise retained
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 895, in _parse
+    tables = p.parse_tables()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 213, in parse_tables
+    tables = self._parse_tables(self._build_doc(), self.match, self.attrs)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 545, in _parse_tables
+    raise ValueError("No tables found")
+ValueError: No tables found
+2020-04-28 11:49:34,625 - qfbrowsing - INFO - VIC - Trying with another table attribute
+2020-04-28 11:49:34,708 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 11:49:34,943 - qfbrowsing - INFO - VIC - Next page selected
+2020-04-28 11:49:38,366 - qfbrowsing - INFO - VIC - Page 2 is loaded
+2020-04-28 11:49:38,405 - qfbrowsing - INFO - CTB - Page 2 is loaded
+2020-04-28 11:49:38,460 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 11:49:38,476 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 11:49:38,491 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 11:49:38,492 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:49:38,595 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:49:38,660 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:49:38,889 - qfbrowsing - WARNING - CTB - Cannot get data with table attribute: {'id': 'GirdTable2'}
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 421, in _pd_get_tabular_data
+    na_values=na_values
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 1100, in read_html
+    displayed_only=displayed_only,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 915, in _parse
+    raise retained
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 895, in _parse
+    tables = p.parse_tables()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 213, in parse_tables
+    tables = self._parse_tables(self._build_doc(), self.match, self.attrs)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 545, in _parse_tables
+    raise ValueError("No tables found")
+ValueError: No tables found
+2020-04-28 11:49:38,892 - qfbrowsing - INFO - CTB - Trying with another table attribute
+2020-04-28 11:49:39,332 - qfbrowsing - WARNING - CTB - Cannot get data with table attribute: {'id': 'GridTable'}
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 421, in _pd_get_tabular_data
+    na_values=na_values
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 1100, in read_html
+    displayed_only=displayed_only,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 915, in _parse
+    raise retained
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 895, in _parse
+    tables = p.parse_tables()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 213, in parse_tables
+    tables = self._parse_tables(self._build_doc(), self.match, self.attrs)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 545, in _parse_tables
+    raise ValueError("No tables found")
+ValueError: No tables found
+2020-04-28 11:49:39,337 - qfbrowsing - INFO - CTB - Trying with another table attribute
+2020-04-28 11:49:39,396 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 11:49:39,407 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 11:49:39,419 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 11:49:39,420 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:49:39,510 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:49:39,512 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:49:49,787 - qfbrowsing - WARNING - SSI - Cannot get data with table attribute: {'id': 'GirdTable'}
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 421, in _pd_get_tabular_data
+    na_values=na_values
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 1100, in read_html
+    displayed_only=displayed_only,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 915, in _parse
+    raise retained
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 895, in _parse
+    tables = p.parse_tables()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 213, in parse_tables
+    tables = self._parse_tables(self._build_doc(), self.match, self.attrs)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 545, in _parse_tables
+    raise ValueError("No tables found")
+ValueError: No tables found
+2020-04-28 11:49:49,788 - qfbrowsing - INFO - SSI - Trying with another table attribute
+2020-04-28 11:49:50,186 - qfbrowsing - WARNING - SSI - Cannot get data with table attribute: {'id': 'GridTable'}
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 421, in _pd_get_tabular_data
+    na_values=na_values
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 1100, in read_html
+    displayed_only=displayed_only,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 915, in _parse
+    raise retained
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 895, in _parse
+    tables = p.parse_tables()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 213, in parse_tables
+    tables = self._parse_tables(self._build_doc(), self.match, self.attrs)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\io\html.py", line 545, in _parse_tables
+    raise ValueError("No tables found")
+ValueError: No tables found
+2020-04-28 11:49:50,191 - qfbrowsing - INFO - SSI - Trying with another table attribute
+2020-04-28 11:49:50,253 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 11:49:50,511 - qfbrowsing - INFO - SSI - Next page selected
+2020-04-28 11:49:53,563 - qfbrowsing - INFO - SSI - Page 2 is loaded
+2020-04-28 11:49:53,645 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 11:49:53,653 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 11:49:53,662 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 11:49:53,664 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:49:53,778 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:49:53,781 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:49:53,804 - quantfin - INFO - cafef - Joining results
+2020-04-28 11:49:53,815 - quantfin - INFO - cafef - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 11:49:53,833 - quantfin - INFO - cafef - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 11:49:53,849 - quantfin - INFO - cafef - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 11:49:53,852 - quantfin - INFO - cafef - Updating cafef class dataframe...
+2020-04-28 11:49:53,855 - quantfin - INFO - cafef - Appending results to result set...
+2020-04-28 11:49:53,858 - quantfin - INFO - cafef - Results are added to result set
+2020-04-28 11:50:23,807 - qfutils - INFO - Start validating symbols array...
+2020-04-28 11:50:23,807 - qfutils - INFO - Symbols array validation done
+2020-04-28 11:50:23,807 - quantfin - INFO - Stockbiz - sb_get_data method is triggered
+2020-04-28 11:50:23,811 - quantfin - INFO - Stockbiz - sb_get_data method is triggered
+2020-04-28 11:50:23,815 - quantfin - INFO - Stockbiz - sb_get_data method is triggered
+2020-04-28 11:50:38,758 - qfbrowsing - ERROR - VIC - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 378, in _query_symbol
+    symbol_filter.click()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <input name="ctl00$webPartManager$wp1770166562$wp1427611561$symbolSearch$txtSymbol" type="text" value="Mã CK hoặc tên công ty" id="ctl00_webPartManager_wp1770166562_wp1427611561_symbolSearch_txtSymbol" class="get_quote_box_2 watermark_on ac_input" autocomplete="off"> is not clickable at point (179, 544). Other element would receive the click: <div class="mfp-container mfp-s-ready mfp-inline-holder">...</div>
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 11:50:38,766 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 11:50:38,778 - qfbrowsing - ERROR - SSI - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 378, in _query_symbol
+    symbol_filter.click()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <input name="ctl00$webPartManager$wp1770166562$wp1427611561$symbolSearch$txtSymbol" type="text" value="Mã CK hoặc tên công ty" id="ctl00_webPartManager_wp1770166562_wp1427611561_symbolSearch_txtSymbol" class="get_quote_box_2 watermark_on ac_input" autocomplete="off"> is not clickable at point (179, 544). Other element would receive the click: <div class="mfp-container mfp-s-ready mfp-inline-holder">...</div>
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 11:50:38,782 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 11:50:40,038 - qfbrowsing - ERROR - CTB - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 378, in _query_symbol
+    symbol_filter.click()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <input name="ctl00$webPartManager$wp1770166562$wp1427611561$symbolSearch$txtSymbol" type="text" value="Mã CK hoặc tên công ty" id="ctl00_webPartManager_wp1770166562_wp1427611561_symbolSearch_txtSymbol" class="get_quote_box_2 watermark_on ac_input" autocomplete="off"> is not clickable at point (179, 544). Other element would receive the click: <div class="mfp-container mfp-s-ready mfp-inline-holder">...</div>
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 11:50:40,049 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 11:50:41,380 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 11:50:41,450 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 11:50:41,619 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 11:50:41,712 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 11:50:42,170 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 11:50:42,278 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 11:50:42,321 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 11:50:42,397 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 11:50:42,873 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 11:50:44,347 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 11:50:44,435 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 11:50:44,463 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 11:50:44,546 - qfbrowsing - INFO - VIC - Next page selected
+2020-04-28 11:50:44,546 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 11:50:44,622 - qfbrowsing - INFO - SSI - Next page selected
+2020-04-28 11:50:44,810 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 11:50:44,898 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 11:50:44,974 - qfbrowsing - INFO - CTB - Next page selected
+2020-04-28 11:50:49,277 - qfbrowsing - INFO - VIC - Page 2 is loaded
+2020-04-28 11:50:49,541 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 11:50:49,553 - qfbrowsing - INFO - SSI - Page 2 is loaded
+2020-04-28 11:50:49,553 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 11:50:49,573 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 11:50:49,578 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:50:49,645 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:50:49,648 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:50:49,810 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 11:50:49,817 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 11:50:49,829 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 11:50:49,831 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:50:49,872 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:50:49,875 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:50:50,069 - qfbrowsing - INFO - CTB - Page 2 is loaded
+2020-04-28 11:50:50,360 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 11:50:50,369 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 11:50:50,382 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 11:50:50,385 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 11:50:50,463 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 11:50:50,465 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 11:50:50,475 - quantfin - INFO - sb - Joining results
+2020-04-28 11:50:50,482 - quantfin - INFO - sb - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 11:50:50,493 - quantfin - INFO - sb - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 11:50:50,502 - quantfin - INFO - sb - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 11:50:50,505 - quantfin - INFO - sb - Updating sb class dataframe...
+2020-04-28 11:50:50,518 - quantfin - INFO - sb - Appending results to result set...
+2020-04-28 11:50:50,522 - quantfin - INFO - sb - Results are added to result set
+2020-04-28 11:50:51,129 - qfutils - INFO - Start validating symbols array...
+2020-04-28 11:50:51,132 - qfutils - INFO - Symbols array validation done
+2020-04-28 11:50:51,135 - quantfin - INFO - VCSC - vcsc_get_data method is triggered
+2020-04-28 11:50:51,139 - quantfin - INFO - VCSC - vcsc_get_data method is triggered
+2020-04-28 11:50:51,140 - quantfin - INFO - VCSC - vcsc_get_data method is triggered
+2020-04-28 11:51:14,663 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 11:51:14,699 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 11:51:14,738 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 11:51:15,791 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 11:51:15,810 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 11:51:15,841 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 11:51:18,994 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 11:51:19,068 - qfbrowsing - ERROR - CTB - Table is not loaded
+2020-04-28 11:51:19,071 - qfbrowsing - WARNING - CTB - Empty data
+2020-04-28 11:51:19,073 - quantfin - WARNING - CTB - Data are NOT loaded completely
+2020-04-28 11:51:19,074 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 11:51:19,075 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 11:51:19,077 - quantfin - INFO - Retry to get data for 1 unloadable symbol(s). Attempt 1
+2020-04-28 11:51:20,286 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 11:51:21,399 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 11:51:24,584 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 11:51:24,623 - qfbrowsing - ERROR - CTB - Table is not loaded
+2020-04-28 11:51:24,624 - qfbrowsing - WARNING - CTB - Empty data
+2020-04-28 11:51:24,625 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 11:51:24,627 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 11:51:24,700 - numexpr.utils - INFO - NumExpr defaulting to 8 threads.
+2020-04-28 11:56:16,022 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 11:56:16,081 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 11:56:25,183 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 11:56:25,191 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 11:56:26,543 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 11:56:26,552 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 11:58:48,876 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 2
+2020-04-28 11:58:48,931 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 2
+2020-04-28 11:58:50,905 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000019CA866D108>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/bc98203c460f3c56ede8237c248c9b11/refresh
+2020-04-28 11:58:50,950 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000019CA86EB4C8>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/08d9c3394bcaf86cd9176c7d4eff6796/refresh
+2020-04-28 11:58:52,923 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000019CA866D288>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/bc98203c460f3c56ede8237c248c9b11/refresh
+2020-04-28 11:58:52,964 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000019CA86E4E88>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /session/08d9c3394bcaf86cd9176c7d4eff6796/refresh
+2020-04-28 12:00:37,520 - qfutils - INFO - Start validating symbols array...
+2020-04-28 12:00:37,521 - qfutils - INFO - Symbols array validation done
+2020-04-28 12:00:37,523 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:00:37,524 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:00:37,533 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:00:53,709 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 12:00:53,875 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 12:00:55,561 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 12:00:55,707 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 12:00:57,756 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 12:00:57,889 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 12:00:58,042 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 12:00:58,378 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 12:00:58,493 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 12:00:58,496 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 12:00:58,508 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 12:00:58,510 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:00:58,553 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:00:58,555 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:00:58,940 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 12:00:59,321 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 12:00:59,460 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 12:00:59,465 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 12:00:59,474 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 12:00:59,477 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:00:59,583 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:00:59,585 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:01:00,675 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 12:01:01,104 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 12:01:01,277 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 12:01:01,281 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 12:01:01,292 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 12:01:01,295 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:01:01,360 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:01:01,363 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:01:01,375 - quantfin - INFO - vnd - Joining results
+2020-04-28 12:01:01,386 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 12:01:01,397 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 12:01:01,409 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 12:01:01,412 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 12:01:01,415 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 12:01:01,418 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 12:01:02,394 - qfutils - INFO - Start validating symbols array...
+2020-04-28 12:01:02,397 - qfutils - INFO - Symbols array validation done
+2020-04-28 12:01:02,400 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:01:02,407 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:01:02,407 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:01:29,494 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 12:01:29,676 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 12:01:30,727 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 12:01:30,909 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 12:01:30,953 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 12:01:31,108 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 12:01:32,381 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 12:01:32,729 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 12:01:32,758 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 12:01:32,933 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 12:01:32,937 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 12:01:32,949 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 12:01:32,953 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:01:33,009 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:01:33,011 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:01:33,245 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 12:01:33,278 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 12:01:33,409 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 12:01:33,412 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 12:01:33,423 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 12:01:33,425 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:01:33,486 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:01:33,488 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:01:33,864 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 12:01:34,012 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 12:01:34,016 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 12:01:34,027 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 12:01:34,028 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:01:34,115 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:01:34,117 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:01:34,128 - quantfin - INFO - vnd - Joining results
+2020-04-28 12:01:34,137 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 12:01:34,147 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 12:01:34,162 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 12:01:34,165 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 12:01:34,187 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 12:01:34,192 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 12:02:48,025 - qfutils - INFO - Start validating symbols array...
+2020-04-28 12:02:48,031 - qfutils - INFO - Symbols array validation done
+2020-04-28 12:02:48,034 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:02:48,040 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:02:48,046 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:03:07,595 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 12:03:09,204 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 12:03:09,749 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 12:03:11,063 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 12:03:11,190 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 12:03:12,072 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 12:03:14,002 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 12:03:14,069 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 12:03:15,679 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 12:03:51,507 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 12:03:51,718 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 12:03:51,725 - qfbrowsing - INFO - VIC - Successfully reach to last page
+2020-04-28 12:03:51,744 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 12:03:51,746 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:03:51,836 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:03:51,839 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:03:54,316 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 12:03:54,467 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 12:03:54,471 - qfbrowsing - INFO - CTB - Successfully reach to last page
+2020-04-28 12:03:54,483 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 12:03:54,483 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:03:54,548 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:03:54,551 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:03:55,910 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 12:03:56,116 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 12:03:56,121 - qfbrowsing - INFO - SSI - Successfully reach to last page
+2020-04-28 12:03:56,150 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 12:03:56,155 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:03:56,250 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:03:56,253 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:03:56,266 - quantfin - INFO - vnd - Joining results
+2020-04-28 12:03:56,274 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 12:03:56,283 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 12:03:56,293 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 12:03:56,296 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 12:03:56,309 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 12:03:56,311 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 12:04:00,822 - quantfin - INFO - Running find_missing_dates method...
+2020-04-28 12:04:00,827 - quantfin - INFO - CTB - Checking dates from 2020-03-02 to 2020-04-27...
+2020-04-28 12:04:00,846 - quantfin - INFO - CTB - There is/are 0 missing date(s).
+2020-04-28 12:04:00,851 - quantfin - INFO - SSI - Checking dates from 2020-03-02 to 2020-04-27...
+2020-04-28 12:04:00,874 - quantfin - INFO - SSI - There is/are 0 missing date(s).
+2020-04-28 12:04:00,878 - quantfin - INFO - VIC - Checking dates from 2020-03-02 to 2020-04-27...
+2020-04-28 12:04:00,898 - quantfin - INFO - VIC - There is/are 0 missing date(s).
+2020-04-28 12:04:00,907 - quantfin - INFO - Original DataFrame: 120 rows x 2 columns
+2020-04-28 12:04:00,916 - quantfin - INFO - New DataFrame: 120 rows x 2 columns
+2020-04-28 12:04:33,331 - qfutils - INFO - Start validating symbols array...
+2020-04-28 12:04:33,333 - qfutils - INFO - Symbols array validation done
+2020-04-28 12:04:33,335 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:04:33,339 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:04:33,344 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:04:50,502 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 12:04:50,689 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 12:04:51,448 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 12:04:51,619 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 12:04:53,053 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 12:04:53,253 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 12:04:53,387 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 12:04:53,911 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 12:04:54,117 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 12:04:54,121 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 12:04:54,135 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 12:04:54,139 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:04:54,213 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:04:54,217 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:04:54,676 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 12:04:55,107 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 12:04:55,148 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 12:04:55,312 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 12:04:55,317 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 12:04:55,327 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 12:04:55,327 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:04:55,378 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:04:55,380 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:04:55,643 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 12:04:55,761 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 12:04:55,766 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 12:04:55,779 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 12:04:55,779 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:04:55,820 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:04:55,822 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:04:55,833 - quantfin - INFO - vnd - Joining results
+2020-04-28 12:04:55,841 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 12:04:55,853 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 12:04:55,862 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 12:04:55,882 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 12:04:55,885 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 12:04:55,888 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 12:04:56,924 - qfutils - INFO - Start validating symbols array...
+2020-04-28 12:04:56,929 - qfutils - INFO - Symbols array validation done
+2020-04-28 12:04:56,934 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:04:56,942 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:04:56,942 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:05:15,234 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 12:05:15,478 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 12:05:15,731 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 12:05:15,912 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 12:05:18,261 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 12:05:18,705 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 12:05:18,865 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 12:05:18,872 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 12:05:18,880 - qfbrowsing - INFO - VIC - Successfully extract 30 records
+2020-04-28 12:05:18,892 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 12:05:18,898 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:05:19,297 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 12:05:19,432 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 12:05:19,434 - qfbrowsing - INFO - SSI - Successfully extract 30 records
+2020-04-28 12:05:19,444 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 12:05:19,445 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:05:19,487 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:05:19,490 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:05:20,988 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 12:05:21,181 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 12:05:23,210 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 12:05:23,650 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 12:05:23,815 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 12:05:23,821 - qfbrowsing - INFO - CTB - Successfully extract 30 records
+2020-04-28 12:05:23,839 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 12:05:23,844 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:05:23,938 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:05:23,943 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:05:23,958 - quantfin - INFO - vnd - Joining results
+2020-04-28 12:05:23,967 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 12:05:23,976 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 12:05:23,987 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 12:05:23,990 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 12:05:24,005 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 12:05:24,007 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 12:05:25,412 - qfutils - INFO - Start validating symbols array...
+2020-04-28 12:05:25,417 - qfutils - INFO - Symbols array validation done
+2020-04-28 12:05:25,420 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:05:25,425 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:05:25,429 - quantfin - INFO - VNDirect - vnd_get_data method is triggered
+2020-04-28 12:05:41,360 - qfbrowsing - INFO - VIC - Symbol query form filled
+2020-04-28 12:05:42,705 - qfbrowsing - INFO - VIC - Date query form filled
+2020-04-28 12:05:42,951 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 12:05:43,803 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 12:05:44,351 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 12:05:44,649 - qfbrowsing - INFO - VIC - Page successfully loaded after form submission
+2020-04-28 12:05:46,683 - qfbrowsing - INFO - CTB - Symbol query form filled
+2020-04-28 12:05:47,718 - qfbrowsing - INFO - CTB - Date query form filled
+2020-04-28 12:05:50,186 - qfbrowsing - INFO - CTB - Page successfully loaded after form submission
+2020-04-28 12:06:04,373 - qfbrowsing - WARNING - SSI - Empty data
+2020-04-28 12:06:04,378 - quantfin - WARNING - SSI - Data are NOT loaded completely
+2020-04-28 12:06:04,382 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 12:06:04,385 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 12:06:04,389 - quantfin - INFO - Retry to get data for 1 unloadable symbol(s). Attempt 1
+2020-04-28 12:06:24,422 - qfbrowsing - ERROR - SSI - Unable to fill the Symbol query form
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfbrowsing.py", line 377, in _query_symbol
+    symbol_filter = self.find_element_by_xpath(xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 394, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="symbolID"]"}
+  (Session info: headless chrome=81.0.4044.122)
+
+2020-04-28 12:06:24,467 - qfbrowsing - WARNING - Unable to query the page. Refresh and load again. Attempt 1
+2020-04-28 12:06:24,882 - qfbrowsing - INFO - VIC - Page 1 is loaded
+2020-04-28 12:06:25,018 - qfbrowsing - INFO - VIC - Read table data from web done
+2020-04-28 12:06:25,022 - qfbrowsing - INFO - VIC - Successfully reach to last page
+2020-04-28 12:06:25,036 - quantfin - INFO - 1/3 symbol(s) checked. Progress: 33.33%
+2020-04-28 12:06:25,038 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 12:06:25,041 - quantfin - INFO - Retry to get data for 1 unloadable symbol(s). Attempt 1
+2020-04-28 12:06:27,550 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 12:06:29,099 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 12:06:29,530 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 12:06:29,665 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 12:06:30,329 - qfbrowsing - INFO - CTB - Page 1 is loaded
+2020-04-28 12:06:30,429 - qfbrowsing - INFO - CTB - Read table data from web done
+2020-04-28 12:06:30,431 - qfbrowsing - INFO - CTB - Successfully reach to last page
+2020-04-28 12:06:30,441 - quantfin - INFO - 2/3 symbol(s) checked. Progress: 66.67%
+2020-04-28 12:06:30,443 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 12:06:30,445 - quantfin - INFO - Retry to get data for 1 unloadable symbol(s). Attempt 1
+2020-04-28 12:06:30,482 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 12:06:31,943 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 12:06:32,587 - qfbrowsing - INFO - SSI - Symbol query form filled
+2020-04-28 12:06:33,739 - qfbrowsing - INFO - SSI - Date query form filled
+2020-04-28 12:06:35,407 - qfbrowsing - INFO - SSI - Page successfully loaded after form submission
+2020-04-28 12:06:49,563 - qfbrowsing - WARNING - SSI - Empty data
+2020-04-28 12:06:49,568 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 12:06:49,571 - quantfin - INFO - 1 symbol(s) not fully loaded.
+2020-04-28 12:06:49,584 - qfutils - ERROR - Cannot remove duplicated records from dataframe
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 161, in merge_dedup
+    level=original_df.index.names
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 5810, in groupby
+    observed=observed,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\groupby.py", line 409, in __init__
+    mutated=self.mutated,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\grouper.py", line 499, in get_grouper
+    elif level > 0 or level < -1:
+TypeError: '>' not supported between instances of 'NoneType' and 'int'
+2020-04-28 12:06:49,775 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:06:49,777 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:07:12,175 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 12:07:12,370 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 12:07:12,373 - qfbrowsing - INFO - SSI - Successfully reach to last page
+2020-04-28 12:07:12,389 - quantfin - INFO - SSI - Data are successfully loaded. To be removed from unloadables list
+2020-04-28 12:07:12,392 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 12:07:12,398 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:07:12,505 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:07:12,510 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:07:15,702 - qfbrowsing - INFO - SSI - Page 1 is loaded
+2020-04-28 12:07:15,853 - qfbrowsing - INFO - SSI - Read table data from web done
+2020-04-28 12:07:15,853 - qfbrowsing - INFO - SSI - Successfully reach to last page
+2020-04-28 12:07:15,868 - quantfin - INFO - 3/3 symbol(s) checked. Progress: 100.0%
+2020-04-28 12:07:15,868 - quantfin - INFO - 0 symbol(s) not fully loaded.
+2020-04-28 12:07:15,878 - qfutils - ERROR - Cannot remove duplicated records from dataframe
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\vn_stock_trading\stock_research\qfutils.py", line 161, in merge_dedup
+    level=original_df.index.names
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\frame.py", line 5810, in groupby
+    observed=observed,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\groupby.py", line 409, in __init__
+    mutated=self.mutated,
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\pandas\core\groupby\grouper.py", line 499, in get_grouper
+    elif level > 0 or level < -1:
+TypeError: '>' not supported between instances of 'NoneType' and 'int'
+2020-04-28 12:07:15,913 - qfutils - WARNING - Symbol field is not an index. It will be made an index
+2020-04-28 12:07:15,915 - qfutils - WARNING - Date field is not an index. It will be made an index
+2020-04-28 12:07:15,926 - quantfin - INFO - vnd - Joining results
+2020-04-28 12:07:15,931 - quantfin - INFO - vnd - Thread 0 - Query result appended to consolidated dataframe
+2020-04-28 12:07:15,938 - quantfin - INFO - vnd - Thread 1 - Query result appended to consolidated dataframe
+2020-04-28 12:07:15,948 - quantfin - INFO - vnd - Thread 2 - Query result appended to consolidated dataframe
+2020-04-28 12:07:15,950 - quantfin - INFO - vnd - Updating vnd class dataframe...
+2020-04-28 12:07:15,963 - quantfin - INFO - vnd - Appending results to result set...
+2020-04-28 12:07:15,966 - quantfin - INFO - vnd - Results are added to result set
+2020-04-28 12:07:19,304 - quantfin - INFO - Running find_missing_dates method...
+2020-04-28 12:07:19,307 - quantfin - INFO - CTB - Checking dates from 2020-03-02 to 2020-04-27...
+2020-04-28 12:07:19,322 - quantfin - INFO - CTB - There is/are 0 missing date(s).
+2020-04-28 12:07:19,327 - quantfin - INFO - SSI - Checking dates from 2020-03-02 to 2020-04-27...
+2020-04-28 12:07:19,346 - quantfin - INFO - SSI - There is/are 0 missing date(s).
+2020-04-28 12:07:19,349 - quantfin - INFO - VIC - Checking dates from 2020-03-02 to 2020-04-27...
+2020-04-28 12:07:19,369 - quantfin - INFO - VIC - There is/are 0 missing date(s).
+2020-04-28 12:07:19,379 - quantfin - INFO - Original DataFrame: 120 rows x 2 columns
+2020-04-28 12:07:19,388 - quantfin - INFO - New DataFrame: 120 rows x 2 columns

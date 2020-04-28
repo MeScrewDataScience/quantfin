@@ -28,15 +28,13 @@ class DataFeeder():
 
     def __init__(
         self,
-        symbol_index='symbol',
-        date_index='date',
-        driver='chrome',
         driver_exe=None,
+        driver='chrome',
         headless=True
     ):
         
-        self.symbol_index = symbol_index
-        self.date_index = date_index
+        self.symbol_index = 'symbol'
+        self.date_index = 'date'
         self.driver = driver
         self.driver_exe = driver_exe
         self.headless = headless
@@ -94,6 +92,7 @@ class DataFeeder():
             self.date_index,
             self.vnd_prop['dict_cols']['Giáđóngcửađiềuchỉnh'],
             self.vnd_prop['dict_cols']['Giámởcửa'],
+            self.vnd_prop['dict_cols']['Giácaonhất'],
             self.vnd_prop['dict_cols']['Giáthấpnhất'],
             self.vnd_prop['dict_cols']['Giáđóngcửa'],
             self.vnd_prop['dict_cols']['KLkhớplệnh']
@@ -379,8 +378,8 @@ class DataFeeder():
 
     def multiprocessing(
         self,
-        methods,
         symbols_array,
+        methods,
         date_format=None,
         records=None,
         cp68_username=None,
@@ -556,8 +555,8 @@ class DataFeeder():
 
     def multithreading(
         self,
-        methods,
         symbols_array,
+        methods,
         date_format=None,
         records=None,
         cp68_username=None,
@@ -768,7 +767,7 @@ class DataFeeder():
                         'to_check'
                     )
                 temp_df = self._load_html_data(method, browser, records)
-                result_df = qfutils.concat_dedup(result_df, temp_df)
+                result_df = qfutils.merge_dedup(result_df, temp_df, 'concat')
                 attempts += 1
         
         except KeyboardInterrupt:
@@ -837,7 +836,7 @@ class DataFeeder():
                         'to_check'
                     )
                 temp_df = self._load_html_data(method, browser, records)
-                result_df = qfutils.concat_dedup(result_df, temp_df)
+                result_df = qfutils.merge_dedup(result_df, temp_df, 'concat')
                 attempts += 1
         
         except KeyboardInterrupt:
@@ -906,7 +905,7 @@ class DataFeeder():
                         'to_check'
                     )
                 temp_df = self._load_html_data(method, browser, records)
-                result_df = qfutils.concat_dedup(result_df, temp_df)
+                result_df = qfutils.merge_dedup(result_df, temp_df, 'concat')
                 attempts += 1
 
             regex = 'open|high|low|close'
@@ -983,7 +982,7 @@ class DataFeeder():
                         'to_check'
                     )
                 temp_df = self._load_html_data(method, browser, records)
-                result_df = qfutils.concat_dedup(result_df, temp_df)
+                result_df = qfutils.merge_dedup(result_df, temp_df, 'concat')
                 attempts += 1
         
         except KeyboardInterrupt:
@@ -1339,24 +1338,24 @@ class DataFeeder():
         return
     
 
-    def _update_class_df(self, method, additive_df, df_name='df'):
+    def _update_class_df(self, method, additive_df, df_name=None):
         if not additive_df.empty or len(additive_df) > 0:
             if method == 'vnd':
-                self.vnd_df = qfutils.concat_dedup(self.vnd_df, additive_df)
+                self.vnd_df = qfutils.merge_dedup(self.vnd_df, additive_df, 'concat')
             elif method == 'cafef':
-                self.cafef_df = qfutils.concat_dedup(self.cafef_df, additive_df)
+                self.cafef_df = qfutils.merge_dedup(self.cafef_df, additive_df, 'concat')
             elif method == 'vcsc':
-                self.vcsc_df = qfutils.concat_dedup(self.vcsc_df, additive_df)
+                self.vcsc_df = qfutils.merge_dedup(self.vcsc_df, additive_df, 'concat')
             elif method == 'sb':
-                self.sb_df = qfutils.concat_dedup(self.sb_df, additive_df)
+                self.sb_df = qfutils.merge_dedup(self.sb_df, additive_df, 'concat')
             elif method in ('cp68', 'cp68_mass_download'):
                 if df_name == 'df_mt4':
-                    self.cp68_df_mt4 = qfutils.concat_dedup(
-                        self.cp68_df_mt4, additive_df
+                    self.cp68_df_mt4 = qfutils.merge_dedup(
+                        self.cp68_df_mt4, additive_df, 'concat'
                     )
                 elif df_name == 'df_xls':
-                    self.cp68_df_xls = qfutils.concat_dedup(
-                        self.cp68_df_xls, additive_df
+                    self.cp68_df_xls = qfutils.merge_dedup(
+                        self.cp68_df_xls, additive_df, 'concat'
                     )
                 else:
                     logger.error(f'There is no dataframe named {df_name}')
@@ -1534,26 +1533,110 @@ class DataFeeder():
             raise ValueError
 
 
-class DataBuilder(DataFeeder):
+class Portfolio(DataFeeder):
 
-    def __init__(self, dataframe, symbol_col='symbol', date_col='date'):
-        DataFeeder.__init__(self, symbol_index=symbol_col, date_index=date_col)
-        self.data = qfutils.validate_index(
-            qfutils.validate_dataframe(dataframe),
-            symbol_col,
-            date_col,
-
-        )
+    def __init__(self, data, symbol_col, date_col, driver_exe, driver='chrome'):
+        DataFeeder.__init__(self)
+        self.data = self._initiate_data(data, symbol_col, date_col)
         self.symbol_index = symbol_col
         self.date_index = date_col
         self.data['issues_detected'] = False
+        self.driver_exe = driver_exe
+        self.driver = driver
+    
+
+    def _initiate_data(self, data, symbol_col, date_col):
+        if not data or data.empty:
+            data = pd.DataFrame()
+        else:
+            data = qfutils.validate_index(
+                qfutils.validate_dataframe(data),
+                symbol_col,
+                date_col,
+            )
+
+        return data
+    
+
+    def _get_symbols(self):
+        if self.data.empty:
+            symbols_array = []
+        
+        else:
+            try:
+                symbols_array = list(
+                    self.data.index.get_level_values(self.symbol_index).unique()
+                )
+                # symnols = self.data.index.levels[0].tolist()
+            except:
+                logger.error('Cannot retrieve list of symbols '
+                             f'from column {self.symbol_index}', exc_info=True)
+                raise
+        
+        return symbols_array
+
+
+    def update_data(
+        self,
+        symbols_array,
+        method='vnd',
+        date_format=None,
+        records=None,
+        cp68_username=None,
+        cp68_password=None,
+        cp68_data_source=None,
+        workers=8
+    ):
+        self._dump_data_to_var = True
+
+        if symbols_array == 'all':
+            symbols_array = self._get_symbols()
+        
+        try:
+            try:
+                if len(symbols_array) < workers:
+                    workers = len(symbols_array)
+            
+                additive_df = self.multithreading(
+                    methods=method,
+                    symbols_array=symbols_array,
+                    date_format=date_format,
+                    records=records,
+                    cp68_username=cp68_username,
+                    cp68_password=cp68_password,
+                    cp68_data_source=cp68_data_source,
+                    cp68_to_folder=None,
+                    workers=workers
+                )
+                additive_df = additive_df[0]
+            except:
+                logger.error('Cannot extract data from web with '
+                             f'assigned method {method}', exc_info=True)
+                raise
+            
+            try:
+                # self.data = self.data.join(additive_df, how='outer')
+                # self.data = self.data.groupby(level=self.data.index.names).first()
+                self.data = qfutils.merge_dedup(self.data, additive_df, 'join')
+            except:
+                logger.error('Cannot append web-extracted data to '
+                             'original dataframe')
+                raise
+        
+        except:
+            raise
+        
+        finally:
+            self._dump_data_to_var = False
+        
+        return
     
 
     def interpolate(self, column, method='linear'):
         self._dump_data_to_var = True
 
         try:
-            symbols = self.data.index.levels[0].tolist()
+            symbols = self._get_symbols()
             for symbol in symbols:
                 values = self.data.loc[symbol, column].interpolate(method)
                 self.data.loc[symbol, column] = values.values
@@ -1566,7 +1649,7 @@ class DataBuilder(DataFeeder):
         finally:
             self._dump_data_to_var = False
         
-        return self.data
+        return
     
 
     def fill_na(self, na_column, value, inplace=False):
@@ -1583,73 +1666,14 @@ class DataBuilder(DataFeeder):
         finally:
             self._dump_data_to_var = False
         
-        return self.data
-
-
-    def update(
-        self,
-        method,
-        records,
-        cp68_username=None,
-        cp68_password=None,
-        cp68_data_source=None,
-        workers=8
-    ):
-        self._dump_data_to_var = True
-        
-        try:
-            try:
-                symbols = list(
-                    self.data.index.get_level_values(self.symbol_index).unique()
-                )
-            except:
-                logger.error('Cannot retrieve list of symbols '
-                             f'from column {self.symbol_index}', exc_info=True)
-                raise
-            
-            try:
-                if len(symbols) < workers:
-                    workers = len(symbols)
-            
-                additive_df = self.multithreading(
-                    methods=method,
-                    symbols_array=symbols,
-                    date_format=None,
-                    records=records,
-                    cp68_username=cp68_username,
-                    cp68_password=cp68_password,
-                    cp68_data_source=cp68_data_source,
-                    cp68_to_folder=None,
-                    workers=workers
-                )
-                additive_df = additive_df[0]
-            except:
-                logger.error('Cannot extract data from web with '
-                             f'assigned method {method}', exc_info=True)
-                raise
-            
-            try:
-                self.data = self.data.join(additive_df, how='outer')
-                self.data = self.data.groupby(level=self.data.index.names).first()
-            except:
-                logger.error('Cannot append web-extracted data to '
-                             'original dataframe')
-                raise
-        
-        except:
-            raise
-        
-        finally:
-            self._dump_data_to_var = False
-        
-        return self.data
+        return
     
 
     def find_missing_dates(self, holidays=[]):
         logger.info('Running find_missing_dates method...')
 
         final_index = []
-        symbols = list(self.data.index.get_level_values(self.symbol_index).unique())
+        symbols = self._get_symbols()
         for symbol in symbols:
 
             old_date_index = self.data.loc[symbol, :].index
@@ -1694,7 +1718,7 @@ class DataBuilder(DataFeeder):
         logger.info(f'New DataFrame: {len(self.data)} rows '
                     f'x {len(self.data.columns)} columns')
         
-        return self.data
+        return
     
 
     def find_na(self, columns=[]):
@@ -1725,7 +1749,7 @@ class DataBuilder(DataFeeder):
         
         self.data['issues_detected'] = self.data['is_na'] | self.data['issues_detected']
 
-        return self.data
+        return
     
 
     def find_outliers(self, columns, lookback_period=20, significance=0.2):
@@ -1757,7 +1781,7 @@ class DataBuilder(DataFeeder):
         
         self.data['issues_detected'] = self.data['outliers_detected'] | self.data['issues_detected']
         
-        return self.data
+        return
 
 
     def find_differences(self, base_columns, ref_columns):
@@ -1787,4 +1811,4 @@ class DataBuilder(DataFeeder):
         
         self.data['issues_detected'] = self.data['base_differs_ref'] | self.data['issues_detected']
         
-        return self.data
+        return
