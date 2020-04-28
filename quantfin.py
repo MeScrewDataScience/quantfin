@@ -452,7 +452,7 @@ class DataFeeder():
                 'workers': {}
             }
 
-        # Break symbols array to evenly size chunks
+        # Break symbols array to evenly sized chunks
         split_symbols_array = qfutils.split_array(symbols_array, workers)
 
         # Run multiple workers
@@ -750,7 +750,6 @@ class DataFeeder():
             self._clear_unloadables(method)
         
         try:
-
             result_df = self._load_html_data(method, browser, records)
             unloadables = self._get_attribute(method, 'unloadables')
             
