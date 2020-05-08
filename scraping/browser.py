@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 
+# Import standard libraries
 import datetime as dt
 import json
 import mechanicalsoup
 import logging
 import logging.config
-import pandas as pd
-import qfutils
-from bs4 import BeautifulSoup
 from io import StringIO
+from pathlib import Path
+from time import sleep
+
+# Import third-party libraries
+import pandas as pd
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as chOptions
 from selenium.webdriver.firefox.options import Options as ffOptions
@@ -16,13 +20,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from time import sleep
+
+# Import local modules
+import quantfin.scraping.utils as utils
+from quantfin.logconfig import logging_config
 
 
-with open('logging_config.json') as jsonfile:
-    logging_config = json.load(jsonfile)
-
-logging.config.dictConfig(logging_config)
+config = logging_config()
+logging.config.dictConfig(config)
 logger = logging.getLogger(__name__)
 
 
@@ -66,7 +71,7 @@ class SoupReader():
                 text = col_soup.text.strip()
                 text = ''.join(text.split())
                 # Convert to numeric if possible
-                text = qfutils._to_numeric(text, thousands, decimal, na_values)
+                text = utils._to_numeric(text, thousands, decimal, na_values)
 
                 text_values.append(text)
         
@@ -151,7 +156,7 @@ class SoupReader():
         return soup
 
 
-class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
+class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
     
     def __init__(self, driver, driver_exe, headless=True):
         
@@ -224,32 +229,31 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                         raise ValueError(e)
     
 
-    def input_page_prop(self, page_properties):
-        self.prop = page_properties
+    def init_page_attrs(self, page_attributes):
+        self.attrs = page_attributes
 
-        url = self.prop['url']
-        url_hostname = qfutils._get_url_hostname(url)
+        url = self.attrs['url']
+        url_hostname = utils._get_url_hostname(url)
 
-        callers = ['vndirect', 'cafef', 'vcsc', 'stockbiz']
+        callers = ['vndirect', 'cafef', 'vcsc', 'stockbiz', 'vietstock']
 
-        for caller in callers:
-            if caller in url_hostname:
-                self.caller = caller
-                break
-        
-        if not self.caller:
+        if any(caller in url_hostname for caller in callers):
+            self.caller = [
+                caller for caller in callers if caller in url_hostname
+            ][0]
+        else:
             logger.error(f'The provied URL {url} in page '
-                         f'properties is not supported. '
-                         f'See below for full page properties\n'
-                         f'{self.prop}')
+                        f'attributes is not supported. '
+                        f'See below for full page attributes\n'
+                        f'{self.attrs}')
             raise ValueError
     
     
     def load_page(self):
 
         self.delete_all_cookies()
-        self.implicitly_wait(20)
-        self.get(self.prop['url'])
+        self.implicitly_wait(5)
+        self.get(self.attrs['url'])
         
         return
 
@@ -278,13 +282,15 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
             logger.warning(f'{symbol_data[0]} - Empty data')
         
         else:
-            temp_df[self.prop['symbol_index']] = symbol_data[0]
-            temp_df = qfutils._set_columns(
+            if self.caller != 'vietstock':
+                temp_df[self.attrs['symbol_index']] = symbol_data[0]
+            
+            temp_df = utils._set_columns(
                 temp_df,
-                self.prop['dict_cols'],
-                self.prop['selected_cols'],
-                self.prop['date_index'],
-                self.prop['result_date_format']
+                self.attrs['dict_cols'],
+                self.attrs['selected_cols'],
+                self.attrs['date_index'],
+                self.attrs['result_date_format']
             )
             self.consolidated_df = pd.concat(
                 [self.consolidated_df, temp_df],
@@ -300,18 +306,16 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
             self._query_symbol(symbol_data[0])
             self._query_dates(symbol_data)
 
-            # Get pagination element before perform click operation
-            # to check if website is loaded after click operation
-            pagination_xpath = self.prop['pagination_xpath']
-            pagination = WebDriverWait(self, 20).until(
-                EC.presence_of_element_located((By.XPATH, pagination_xpath))
+            # Wait for submit button to be clickable
+            submit_button = WebDriverWait(self, 5).until(
+                EC.element_to_be_clickable((By.XPATH, self.attrs['button_xpath']))
             )
-
-            submit_button = self.find_element_by_xpath(self.prop['button_xpath'])
             submit_button.click()
-
+            
             # Check if website is loaded if after click operation
-            self._wait_for_staleness_of_elem(pagination)
+            WebDriverWait(self, 5).until(
+                EC.visibility_of_element_located((By.XPATH, self.attrs['pagination_xpath']))
+            )
             logger.info(f'{symbol_data[0]} - Page successfully loaded after form submission')
         
         except:
@@ -334,23 +338,27 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
         symbol = symbol_data[0]
         from_date = symbol_data[1]
         to_date = symbol_data[2]
-
-        if self.caller == 'vcsc' and not from_date:
+        
+        if self.caller in ['vcsc', 'vietstock'] and not from_date:
             from_date = dt.date(2000, 1, 1)
 
         try:
-            from_date_filter = self.find_element_by_xpath(self.prop['from_date_xpath'])
-            to_date_filter = self.find_element_by_xpath(self.prop['to_date_xpath'])
+            from_date_filter = WebDriverWait(self, 5).until(
+                EC.element_to_be_clickable((By.XPATH, self.attrs['from_date_xpath']))
+            )
+            to_date_filter = WebDriverWait(self, 5).until(
+                EC.element_to_be_clickable((By.XPATH, self.attrs['to_date_xpath']))
+            )
 
             from_date_filter.clear()
             if from_date:
-                from_date = from_date.strftime(self.prop['query_date_format'])
+                from_date = from_date.strftime(self.attrs['query_date_format'])
                 for char in from_date:
                     from_date_filter.send_keys(char)
             
             to_date_filter.clear()
             if to_date:
-                to_date = to_date.strftime(self.prop['query_date_format'])
+                to_date = to_date.strftime(self.attrs['query_date_format'])
                 for char in to_date:
                     to_date_filter.send_keys(char)
             
@@ -364,45 +372,53 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
     
 
     def _query_symbol(self, symbol):
-
-        if not isinstance(self.prop['symbol_xpath'], list) \
-        and not isinstance(self.prop['symbol_xpath'], tuple):
-            symbol_xpaths = [self.prop['symbol_xpath']]
-        
+        if not isinstance(self.attrs['symbol_xpath'], list) \
+        and not isinstance(self.attrs['symbol_xpath'], tuple):
+            symbol_xpaths = [self.attrs['symbol_xpath']]
         else:
-            symbol_xpaths = self.prop['symbol_xpath']
+            symbol_xpaths = self.attrs['symbol_xpath']
+
+        verifier_xpath = self.attrs['symbol_verify_xpath']
 
         try:
             for xpath in symbol_xpaths:
-                symbol_filter = self.find_element_by_xpath(xpath)
+                symbol_filter = WebDriverWait(self, 5).until(
+                    EC.element_to_be_clickable((By.XPATH, xpath))
+                )
                 symbol_filter.click()
                 
                 if xpath == symbol_xpaths[-1]:
                     symbol_filter.clear()
                     symbol_filter.send_keys(symbol)
                     symbol_filter.send_keys(Keys.RETURN)
-            
-            logger.info(f'{symbol} - Symbol query form filled')
         
         except:
-            logger.error(f'{symbol} - Unable to fill the Symbol query form', exc_info=True)
+            logger.error(f'{symbol} - Unable to fill the symbol query form', exc_info=True)
             raise
+        
+        symbol_verifier = self.find_element_by_xpath(verifier_xpath)
+        result_value = symbol_verifier.text
+        if symbol.upper() not in result_value.upper():
+            logger.error(f'{symbol} - Symbol is not found in website\'s database')
+            raise ValueError
+
+        logger.info(f'{symbol} - Symbol query form filled')
         
         return
     
 
     def _pd_get_tabular_data(self, df, symbol, records=None):
         
-        table_attr = self.prop['table_attr']
-        header = self.prop['header']
-        skiprows = self.prop['skiprows']
-        thousands = self.prop['thousands']
-        decimal = self.prop['decimal']
-        na_values = self.prop['na_values']
+        table_attr = self.attrs['table_attr']
+        header = self.attrs['header']
+        skiprows = self.attrs['skiprows']
+        thousands = self.attrs['thousands']
+        decimal = self.attrs['decimal']
+        na_values = self.attrs['na_values']
 
         try:
             # Check current pagination
-            current_page, is_last_page = self._current_page(symbol)
+            current_page, is_last_page = self._get_page_num(symbol)
             logger.info(f'{symbol} - Page {current_page} is loaded')
         
             # Get page source
@@ -425,9 +441,9 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                     if len(header) > 1:
                         table.columns = table.columns.map('_'.join)
                     
-                    logger.info(f'{symbol} - Read table data from web done')
+                    logger.info(f'{symbol} - Successfully read table data from current page')
                     table_attr[0], table_attr[i] = table_attr[i], table_attr[0]
-                    # table = qfutils.df_numericalize(table)
+                    # table = utils.df_numericalize(table)
                     df = pd.concat([df, table], ignore_index=True)
                     break
                 
@@ -474,16 +490,16 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
 
     def _bs4_get_tabular_data(self, df, symbol, records=None):
 
-        table_attr = self.prop['table_attr']
-        header = self.prop['header']
-        skiprows = self.prop['skiprows']
-        thousands = self.prop['thousands']
-        decimal = self.prop['decimal']
-        na_values = self.prop['na_values']
+        table_attr = self.attrs['table_attr']
+        header = self.attrs['header']
+        skiprows = self.attrs['skiprows']
+        thousands = self.attrs['thousands']
+        decimal = self.attrs['decimal']
+        na_values = self.attrs['na_values']
         
         try:
             # Check current pagination
-            current_page, is_last_page = self._current_page(symbol)
+            current_page, is_last_page = self._get_page_num(symbol)
             logger.info(f'{symbol} - Page {current_page} is loaded')
 
             # Check page source
@@ -520,7 +536,7 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                     
                     logger.info(f'{symbol} - Read table data from web done')
                     table_attr[i], table_attr[0] = table_attr[0], table_attr[i]
-                    # table = qfutils.df_numericalize(table)
+                    # table = utils.df_numericalize(table)
                     df = pd.concat([df, table], ignore_index=True)
                     break
                 
@@ -568,12 +584,9 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
     def _to_next_page(self, symbol, attempt_lim=5, attempts=0):
         
         try:
-            pagination = self.find_element_by_xpath(self.prop['pagination_xpath'])
-            new_page = pagination.find_element_by_link_text(self.prop['next_page'])
-            new_page.click()
-            logger.info(f'{symbol} - Next page selected')
-            
-            self._wait_for_staleness_of_elem(new_page)
+            next_page = self._find_next_page()
+            next_page.click()            
+            WebDriverWait(self, 5).until(EC.staleness_of(next_page))
         
         except:
             if attempts == attempt_lim:
@@ -591,40 +604,39 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
         return
     
 
-    def _current_page(self, symbol):
+    def _get_page_num(self, symbol):
 
-        pagination = self.find_element_by_xpath(self.prop['pagination_xpath'])
+        pagination = self.find_element_by_xpath(self.attrs['pagination_xpath'])
 
         if pagination.text:
-            next_page = self._find_next_page(pagination)
-
             if self.caller in ['vcsc', 'stockbiz']:
                 pages = pagination.find_elements_by_xpath('.//*')
+                pages_text = [page.text for page in pages]
             
             elif self.caller == 'cafef':
                 pages = pagination.find_elements_by_xpath('.//*')
                 pages_text = [page.text for page in pages]
-                dup_records = qfutils.list_duplicates(pages_text)
-                to_remove = [pages[rec[1][0]] for rec in dup_records]
-
-                for element in to_remove:
-                    pages.remove(element)
-                
-                pages = pages[1:]
+                pages_text = list(dict.fromkeys(pages_text))
+                pages_text = pages_text[1:]
             
             elif self.caller == 'vndirect':
                 pages = pagination.find_elements_by_tag_name('a')
+                pages_text = [page.text for page in pages]
             
-            pages_text = [page.text for page in pages]
+            elif self.caller == 'vietstock':
+                pagination = self.find_element_by_xpath(self.attrs['pagination_xpath'])
+                pages_text = pagination.text.replace('Trang', '').split('/')
+            
+            next_page = self._find_next_page()
 
-            next_page = self._find_next_page(pagination)
-
-            if not next_page:
-                return pages_text[-1], True
+            if not next_page or not next_page.is_enabled():
+                current_page = pages_text[-1]
+                is_last_page = True
             
             else:
                 if len(pages_text) <= 2:
-                    return pages_text[0], False
+                    current_page = pages_text[0]
+                    is_last_page = False
                 
                 else:
                     if self.caller == 'stockbiz':
@@ -636,19 +648,26 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                             pagination, next_page
                         )
                     
-                    return page_num, False
+                    current_page = page_num
+                    is_last_page = False
 
         else:
             logger.error(f'{symbol} - Table is not loaded')
             raise ValueError
 
+        return current_page, is_last_page
+
     
-    def _find_next_page(self, pagination):
+    def _find_next_page(self):
         
         try:
-            next_page = pagination.find_element_by_link_text(
-                self.prop['next_page']
-            )
+            if self.caller == 'vietstock':
+                next_page = self.find_element_by_xpath(self.attrs['next_page'])
+            else:
+                pagination = self.find_element_by_xpath(self.attrs['pagination_xpath'])
+                next_page = pagination.find_element_by_link_text(
+                    self.attrs['next_page']
+                )
         except:
             next_page = None
         
@@ -660,7 +679,7 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
         next_page_href = next_page.get_attribute('href')
 
         if self.caller == 'vcsc':
-            url_hostname = qfutils._get_url_hostname(next_page_href)
+            url_hostname = utils._get_url_hostname(next_page_href)
             next_page_href = next_page_href.replace(url_hostname, '')
             next_page_href = '/' + next_page_href
         
@@ -698,19 +717,19 @@ class SelBrowsing(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                         return pages_text[idx]
     
 
-    def _wait_for_elem_presence(self, xpath, delay=20):
+    def _wait_for_elem_presence(self, xpath, delay=5):
         element = WebDriverWait(self, delay).until(
             EC.presence_of_element_located((By.XPATH, xpath))
         )
         return element
     
 
-    def _wait_for_staleness_of_elem(self, element, delay=20):
+    def _wait_for_staleness_of_elem(self, element, delay=5):
         WebDriverWait(self, delay).until(EC.staleness_of(element))
         return
 
 
-class Bs4Browsing(mechanicalsoup.StatefulBrowser):
+class Bs4Browser(mechanicalsoup.StatefulBrowser):
 
     def __init__(self):
         mechanicalsoup.StatefulBrowser.__init__(
@@ -722,12 +741,12 @@ class Bs4Browsing(mechanicalsoup.StatefulBrowser):
         self.load_status = False
     
 
-    def input_page_prop(self, page_properties):
+    def init_page_attrs(self, page_attributes):
 
-        self.prop = page_properties
+        self.attrs = page_attributes
 
-        url = self.prop['url']
-        self.url_hostname = qfutils._get_url_hostname(url)
+        url = self.attrs['url']
+        self.url_hostname = utils._get_url_hostname(url)
 
         callers = ['cophieu68']
 
@@ -738,21 +757,21 @@ class Bs4Browsing(mechanicalsoup.StatefulBrowser):
         
         if not self.caller:
             logger.error(f'The provied URL {url} in page '
-                         f'properties is not supported. '
-                         f'See below for full page properties\n'
-                         f'{self.prop}')
+                         f'attributes is not supported. '
+                         f'See below for full page attributes\n'
+                         f'{self.attrs}')
             raise ValueError
     
     
     def load_page(self):
 
-        if not self.prop['login_url'] and self.prop['login_form']:
+        if not self.attrs['login_url'] and self.attrs['login_form']:
             logger.error('Form URL is not provided! Note: Form URL could be '
                         'the same as main URL if the form(s) is/are located '
                         'in the same main URL')
             raise ValueError
 
-        if self.prop['login_url'] and not self.prop['login_form']:
+        if self.attrs['login_url'] and not self.attrs['login_form']:
             logger.error('Form attributes are not provided: form\'s index '
                         '(integer), form\'s field name (string) and form\'s '
                         'field value. It should be in dictionary format. '
@@ -761,14 +780,14 @@ class Bs4Browsing(mechanicalsoup.StatefulBrowser):
             raise ValueError
 
         # Login to the web page before sending any requests
-        if self.prop['login_form']:
+        if self.attrs['login_form']:
             self._login()
             
             if self.login_success:
-                self.open(self.prop['url'])
+                self.open(self.attrs['url'])
             else:
                 msg = 'Failed to login. Wrong username or password.'
-                login_auth = self.prop['login_form']['fields']
+                login_auth = self.attrs['login_form']['fields']
                 login_auth = f'Login authentication: {login_auth}'
                 logger.error(' '.join([msg, login_auth]))
                 raise ValueError
@@ -788,7 +807,7 @@ class Bs4Browsing(mechanicalsoup.StatefulBrowser):
 
         try:
             dwl_link = self._get_dwl_link(link)
-            bytes_data = self._get_bytes_data(dwl_link)
+            web_data = self._get_web_data(dwl_link)
             self.load_status = True
         except:
             logger.error(f'{self.symbol} - Cannot get download link')
@@ -796,8 +815,8 @@ class Bs4Browsing(mechanicalsoup.StatefulBrowser):
         
         if to_folder:
             try:
-                filename = qfutils._get_url_filename(dwl_link)
-                self._to_folder(bytes_data, filename, to_folder)
+                filename = utils._get_url_filename(dwl_link)
+                self._to_folder(web_data, filename, to_folder)
             except:
                 self.load_status = False
                 logger.error(f'{self.symbol} - Cannot save file '
@@ -807,7 +826,7 @@ class Bs4Browsing(mechanicalsoup.StatefulBrowser):
         
         else:
             try:
-                df = self._to_file_object(data, bytes_data, records)
+                df = self._to_file_object(data, web_data, records)
             except:
                 self.load_status = False
                 logger.error(f'{self.symbol} - Cannot read table data')
@@ -830,26 +849,26 @@ class Bs4Browsing(mechanicalsoup.StatefulBrowser):
         soup_reader = SoupReader(soup)
 
         text_data = soup_reader.read_html_tabular_text(
-            tag_attr=self.prop['table_attr'],
-            skiprows=self.prop['skiprows'],
-            skipcols=self.prop['skipcols']
+            tag_attr=self.attrs['table_attr'],
+            skiprows=self.attrs['skiprows'],
+            skipcols=self.attrs['skipcols']
         )
 
         link_data = soup_reader.read_html_tabular_link(
-            tag_attr=self.prop['table_attr'],
-            skiprows=self.prop['skiprows'],
-            skipcols=self.prop['skipcols']
+            tag_attr=self.attrs['table_attr'],
+            skiprows=self.attrs['skiprows'],
+            skipcols=self.attrs['skipcols']
         )
     
         return text_data, link_data
     
 
-    def _to_folder(self, bytes_data, filename, folder_directory):
+    def _to_folder(self, web_data, filename, folder_directory):
         
         filename = f'{folder_directory}/{filename}.txt'
         try:
             with open(filename, 'wb') as f:
-                f.write(bytes_data.content)
+                f.write(web_data.content)
                 logger.info(f'{self.symbol} - File {filename} is created')
         except:
             logger.error(f'{self.symbol} - Unable to download data from web. '
@@ -859,19 +878,19 @@ class Bs4Browsing(mechanicalsoup.StatefulBrowser):
         return
     
 
-    def _to_file_object(self, data, bytes_data, records):
+    def _to_file_object(self, data, web_data, records):
 
         try:
-            raw_data = StringIO(str(bytes_data.content, 'utf-8'))
+            raw_data = StringIO(str(web_data.content, 'utf-8'))
             
             df = pd.read_csv(raw_data, nrows=records)
             
-            df = qfutils._set_columns(
+            df = utils._set_columns(
                 df=df,
-                dict_cols=self.prop[data]['dict_cols'],
-                selected_cols=self.prop[data]['selected_cols'],
-                date_cols=self.prop['date_index'],
-                result_date_format=self.prop[data]['result_date_format']
+                dict_cols=self.attrs[data]['dict_cols'],
+                selected_cols=self.attrs[data]['selected_cols'],
+                date_cols=self.attrs['date_index'],
+                result_date_format=self.attrs[data]['result_date_format']
             )
 
             if not records:
@@ -886,11 +905,11 @@ class Bs4Browsing(mechanicalsoup.StatefulBrowser):
         return df
     
 
-    def _get_bytes_data(self, dwl_link):
+    def _get_web_data(self, dwl_link):
 
         try:
-            bytes_data = self.get(dwl_link)
-            return bytes_data
+            web_data = self.get(dwl_link)
+            return web_data
         except:
             logger.error(f'{self.symbol} - Unable to download '
                          f'data from web. Link: {dwl_link}',
@@ -912,13 +931,13 @@ class Bs4Browsing(mechanicalsoup.StatefulBrowser):
     def _login(self):
 
         self._fill_form(
-            self.prop['login_url'],
-            self.prop['login_form']
+            self.attrs['login_url'],
+            self.attrs['login_form']
         )
 
         soup = self.get_current_page()
         soup_reader = SoupReader(soup)
-        msg = soup_reader._read_soup(self.prop['failed_login'])
+        msg = soup_reader._read_soup(self.attrs['failed_login'])
 
         if not msg:
             self.login_success = True

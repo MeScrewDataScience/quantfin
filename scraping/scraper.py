@@ -1,30 +1,35 @@
 # -*- coding: utf-8 -*-
 
+# Import standard libraries
 import itertools
 import json
 import logging
 import logging.config
 import os
-import pandas as pd
-import qfutils
 import random
 from datetime import datetime as dt, time as t
-from qfbrowsing import SelBrowsing, Bs4Browsing, SoupReader
+from time import sleep
+from pathlib import Path
+
+# Import third-party libraries
+import pandas as pd
 from queue import Queue as multithreadingQueue
 from threading import Thread
 from multiprocessing import Process
 from multiprocessing import Queue as multiprocessingQueue
-from time import sleep
+
+# Import local modules
+import quantfin.scraping.utils as utils
+from quantfin.scraping.browser import SelBrowser, Bs4Browser
+from quantfin.logconfig import logging_config
 
 
-with open('logging_config.json') as jsonfile:
-    logging_config = json.load(jsonfile)
-
-logging.config.dictConfig(logging_config)
+config = logging_config()
+logging.config.dictConfig(config)
 logger = logging.getLogger(__name__)
 
 
-class DataFeeder():
+class DataScraper():
 
     def __init__(
         self,
@@ -42,13 +47,14 @@ class DataFeeder():
         self._multi_workers_in_use = False
         self._dump_data_to_var = False
         
-        # VNDirect properties
+        # VNDirect attributes
         self.vnd_df = pd.DataFrame()
         self.vnd_symbols_array = []
         self.vnd_unloadables = []
-        self.vnd_prop = {
+        self.vnd_attrs = {
             'url': 'https://www.vndirect.com.vn/portal/thong-ke-thi-truong-chung-khoan/lich-su-gia.shtml',
             'symbol_xpath': '//*[@id="symbolID"]',
+            'symbol_verify_xpath': '//*[@id="symbolID"]',
             'from_date_xpath': '//*[@id="fHistoricalPrice_FromDate"]',
             'to_date_xpath': '//*[@id="fHistoricalPrice_ToDate"]',
             'button_xpath': '//*[@id="fHistoricalPrice_View"]',
@@ -87,24 +93,25 @@ class DataFeeder():
             },
             'na_values': self.na_values
         }
-        self.vnd_prop['selected_cols'] = [
+        self.vnd_attrs['selected_cols'] = [
             self.symbol_index,
             self.date_index,
-            self.vnd_prop['dict_cols']['Giáđóngcửađiềuchỉnh'],
-            self.vnd_prop['dict_cols']['Giámởcửa'],
-            self.vnd_prop['dict_cols']['Giácaonhất'],
-            self.vnd_prop['dict_cols']['Giáthấpnhất'],
-            self.vnd_prop['dict_cols']['Giáđóngcửa'],
-            self.vnd_prop['dict_cols']['KLkhớplệnh']
+            self.vnd_attrs['dict_cols']['Giáđóngcửađiềuchỉnh'],
+            self.vnd_attrs['dict_cols']['Giámởcửa'],
+            self.vnd_attrs['dict_cols']['Giácaonhất'],
+            self.vnd_attrs['dict_cols']['Giáthấpnhất'],
+            self.vnd_attrs['dict_cols']['Giáđóngcửa'],
+            self.vnd_attrs['dict_cols']['KLkhớplệnh']
         ]
 
-        # CafeF properties
+        # CafeF attributes
         self.cafef_df = pd.DataFrame()
         self.cafef_symbols_array = []
         self.cafef_unloadables = []
-        self.cafef_prop = {
+        self.cafef_attrs = {
             'url': 'http://s.cafef.vn/Lich-su-giao-dich-VNINDEX-1.chn',
             'symbol_xpath': '//*[@id="ctl00_ContentPlaceHolder1_ctl03_txtKeyword"]',
+            'symbol_verify_xpath': '//*[@id="ctl00_ContentPlaceHolder1_ctl03_txtKeyword"]',
             'from_date_xpath': '//*[@id="ctl00_ContentPlaceHolder1_ctl03_dpkTradeDate1_txtDatePicker"]',
             'to_date_xpath': '//*[@id="ctl00_ContentPlaceHolder1_ctl03_dpkTradeDate2_txtDatePicker"]',
             'button_xpath': '//*[@id="ctl00_ContentPlaceHolder1_ctl03_btSearch"]',
@@ -143,28 +150,29 @@ class DataFeeder():
             },
             'na_values': self.na_values
         }
-        self.cafef_prop['selected_cols'] = [
+        self.cafef_attrs['selected_cols'] = [
             self.symbol_index,
             self.date_index,
-            self.cafef_prop['dict_cols']['Giá điều chỉnh_Giá điều chỉnh'],
-            self.cafef_prop['dict_cols']['Giá mở cửa_Giá mở cửa'],
-            self.cafef_prop['dict_cols']['Giá cao nhất_Giá cao nhất'],
-            self.cafef_prop['dict_cols']['Giá thấp nhất_Giá thấp nhất'],
-            self.cafef_prop['dict_cols']['Giá đóng cửa_Giá đóng cửa'],
-            self.cafef_prop['dict_cols']['GD khớp lệnh_KL'],
-            self.cafef_prop['dict_cols']['GD khớp lệnh_GT']
+            self.cafef_attrs['dict_cols']['Giá điều chỉnh_Giá điều chỉnh'],
+            self.cafef_attrs['dict_cols']['Giá mở cửa_Giá mở cửa'],
+            self.cafef_attrs['dict_cols']['Giá cao nhất_Giá cao nhất'],
+            self.cafef_attrs['dict_cols']['Giá thấp nhất_Giá thấp nhất'],
+            self.cafef_attrs['dict_cols']['Giá đóng cửa_Giá đóng cửa'],
+            self.cafef_attrs['dict_cols']['GD khớp lệnh_KL'],
+            self.cafef_attrs['dict_cols']['GD khớp lệnh_GT']
         ]
 
-        # VCSC properties
+        # VCSC attributes
         self.vcsc_df = pd.DataFrame()
         self.vcsc_symbols_array = []
         self.vcsc_unloadables = []
-        self.vcsc_prop = {
+        self.vcsc_attrs = {
             'url': 'http://ra.vcsc.com.vn/Stock',
             'symbol_xpath': [
                 '//*[@id="content"]/div[2]/div/div/div[1]/div[1]/span/span[1]/span/span[2]',
                 '//input[@class="select2-search__field"]'
             ],
+            'symbol_verify_xpath': '//*[@id="select2-cboTickerStock-container"]',
             'from_date_xpath': '//*[@id="fromDate"]',
             'to_date_xpath': '//*[@id="toDate"]',
             'button_xpath': '//*[@id="btnView"]',
@@ -198,26 +206,25 @@ class DataFeeder():
             },
             'na_values': self.na_values
         }
-        self.vcsc_prop['selected_cols'] = [
+        self.vcsc_attrs['selected_cols'] = [
             self.symbol_index,
             self.date_index,
-            self.vcsc_prop['dict_cols']['Giámở cửa'],
-            self.vcsc_prop['dict_cols']['Cao nhất'],
-            self.vcsc_prop['dict_cols']['Thấp nhất'],
-            self.vcsc_prop['dict_cols']['Giá đóng cửa'],
-            self.vcsc_prop['dict_cols']['KLGD khớp lệnh (CP)'],
-            self.vcsc_prop['dict_cols']['GTGD khớp lệnh (Tỷ VND)']
+            self.vcsc_attrs['dict_cols']['Giámở cửa'],
+            self.vcsc_attrs['dict_cols']['Cao nhất'],
+            self.vcsc_attrs['dict_cols']['Thấp nhất'],
+            self.vcsc_attrs['dict_cols']['Giá đóng cửa'],
+            self.vcsc_attrs['dict_cols']['KLGD khớp lệnh (CP)'],
+            self.vcsc_attrs['dict_cols']['GTGD khớp lệnh (Tỷ VND)']
         ]
 
-        # Stockbiz properties
+        # Stockbiz attributes
         self.sb_df = pd.DataFrame()
         self.sb_symbols_array = []
         self.sb_unloadables = []
-        self.sb_prop = {
+        self.sb_attrs = {
             'url': 'https://www.stockbiz.vn/Stocks/A32/HistoricalQuotes.aspx',
-            'symbol_xpath': [
-                '//*[@id="ctl00_webPartManager_wp1770166562_wp1427611561_symbolSearch_txtSymbol"]'
-            ],
+            'symbol_xpath': '//*[@id="ctl00_webPartManager_wp1770166562_wp1427611561_symbolSearch_txtSymbol"]',
+            'verify_symbol_xpath': '//*[@id="ctl00_PlaceHolderContentArea_MainZone"]/tbody/tr/td/table/tbody/tr[1]/td/table/tbody/tr/td/div/div[1]',
             'from_date_xpath': '//*[@id="ctl00_webPartManager_wp1770166562_wp1427611561_dtStartDate_picker_picker"]',
             'to_date_xpath': '//*[@id="ctl00_webPartManager_wp1770166562_wp1427611561_dtEndDate_picker_picker"]',
             'button_xpath': '//*[@id="ctl00_webPartManager_wp1770166562_wp1427611561_btnView"]',
@@ -246,24 +253,24 @@ class DataFeeder():
             },
             'na_values': self.na_values
         }
-        self.sb_prop['selected_cols'] = [
+        self.sb_attrs['selected_cols'] = [
             self.symbol_index,
             self.date_index,
-            self.sb_prop['dict_cols']['Đóng cửa ĐC'],
-            self.sb_prop['dict_cols']['Mở cửa'],
-            self.sb_prop['dict_cols']['Cao nhất'],
-            self.sb_prop['dict_cols']['Thấp nhất'],
-            self.sb_prop['dict_cols']['Đóng cửa'],
-            self.sb_prop['dict_cols']['Khối lượng']
+            self.sb_attrs['dict_cols']['Đóng cửa ĐC'],
+            self.sb_attrs['dict_cols']['Mở cửa'],
+            self.sb_attrs['dict_cols']['Cao nhất'],
+            self.sb_attrs['dict_cols']['Thấp nhất'],
+            self.sb_attrs['dict_cols']['Đóng cửa'],
+            self.sb_attrs['dict_cols']['Khối lượng']
         ]
 
-        # CP68 propertiesself.sb_df = pd.DataFrame()
+        # CP68 attributesself.sb_df = pd.DataFrame()
         self.cp68_df_mt4 = pd.DataFrame()
         self.cp68_df_xls = pd.DataFrame()
         self.cp68_df_events = pd.DataFrame()
         self.cp68_symbols_array = []
         self.cp68_unloadables = []
-        self.cp68_prop = {
+        self.cp68_attrs = {
             'url': 'https://www.cophieu68.vn/export.php',
             'login_url': 'https://www.cophieu68.vn/account/login.php',
             'table_attr': {
@@ -348,31 +355,114 @@ class DataFeeder():
             'symbol_col': 0,
             'na_values': self.na_values
         }
-        self.cp68_prop['mt4']['selected_cols'] = [
+        self.cp68_attrs['mt4']['selected_cols'] = [
             self.symbol_index,
             self.date_index,
-            self.cp68_prop['mt4']['dict_cols']['<Open>'],
-            self.cp68_prop['mt4']['dict_cols']['<High>'],
-            self.cp68_prop['mt4']['dict_cols']['<Low>'],
-            self.cp68_prop['mt4']['dict_cols']['<Close>'],
-            self.cp68_prop['mt4']['dict_cols']['<Volume>']
+            self.cp68_attrs['mt4']['dict_cols']['<Open>'],
+            self.cp68_attrs['mt4']['dict_cols']['<High>'],
+            self.cp68_attrs['mt4']['dict_cols']['<Low>'],
+            self.cp68_attrs['mt4']['dict_cols']['<Close>'],
+            self.cp68_attrs['mt4']['dict_cols']['<Volume>']
         ]
-        self.cp68_prop['xls']['selected_cols'] = [
+        self.cp68_attrs['xls']['selected_cols'] = [
             self.symbol_index,
             self.date_index,
-            self.cp68_prop['xls']['dict_cols']['<CloseFixed>'],
-            self.cp68_prop['xls']['dict_cols']['<Open>'],
-            self.cp68_prop['xls']['dict_cols']['<High>'],
-            self.cp68_prop['xls']['dict_cols']['<Low>'],
-            self.cp68_prop['xls']['dict_cols']['<Close>'],
-            self.cp68_prop['xls']['dict_cols']['<Volume>']
+            self.cp68_attrs['xls']['dict_cols']['<CloseFixed>'],
+            self.cp68_attrs['xls']['dict_cols']['<Open>'],
+            self.cp68_attrs['xls']['dict_cols']['<High>'],
+            self.cp68_attrs['xls']['dict_cols']['<Low>'],
+            self.cp68_attrs['xls']['dict_cols']['<Close>'],
+            self.cp68_attrs['xls']['dict_cols']['<Volume>']
         ]
-        self.cp68_prop['events']['selected_cols'] = [
-            self.cp68_prop['events']['dict_cols']['LoaiSuKien'],
-            self.cp68_prop['events']['dict_cols']['NgayGDKHQ'],
-            self.cp68_prop['events']['dict_cols']['NgayThucHien'],
-            self.cp68_prop['events']['dict_cols']['TyLeCoTuc'],
-            self.cp68_prop['events']['dict_cols']['GhiChu']
+        self.cp68_attrs['events']['selected_cols'] = [
+            self.cp68_attrs['events']['dict_cols']['LoaiSuKien'],
+            self.cp68_attrs['events']['dict_cols']['NgayGDKHQ'],
+            self.cp68_attrs['events']['dict_cols']['NgayThucHien'],
+            self.cp68_attrs['events']['dict_cols']['TyLeCoTuc'],
+            self.cp68_attrs['events']['dict_cols']['GhiChu']
+        ]
+
+        # Vietstock Futures Data
+        self.vs_df_futures = pd.DataFrame()
+        self.vs_symbols_array = []
+        self.vs_unloadables = []
+        self.vs_attrs = {
+            'url_stock': 'https://finance.vietstock.vn/ket-qua-giao-dich?tab=thong-ke-lenh',
+            'url_futures': 'https://finance.vietstock.vn/chung-khoan-phai-sinh/thong-ke-giao-dich.htm',
+            'symbol_xpath_stock': [
+                '//*[@id="trading-result"]/div/div[1]/div[1]/div/div[1]/div/div[2]/div/span/span[1]/span/span[2]',
+                '/html/body/span/span/span[1]/input',
+            ],
+            'symbol_xpath_futures': [
+                '//*[@id="trading-result"]/div/div[1]/div[1]/div/div[1]/div/div[3]/div/span/span[1]/span/span[2]',
+                '/html/body/span/span/span[1]/input',
+            ],
+            'symbol_verify_xpath': '//*[@id="select2-ddlStocks-container"]',
+            'from_date_xpath': '//*[@id="txtFromDate"]/input',
+            'to_date_xpath': '//*[@id="txtToDate"]/input',
+            'button_xpath': '/html/body/div[1]/div[6]/div[1]/div/div/div[1]/div[1]/div/div[2]/button',
+            'pagination_xpath': '//*[@id="trading-result"]/div/div[3]/div/div/div[1]/div/span[1]',
+            'next_page': '//*[@id="btn-page-next"]',
+            'table_attr': [
+                {'class': 'table table-striped table-bordered table-hover no-m-b b-b'},
+            ],
+            'header': [0, 1],
+            'skiprows': [],
+            'result_date_format': '%d/%m/%Y',
+            'query_date_format': '%d/%m/%Y',
+            'thousands': ',',
+            'decimal': '.',
+            'symbol_index': self.symbol_index,
+            'date_index': self.date_index,
+            'dict_cols': {
+                'STT_STT': 'No.',
+                'Mã CK_Mã CK': self.symbol_index,
+                'Ngày_Ngày': self.date_index,
+                'Tham chiếu_Tham chiếu': 'ref_price_vs',
+                'Mở cửa_Mở cửa': 'open_vs',
+                'Đóng cửa_Đóng cửa': 'close_vs',
+                'Cao nhất_Cao nhất': 'high_vs',
+                'Thấp nhất_Thấp nhất': 'low_vs',
+                'Giáthanh toán_Giáthanh toán': 'final_price_vs',
+                'Giá mua tốt nhất_Giá': 'best_ask_price',
+                'Giá mua tốt nhất_KL': 'best_ask_vol',
+                'Giá bán tốt nhất_Giá': 'best_bid_price',
+                'Giá bán tốt nhất_KL': 'best_bid_vol',
+                'Số lệnh_Mua': 'ask_orders',
+                'Số lệnh_Bán': 'bid_orders',
+                'Số lệnh_Mua - Bán': 'ask_bid_diff_orders',
+                'Khối lượng_Mua': 'ask_vol',
+                'Khối lượng_Bán': 'bid_vol',
+                'Khối lượng_Mua - Bán': 'ask_bid_diff_vol',
+                'Thay đổi_+/-': 'change_vs',
+                'Thay đổi_%': 'change_2_vs',
+                'GD Khớp lệnh_KL': 'vol_vs',
+                'KLkhớp_KLkhớp': 'vol_vs',
+                'GD Khớp lệnh_GT': 'vol_value_vs',
+                'GTkhớp_GTkhớp': 'vol_value_vs',
+                'GD thỏa thuận_KL': 'vol_deal_vs',
+                'GD thỏa thuận_GT': 'vol_deal_value_vs',
+                'OI_OI': 'OI',
+            },
+            'na_values': self.na_values
+        }
+        self.vs_attrs['selected_cols_stock'] = [
+            self.symbol_index,
+            self.date_index,
+            self.vs_attrs['dict_cols']['Đóng cửa_Đóng cửa'],
+            self.vs_attrs['dict_cols']['KLkhớp_KLkhớp'],
+            self.vs_attrs['dict_cols']['GTkhớp_GTkhớp']
+        ]
+        self.vs_attrs['selected_cols_futures'] = [
+            self.symbol_index,
+            self.date_index,
+            self.vs_attrs['dict_cols']['Mở cửa_Mở cửa'],
+            self.vs_attrs['dict_cols']['Cao nhất_Cao nhất'],
+            self.vs_attrs['dict_cols']['Thấp nhất_Thấp nhất'],
+            self.vs_attrs['dict_cols']['Đóng cửa_Đóng cửa'],
+            self.vs_attrs['dict_cols']['Giáthanh toán_Giáthanh toán'],
+            self.vs_attrs['dict_cols']['GD Khớp lệnh_KL'],
+            self.vs_attrs['dict_cols']['GD Khớp lệnh_GT']
         ]
     
 
@@ -453,7 +543,7 @@ class DataFeeder():
             }
 
         # Break symbols array to evenly sized chunks
-        split_symbols_array = qfutils.split_array(symbols_array, workers)
+        split_symbols_array = utils.split_array(symbols_array, workers)
 
         # Run multiple workers
         try:
@@ -739,10 +829,10 @@ class DataFeeder():
         logger.info('VNDirect - vnd_get_data method is triggered')
         method = 'vnd'
 
-        page_prop = self._get_attribute(method, 'properties')
+        page_attrs = self._get_attribute(method, 'attributes')
 
-        browser = SelBrowsing(self.driver, self.driver_exe, self.headless)
-        browser.input_page_prop(page_prop)
+        browser = SelBrowser(self.driver, self.driver_exe, self.headless)
+        browser.init_page_attrs(page_attrs)
         browser.load_page()
         
         if not self._multi_workers_in_use:
@@ -766,7 +856,7 @@ class DataFeeder():
                         'to_check'
                     )
                 temp_df = self._load_html_data(method, browser, records)
-                result_df = qfutils.merge_dedup(result_df, temp_df, 'concat')
+                result_df = utils.merge_dedup(result_df, temp_df, 'concat')
                 attempts += 1
         
         except KeyboardInterrupt:
@@ -776,7 +866,7 @@ class DataFeeder():
             browser.close()
 
         if not result_df.empty or len(result_df) > 0:
-            result_df = qfutils.validate_index(
+            result_df = utils.validate_index(
                 df=result_df,
                 symbol_index=self.symbol_index,
                 date_index=self.date_index,
@@ -807,10 +897,10 @@ class DataFeeder():
         logger.info('CafeF - cafef_get_data method is triggered')
         method = 'cafef'
 
-        page_prop = self._get_attribute(method, 'properties')
+        page_attrs = self._get_attribute(method, 'attributes')
 
-        browser = SelBrowsing(self.driver, self.driver_exe, self.headless)
-        browser.input_page_prop(page_prop)
+        browser = SelBrowser(self.driver, self.driver_exe, self.headless)
+        browser.init_page_attrs(page_attrs)
         browser.load_page()
         
         if not self._multi_workers_in_use:
@@ -835,7 +925,7 @@ class DataFeeder():
                         'to_check'
                     )
                 temp_df = self._load_html_data(method, browser, records)
-                result_df = qfutils.merge_dedup(result_df, temp_df, 'concat')
+                result_df = utils.merge_dedup(result_df, temp_df, 'concat')
                 attempts += 1
         
         except KeyboardInterrupt:
@@ -845,7 +935,7 @@ class DataFeeder():
             browser.close()
 
         if not result_df.empty or len(result_df) > 0:
-            result_df = qfutils.validate_index(
+            result_df = utils.validate_index(
                 df=result_df,
                 symbol_index=self.symbol_index,
                 date_index=self.date_index,
@@ -876,10 +966,10 @@ class DataFeeder():
         logger.info('VCSC - vcsc_get_data method is triggered')
         method = 'vcsc'
 
-        page_prop = self._get_attribute(method, 'properties')
+        page_attrs = self._get_attribute(method, 'attributes')
 
-        browser = SelBrowsing(self.driver, self.driver_exe, self.headless)
-        browser.input_page_prop(page_prop)
+        browser = SelBrowser(self.driver, self.driver_exe, self.headless)
+        browser.init_page_attrs(page_attrs)
         browser.load_page()
         
         if not self._multi_workers_in_use:
@@ -904,7 +994,7 @@ class DataFeeder():
                         'to_check'
                     )
                 temp_df = self._load_html_data(method, browser, records)
-                result_df = qfutils.merge_dedup(result_df, temp_df, 'concat')
+                result_df = utils.merge_dedup(result_df, temp_df, 'concat')
                 attempts += 1
 
             regex = 'open|high|low|close'
@@ -922,7 +1012,7 @@ class DataFeeder():
             browser.close()
 
         if not result_df.empty or len(result_df) > 0:
-            result_df = qfutils.validate_index(
+            result_df = utils.validate_index(
                 df=result_df,
                 symbol_index=self.symbol_index,
                 date_index=self.date_index,
@@ -953,10 +1043,10 @@ class DataFeeder():
         logger.info('Stockbiz - sb_get_data method is triggered')
         method = 'sb'
 
-        page_prop = self._get_attribute(method, 'properties')
+        page_attrs = self._get_attribute(method, 'attributes')
 
-        browser = SelBrowsing(self.driver, self.driver_exe, self.headless)
-        browser.input_page_prop(page_prop)
+        browser = SelBrowser(self.driver, self.driver_exe, self.headless)
+        browser.init_page_attrs(page_attrs)
         browser.load_page()
         
         if not self._multi_workers_in_use:
@@ -981,7 +1071,7 @@ class DataFeeder():
                         'to_check'
                     )
                 temp_df = self._load_html_data(method, browser, records)
-                result_df = qfutils.merge_dedup(result_df, temp_df, 'concat')
+                result_df = utils.merge_dedup(result_df, temp_df, 'concat')
                 attempts += 1
         
         except KeyboardInterrupt:
@@ -991,7 +1081,7 @@ class DataFeeder():
             browser.close()
 
         if not result_df.empty or len(result_df) > 0:
-            result_df = qfutils.validate_index(
+            result_df = utils.validate_index(
                 df=result_df,
                 symbol_index=self.symbol_index,
                 date_index=self.date_index,
@@ -1032,13 +1122,14 @@ class DataFeeder():
         if not isinstance(symbols, list):
             symbols = [symbols]
         
-        # Open page and login
-        page_prop = self._get_attribute(method, 'properties')
-        page_prop['login_form']['fields']['username'] = login_username
-        page_prop['login_form']['fields']['tpassword'] = login_password
+        # Set webpage attributes
+        page_attrs = self._get_attribute(method, 'attributes')
+        page_attrs['login_form']['fields']['username'] = login_username
+        page_attrs['login_form']['fields']['tpassword'] = login_password
         
-        browser = Bs4Browsing()
-        browser.input_page_prop(page_prop)
+        # Open page and login
+        browser = Bs4Browser()
+        browser.init_page_attrs(page_attrs)
         browser.load_page()
         
         logger.info('Start to download the data')
@@ -1070,7 +1161,7 @@ class DataFeeder():
         
         
         if not result_df.empty or len(result_df) > 0:
-            result_df = qfutils.validate_index(
+            result_df = utils.validate_index(
                 df=result_df,
                 symbol_index=self.symbol_index,
                 date_index=self.date_index,
@@ -1123,12 +1214,12 @@ class DataFeeder():
             data = [data]
                 
        # Open page and login
-        page_prop = self._get_attribute(method, 'properties')
-        page_prop['login_form']['fields']['username'] = login_username
-        page_prop['login_form']['fields']['tpassword'] = login_password
+        page_attrs = self._get_attribute(method, 'attributes')
+        page_attrs['login_form']['fields']['username'] = login_username
+        page_attrs['login_form']['fields']['tpassword'] = login_password
         
-        browser = Bs4Browsing()
-        browser.input_page_prop(page_prop)
+        browser = Bs4Browser()
+        browser.init_page_attrs(page_attrs)
         browser.load_page()
         
         logger.info('Start to download the data')
@@ -1162,6 +1253,62 @@ class DataFeeder():
         logger.info('CP68 - Download completed')
 
         return
+    
+
+    def vs_get_data(self, symbols_array, date_format=None, records=None, market='stock', retries=2):
+        logger.info('Vietstock - vs_get_data method is triggered')
+        method = 'vietstock'
+
+        page_attrs = self._get_attribute(method, 'attributes', market)
+
+        browser = SelBrowser(self.driver, self.driver_exe, self.headless)
+        browser.init_page_attrs(page_attrs)
+        browser.load_page()
+        
+        if not self._multi_workers_in_use:
+            self._update_class_symbols(method, symbols_array, date_format)
+            self._clear_unloadables(method)
+        
+        try:
+
+            result_df = self._load_html_data(method, browser, records)
+            unloadables = self._get_attribute(method, 'unloadables')
+            
+            attempts = 1
+            while attempts < retries and unloadables:
+                logger.info(f'Retry to get data for {len(unloadables)} '
+                            f'unloadable symbol(s). Attempt {attempts}')
+                
+                symbols_array = self._get_attribute(method, 'symbols')
+                for symbol_data in unloadables:
+                    self._update_status(
+                        symbols_array,
+                        symbol_data,
+                        'to_check'
+                    )
+                temp_df = self._load_html_data(method, browser, records)
+                result_df = utils.merge_dedup(result_df, temp_df, 'concat')
+                attempts += 1
+        
+        except KeyboardInterrupt:
+            print('Keyboard Interrupted')
+        
+        finally:
+            browser.close()
+
+        if not result_df.empty or len(result_df) > 0:
+            result_df = utils.validate_index(
+                df=result_df,
+                symbol_index=self.symbol_index,
+                date_index=self.date_index,
+                sort_index=True
+            )
+        
+        if not self._multi_workers_in_use:
+            # Update CafeF dataframe
+            self._update_class_df(method, result_df)
+
+        return result_df
     
 
     def _load_html_data(self, method, browser, records=None):
@@ -1222,8 +1369,8 @@ class DataFeeder():
     ):
         symbols_array = self._get_attribute(method, 'symbols')
         unloadables = self._get_attribute(method, 'unloadables')
-        page_prop = self._get_attribute(method, 'properties')
-        data_idx = page_prop[data]['idx']
+        page_attrs = self._get_attribute(method, 'attributes')
+        data_idx = page_attrs[data]['idx']
 
         try:
             symbol_col = [row[0] for row in text_data]
@@ -1340,24 +1487,26 @@ class DataFeeder():
     def _update_class_df(self, method, additive_df, df_name=None):
         if not additive_df.empty or len(additive_df) > 0:
             if method == 'vnd':
-                self.vnd_df = qfutils.merge_dedup(self.vnd_df, additive_df, 'concat')
+                self.vnd_df = utils.merge_dedup(self.vnd_df, additive_df, 'concat')
             elif method == 'cafef':
-                self.cafef_df = qfutils.merge_dedup(self.cafef_df, additive_df, 'concat')
+                self.cafef_df = utils.merge_dedup(self.cafef_df, additive_df, 'concat')
             elif method == 'vcsc':
-                self.vcsc_df = qfutils.merge_dedup(self.vcsc_df, additive_df, 'concat')
+                self.vcsc_df = utils.merge_dedup(self.vcsc_df, additive_df, 'concat')
             elif method == 'sb':
-                self.sb_df = qfutils.merge_dedup(self.sb_df, additive_df, 'concat')
+                self.sb_df = utils.merge_dedup(self.sb_df, additive_df, 'concat')
             elif method in ('cp68', 'cp68_mass_download'):
                 if df_name == 'df_mt4':
-                    self.cp68_df_mt4 = qfutils.merge_dedup(
+                    self.cp68_df_mt4 = utils.merge_dedup(
                         self.cp68_df_mt4, additive_df, 'concat'
                     )
                 elif df_name == 'df_xls':
-                    self.cp68_df_xls = qfutils.merge_dedup(
+                    self.cp68_df_xls = utils.merge_dedup(
                         self.cp68_df_xls, additive_df, 'concat'
                     )
                 else:
                     logger.error(f'There is no dataframe named {df_name}')
+            elif method == 'vietstock':
+                self.vs_df_futures = utils.merge_dedup(self.vs_df_futures, additive_df, 'concat')
             else:
                 logger.error(f'Method {method} is not recognized - Only 5 methods '
                             'are eligible: vnd, cafef, vcsc, sb, and cp68')
@@ -1366,7 +1515,7 @@ class DataFeeder():
     
 
     def _update_class_symbols(self, method, symbols_array, date_format):
-        symbols_array = qfutils.validate_symbols(symbols_array, date_format)
+        symbols_array = utils.validate_symbols(symbols_array, date_format)
         class_symbols_array = self._get_attribute(method, 'symbols')
         class_symbols_array.clear()
         class_symbols_array.extend(symbols_array)
@@ -1402,7 +1551,7 @@ class DataFeeder():
         return
     
 
-    def _get_attribute(self, method, attribute):
+    def _get_attribute(self, method, attribute, market=None):
         if method == 'vnd':
             if attribute == 'df':
                 return self.vnd_df
@@ -1410,8 +1559,8 @@ class DataFeeder():
                 return self.vnd_symbols_array
             elif attribute == 'unloadables':
                 return self.vnd_unloadables
-            elif attribute == 'properties':
-                return self.vnd_prop
+            elif attribute == 'attributes':
+                return self.vnd_attrs
             elif attribute == 'function':
                 return self.vnd_get_data
             elif attribute == 'html_reader':
@@ -1428,8 +1577,8 @@ class DataFeeder():
                 return self.cafef_symbols_array
             elif attribute == 'unloadables':
                 return self.cafef_unloadables
-            elif attribute == 'properties':
-                return self.cafef_prop
+            elif attribute == 'attributes':
+                return self.cafef_attrs
             elif attribute == 'function':
                 return self.cafef_get_data
             elif attribute == 'html_reader':
@@ -1446,8 +1595,8 @@ class DataFeeder():
                 return self.vcsc_symbols_array
             elif attribute == 'unloadables':
                 return self.vcsc_unloadables
-            elif attribute == 'properties':
-                return self.vcsc_prop
+            elif attribute == 'attributes':
+                return self.vcsc_attrs
             elif attribute == 'function':
                 return self.vcsc_get_data
             elif attribute == 'html_reader':
@@ -1464,8 +1613,8 @@ class DataFeeder():
                 return self.sb_symbols_array
             elif attribute == 'unloadables':
                 return self.sb_unloadables
-            elif attribute == 'properties':
-                return self.sb_prop
+            elif attribute == 'attributes':
+                return self.sb_attrs
             elif attribute == 'function':
                 return self.sb_get_data
             elif attribute == 'html_reader':
@@ -1484,8 +1633,8 @@ class DataFeeder():
                 return self.cp68_symbols_array
             elif attribute == 'unloadables':
                 return self.cp68_unloadables
-            elif attribute == 'properties':
-                return self.cp68_prop
+            elif attribute == 'attributes':
+                return self.cp68_attrs
             elif attribute == 'function':
                 return self.cp68_get_data
             elif attribute == 'html_reader':
@@ -1505,12 +1654,38 @@ class DataFeeder():
                 return self.cp68_symbols_array
             elif attribute == 'unloadables':
                 return self.cp68_unloadables
-            elif attribute == 'properties':
-                return self.cp68_prop
+            elif attribute == 'attributes':
+                return self.cp68_attrs
             elif attribute == 'function':
                 return self.cp68_mass_download
             elif attribute == 'html_reader':
                 return 'bs4'
+            else:
+                logger.error(f'Attribute {attribute} '
+                             'is not recogizned')
+                raise ValueError
+        
+        elif method == 'vietstock':
+            if attribute == 'df':
+                return self.vs_df_futures
+            elif attribute == 'symbols':
+                return self.vs_symbols_array
+            elif attribute == 'unloadables':
+                return self.vs_unloadables
+            elif attribute == 'attributes':
+                if market in ['stock', 'futures']:
+                    page_attrs = self.vs_attrs
+                    page_attrs['url'] = self.vs_attrs[f'url_{market}']
+                    page_attrs['symbol_xpath'] = self.vs_attrs[f'symbol_xpath_{market}']
+                    page_attrs['selected_cols'] = self.vs_attrs[f'selected_cols_{market}']
+                    return self.vs_attrs
+                else:
+                    logger.error(f'Market must be either "stock" or "futures"')
+                    raise ValueError
+            elif attribute == 'function':
+                return self.vs_get_data
+            elif attribute == 'html_reader':
+                return 'pandas'
             else:
                 logger.error(f'Attribute {attribute} '
                              'is not recogizned')
@@ -1532,10 +1707,10 @@ class DataFeeder():
             raise ValueError
 
 
-class Portfolio(DataFeeder):
+class Portfolio(DataScraper):
 
     def __init__(self, data, symbol_col, date_col, driver_exe, driver='chrome'):
-        DataFeeder.__init__(self)
+        DataScraper.__init__(self)
         self.data = self._initiate_data(data, symbol_col, date_col)
         self.symbol_index = symbol_col
         self.date_index = date_col
@@ -1548,8 +1723,8 @@ class Portfolio(DataFeeder):
         if not data or data.empty:
             data = pd.DataFrame()
         else:
-            data = qfutils.validate_index(
-                qfutils.validate_dataframe(data),
+            data = utils.validate_index(
+                utils.validate_dataframe(data),
                 symbol_col,
                 date_col,
             )
@@ -1616,7 +1791,7 @@ class Portfolio(DataFeeder):
             try:
                 # self.data = self.data.join(additive_df, how='outer')
                 # self.data = self.data.groupby(level=self.data.index.names).first()
-                self.data = qfutils.merge_dedup(self.data, additive_df, 'join')
+                self.data = utils.merge_dedup(self.data, additive_df, 'join')
             except:
                 logger.error('Cannot append web-extracted data to '
                              'original dataframe')

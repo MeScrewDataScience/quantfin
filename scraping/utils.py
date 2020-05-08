@@ -1,23 +1,29 @@
 # -*- coding: utf-8 -*-
 
+# Import standard libraries
 import json
 import locale
-import numpy as np
 import string
 import logging
 import logging.config
-import pandas as pd
 from collections import defaultdict
 from datetime import date as date, datetime as dt
+from pathlib import Path
 from urllib.parse import urlparse
+
+# Import third-party libraries
+import numpy as np
+import pandas as pd
+
+# Import local modules
+from quantfin.logconfig import logging_config
 
 
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
-with open('logging_config.json') as jsonfile:
-    logging_config = json.load(jsonfile)
 
-logging.config.dictConfig(logging_config)
+config = logging_config()
+logging.config.dictConfig(config)
 logger = logging.getLogger(__name__)
  
 def validate_dataframe(df):
@@ -475,9 +481,9 @@ def _set_columns(
         df.rename(columns=dict_cols, inplace=True)
         df = df.loc[:, selected_cols]
 
-        for date_column in date_cols:
-            df[date_column] = pd.to_datetime(
-                df[date_column].astype('str'),
+        for date_col in date_cols:
+            df[date_col] = pd.to_datetime(
+                df[date_col].astype('str'),
                 format=result_date_format
             )
 
