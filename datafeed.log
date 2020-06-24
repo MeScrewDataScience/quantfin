@@ -1,0 +1,900 @@
+2020-06-24 10:46:26,469 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:26,470 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:26,471 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:26,473 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:26,473 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:26,481 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:26,485 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:26,486 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:26,514 - quantfin.scraping.scraper - INFO - vnd - Joining results
+2020-06-24 10:46:26,514 - quantfin.scraping.scraper - ERROR - vnd - Method returns null dataframe
+2020-06-24 10:46:26,516 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method vnd
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-06-24 10:46:26,780 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:26,781 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:26,783 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:26,788 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:26,788 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:26,799 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:26,801 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:26,804 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:26,816 - quantfin.scraping.scraper - INFO - vnd - Joining results
+2020-06-24 10:46:26,817 - quantfin.scraping.scraper - ERROR - vnd - Method returns null dataframe
+2020-06-24 10:46:26,817 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method vnd
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-06-24 10:46:27,188 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:27,191 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:27,192 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:27,195 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:27,198 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:27,205 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:27,206 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:27,206 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:27,221 - quantfin.scraping.scraper - INFO - vnd - Joining results
+2020-06-24 10:46:27,222 - quantfin.scraping.scraper - ERROR - vnd - Method returns null dataframe
+2020-06-24 10:46:27,222 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method vnd
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-06-24 10:46:27,734 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:27,735 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:27,736 - quantfin.scraping.scraper - INFO - CafeF - cafef_get_data method is triggered
+2020-06-24 10:46:27,739 - quantfin.scraping.scraper - INFO - CafeF - cafef_get_data method is triggered
+2020-06-24 10:46:27,741 - quantfin.scraping.scraper - INFO - CafeF - cafef_get_data method is triggered
+2020-06-24 10:46:27,747 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:27,748 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:27,749 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:27,762 - quantfin.scraping.scraper - INFO - cafef - Joining results
+2020-06-24 10:46:27,763 - quantfin.scraping.scraper - ERROR - cafef - Method returns null dataframe
+2020-06-24 10:46:27,764 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method cafef
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-06-24 10:46:27,906 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:27,930 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:27,931 - quantfin.scraping.scraper - INFO - Stockbiz - sb_get_data method is triggered
+2020-06-24 10:46:27,935 - quantfin.scraping.scraper - INFO - Stockbiz - sb_get_data method is triggered
+2020-06-24 10:46:27,935 - quantfin.scraping.scraper - INFO - Stockbiz - sb_get_data method is triggered
+2020-06-24 10:46:27,945 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:27,947 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:27,948 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:27,960 - quantfin.scraping.scraper - INFO - sb - Joining results
+2020-06-24 10:46:27,961 - quantfin.scraping.scraper - ERROR - sb - Method returns null dataframe
+2020-06-24 10:46:27,962 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method sb
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-06-24 10:46:28,092 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:28,093 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:28,094 - quantfin.scraping.scraper - INFO - VCSC - vcsc_get_data method is triggered
+2020-06-24 10:46:28,097 - quantfin.scraping.scraper - INFO - VCSC - vcsc_get_data method is triggered
+2020-06-24 10:46:28,097 - quantfin.scraping.scraper - INFO - VCSC - vcsc_get_data method is triggered
+2020-06-24 10:46:28,107 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:28,108 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:28,108 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:28,121 - quantfin.scraping.scraper - INFO - vcsc - Joining results
+2020-06-24 10:46:28,122 - quantfin.scraping.scraper - ERROR - vcsc - Method returns null dataframe
+2020-06-24 10:46:28,122 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method vcsc
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-06-24 10:46:36,369 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:36,371 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:36,372 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:36,375 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:36,378 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:36,385 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:36,389 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:36,389 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:36,401 - quantfin.scraping.scraper - INFO - vnd - Joining results
+2020-06-24 10:46:36,402 - quantfin.scraping.scraper - ERROR - vnd - Method returns null dataframe
+2020-06-24 10:46:36,403 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method vnd
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-06-24 10:46:36,851 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:36,852 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:36,853 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:36,856 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:36,857 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:36,865 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:36,867 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:36,867 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:36,880 - quantfin.scraping.scraper - INFO - vnd - Joining results
+2020-06-24 10:46:36,881 - quantfin.scraping.scraper - ERROR - vnd - Method returns null dataframe
+2020-06-24 10:46:36,882 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method vnd
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-06-24 10:46:37,612 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:37,613 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:37,615 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:37,620 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:37,625 - quantfin.scraping.scraper - INFO - VNDirect - vnd_get_data method is triggered
+2020-06-24 10:46:37,631 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:37,632 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:37,633 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:37,645 - quantfin.scraping.scraper - INFO - vnd - Joining results
+2020-06-24 10:46:37,646 - quantfin.scraping.scraper - ERROR - vnd - Method returns null dataframe
+2020-06-24 10:46:37,647 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method vnd
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-06-24 10:46:38,577 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:38,578 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:38,579 - quantfin.scraping.scraper - INFO - CafeF - cafef_get_data method is triggered
+2020-06-24 10:46:38,582 - quantfin.scraping.scraper - INFO - CafeF - cafef_get_data method is triggered
+2020-06-24 10:46:38,585 - quantfin.scraping.scraper - INFO - CafeF - cafef_get_data method is triggered
+2020-06-24 10:46:38,592 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:38,595 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:38,595 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:38,609 - quantfin.scraping.scraper - INFO - cafef - Joining results
+2020-06-24 10:46:38,610 - quantfin.scraping.scraper - ERROR - cafef - Method returns null dataframe
+2020-06-24 10:46:38,611 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method cafef
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-06-24 10:46:38,902 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:38,904 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:38,905 - quantfin.scraping.scraper - INFO - Stockbiz - sb_get_data method is triggered
+2020-06-24 10:46:38,975 - quantfin.scraping.scraper - INFO - Stockbiz - sb_get_data method is triggered
+2020-06-24 10:46:38,976 - quantfin.scraping.scraper - INFO - Stockbiz - sb_get_data method is triggered
+2020-06-24 10:46:38,987 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:38,988 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:38,990 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:39,004 - quantfin.scraping.scraper - INFO - sb - Joining results
+2020-06-24 10:46:39,007 - quantfin.scraping.scraper - ERROR - sb - Method returns null dataframe
+2020-06-24 10:46:39,008 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method sb
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range
+2020-06-24 10:46:39,271 - quantfin.scraping.utils - INFO - Start validating symbols array...
+2020-06-24 10:46:39,272 - quantfin.scraping.utils - INFO - Symbols array validation done
+2020-06-24 10:46:39,273 - quantfin.scraping.scraper - INFO - VCSC - vcsc_get_data method is triggered
+2020-06-24 10:46:39,364 - quantfin.scraping.scraper - INFO - VCSC - vcsc_get_data method is triggered
+2020-06-24 10:46:39,365 - quantfin.scraping.scraper - INFO - VCSC - vcsc_get_data method is triggered
+2020-06-24 10:46:39,640 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:39,642 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:39,732 - quantfin.scraping.browser - WARNING - Can't launch web driver with the given exe file
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 76, in start
+    stdin=PIPE)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 800, in __init__
+    restore_signals, start_new_session)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\subprocess.py", line 1207, in _execute_child
+    startupinfo)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\browser.py", line 175, in __init__
+    webdriver.Chrome.__init__(self, driver_exe, chrome_options=options)
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 73, in __init__
+    self.service.start()
+  File "C:\Users\baoloc.lam\AppData\Local\Continuum\anaconda3\lib\site-packages\selenium\webdriver\common\service.py", line 83, in start
+    os.path.basename(self.path), self.start_error_message)
+selenium.common.exceptions.WebDriverException: Message: 'chromedriver.exe' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+2020-06-24 10:46:39,745 - quantfin.scraping.scraper - INFO - vcsc - Joining results
+2020-06-24 10:46:39,746 - quantfin.scraping.scraper - ERROR - vcsc - Method returns null dataframe
+2020-06-24 10:46:39,747 - quantfin.scraping.scraper - ERROR - Cannot extract data from web with assigned method vcsc
+Traceback (most recent call last):
+  File "C:\Users\baoloc.lam\1-LocLam\PythonProjects\local_packages\quantfin\scraping\scraper.py", line 1785, in update_data
+    additive_df = additive_df[0]
+IndexError: list index out of range

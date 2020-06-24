@@ -1707,7 +1707,7 @@ class DataScraper():
             raise ValueError
 
 
-class Portfolio(DataScraper):
+class DataPool(DataScraper):
 
     def __init__(self, data, symbol_col, date_col, driver_exe, driver='chrome'):
         DataScraper.__init__(self)
