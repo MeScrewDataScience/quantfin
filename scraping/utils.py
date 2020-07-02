@@ -284,16 +284,24 @@ def list_duplicates(sequence):
 
 
 def _customized_set_index(df, symbol_index, date_index, sort_index):
-    
+
+    # Get index names
     indexes = df.index.names
+    # Condition 1: check if both symbol_index and date_index are in df.index
     cond_1 = symbol_index in indexes and date_index in indexes
+    # Condition 2: check if symbol_index is the 1st level and date_index is the 2nd level
     cond_2 = symbol_index == indexes[0] and date_index == indexes[1]
+    # Condition 3: there are only 2 level of index
     cond_3 = len(indexes) == 2
 
+    # If all 3 conditions above are not met
     if not (cond_1 and cond_2 and cond_3):
+        # If condition 1 and 3 are met but not condition 2
+        # This mean the symbol_index and date_index are not in correct order
         if cond_1 and cond_3 and not cond_2:
             df.swaplevel(0, 1)
         
+        # Otherwise, the index is reset
         else:
             row_num = np.arange(len(df))
             idx_nlevels = df.index.nlevels

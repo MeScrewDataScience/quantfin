@@ -1720,14 +1720,12 @@ class DataPool(DataScraper):
     
 
     def _initiate_data(self, data, symbol_col, date_col):
-        if not data or data.empty:
-            data = pd.DataFrame()
-        else:
-            data = utils.validate_index(
-                utils.validate_dataframe(data),
-                symbol_col,
-                date_col,
-            )
+        data = utils.validate_dataframe(data)
+        data = utils.validate_index(
+            data,
+            symbol_col,
+            date_col,
+        )
 
         return data
     
@@ -1888,6 +1886,7 @@ class DataPool(DataScraper):
             level=[self.symbol_index, self.date_index],
             inplace=True
         )
+        self.data['issues_detected'].fillna(True)
 
         logger.info(f'New DataFrame: {len(self.data)} rows '
                     f'x {len(self.data.columns)} columns')
@@ -1895,65 +1894,36 @@ class DataPool(DataScraper):
         return
     
 
-    def find_na(self, columns=[]):
-        if not columns:
-            columns = list(self.data.columns)
-
-        if not isinstance(columns, list) and not isinstance(columns, tuple):
-            columns = [columns]
-
-        logger.info('Running find_na method...')
-        
-        self.data['is_na'] = False
-        self.data['na_fields'] = [[]] * len(self.data)
-        
-        for column in columns:
-            try:
-                self.data['is_na'] = self.data[column].isna() | self.data['is_na']
-                self.data['na_fields'] = self.data['na_fields'].add(
-                    self.data['is_na'].apply(
-                        lambda is_na: [column] if is_na else []
-                    )
-                )
-            except:
-                logger.error(f'Encounter error with column {column}!', exc_info=True)
-        
-        logger.info('Validation done')
-        logger.info('Two new columns are added: [\'is_na\'] and [\'na_fields\']')
-        
-        self.data['issues_detected'] = self.data['is_na'] | self.data['issues_detected']
-
-        return
-    
-
-    def find_outliers(self, columns, lookback_period=20, significance=0.2):
+    def find_outliers(self, columns, lookback_period=5, significance=0.7):
         if not isinstance(columns, list) and not isinstance(columns, tuple):
             columns = [columns]
         
+        symbols = self._get_symbols()
+
         logger.info('Running find_outliers method...')
 
-        self.data['outliers_detected'] = False
+        self.data['is_outlier'] = False
         self.data['outlier_fields'] = [[]] * len(self.data)
 
-        for column in columns:
-            try:
-                self.data['moving_avg'] = self.data[column].rolling(lookback_period).mean()
-                validation = abs(self.data[column]/self.data['moving_avg'] - 1) >= significance
-                self.data['outliers_detected'] = validation | self.data['outliers_detected']
-                self.data['outlier_fields'] = self.data['outlier_fields'].add(
-                    self.data['outliers_detected'].apply(
-                        lambda outliers_detected: [column] if outliers_detected else []
+        for symbol in symbols:
+            for column in columns:
+                try:
+                    values = self.data.loc[symbol][column].copy()
+                    moving_avg = values.rolling(lookback_period).mean()
+                    validation = abs(values/moving_avg - 1) >= significance
+                    self.data.loc[symbol]['is_outlier'] = validation | self.data.loc[symbol]['is_outlier']
+                    self.data.loc[symbol]['outlier_fields'] = self.data.loc[symbol]['outlier_fields'].add(
+                        self.data.loc[symbol]['is_outlier'].apply(
+                            lambda is_outlier: [column] if is_outlier else []
+                        )
                     )
-                )
-            except:
-                logger.error(f'Encounter error with column {column}!', exc_info=True)
-        
-        self.data.drop(columns='moving_avg', inplace=True)
+                except:
+                    logger.error(f'Encounter error with column {column}!', exc_info=True)
         
         logger.info('Validation done')
-        logger.info('Two new columns are added: [\'outliers_detected\'] and [\'outlier_fields\']')
+        logger.info('Two new columns are added: [\'is_outlier\'] and [\'outlier_fields\']')
         
-        self.data['issues_detected'] = self.data['outliers_detected'] | self.data['issues_detected']
+        self.data['issues_detected'] = self.data['is_outlier'] | self.data['issues_detected']
         
         return
 
