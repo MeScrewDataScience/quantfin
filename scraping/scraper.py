@@ -19,8 +19,8 @@ from multiprocessing import Process
 from multiprocessing import Queue as multiprocessingQueue
 
 # Import local modules
-import quantfin.scraping.utils as utils
-from quantfin.scraping.browser import SelBrowser, Bs4Browser
+import quantfin.scraping._utils as utils
+from quantfin.scraping._browser import SelBrowser, Bs4Browser
 from quantfin.logconfig import logging_config
 
 
@@ -1709,7 +1709,7 @@ class DataScraper():
 
 class DataPool(DataScraper):
 
-    def __init__(self, data, symbol_col, date_col, driver_exe, driver='chrome'):
+    def __init__(self, data, symbol_col, date_col, driver_exe=None, driver='chrome'):
         DataScraper.__init__(self)
         self.data = self._initiate_data(data, symbol_col, date_col)
         self.symbol_index = symbol_col

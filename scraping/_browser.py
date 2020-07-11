@@ -22,7 +22,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 # Import local modules
-import quantfin.scraping.utils as utils
+import quantfin.scraping._utils as utils
 from quantfin.logconfig import logging_config
 
 
