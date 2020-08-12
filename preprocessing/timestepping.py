@@ -25,7 +25,7 @@ def standardize_values(values, scaler):
 
 def standardize_size(elem, standard_shape):
     base = np.zeros(standard_shape)
-    base[-len(elem):] += elem
+    base[-len(elem):] = elem.reshape((-1, 1))
 
     return base
 
