@@ -163,9 +163,7 @@ def merge_dedup(original_df, additive_df, method):
                          'to the original one', exc_info=True)
         
         try:
-            original_df = original_df.groupby(
-                level=original_df.index.names
-            ).first()
+            original_df = original_df[~original_df.index.duplicated(keep='first')]
         except:
             logger.error('Cannot remove duplicated records from dataframe',
                          exc_info=True)

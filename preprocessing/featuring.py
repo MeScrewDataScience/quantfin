@@ -3,6 +3,7 @@ import pandas as pd
 import re
 import copy
 from itertools import combinations, combinations_with_replacement
+from sklearn.base import BaseEstimator, TransformerMixin
 
 
 def train_backtest_split(data, level=0, from_year=None):
@@ -144,45 +145,45 @@ def classify_std(std, boundary=0.03):
     return cat_1 + cat_2
 
 
-def enrich_features(data, columns, columns_2=None, methods=None, max_combinations=None, largest_val=3.4028235e38, smallest_val=1.175494e-39, return_all=True):
-    # Define maximum number of combinations
-    if not max_combinations or max_combinations > len(columns):
-        max_combinations = len(columns) + 1
-    else:
-        max_combinations += 1
+# def enrich_features(data, columns, columns_2=None, methods=None, max_combinations=None, largest_val=3.4028235e38, smallest_val=1.175494e-39, return_all=True):
+#     # Define maximum number of combinations
+#     if not max_combinations or max_combinations > len(columns):
+#         max_combinations = len(columns) + 1
+#     else:
+#         max_combinations += 1
     
-    args = [data, columns, largest_val, smallest_val]
-    args_w_comb = [data, columns, columns_2, max_combinations, largest_val, smallest_val]
+#     args = [data, columns, largest_val, smallest_val]
+#     args_w_comb = [data, columns, columns_2, max_combinations, largest_val, smallest_val]
 
-    # Substraction transformation
-    if not methods or 'substract' in methods:
-        data = _substract_transform(*args_w_comb)
+#     # Substraction transformation
+#     if not methods or 'substract' in methods:
+#         data = _substract_transform(*args_w_comb)
     
-    # Inner multiplication transformation
-    if not methods or 'mult' in methods:
-        data = _substract_transform(*args_w_comb)
+#     # Inner multiplication transformation
+#     if not methods or 'mult' in methods:
+#         data = _substract_transform(*args_w_comb)
     
-    # Reciprocal transformation
-    if not methods or 'reci' in methods:
-        data = _reciprocal_transform(*args)
+#     # Reciprocal transformation
+#     if not methods or 'reci' in methods:
+#         data = _reciprocal_transform(*args)
     
-    # Logarithm transformation
-    if not methods or 'log' in methods:
-        data = _logarit_transform(*args)
+#     # Logarithm transformation
+#     if not methods or 'log' in methods:
+#         data = _logarit_transform(*args)
     
-    # Exponential transformation
-    if not methods or 'exp' in methods:
-        data = _exp_transform(*args)
+#     # Exponential transformation
+#     if not methods or 'exp' in methods:
+#         data = _exp_transform(*args)
     
-    # Square root transformation
-    if not methods or 'sqrt' in methods:
-        data = _sqrt_transform(*args)
+#     # Square root transformation
+#     if not methods or 'sqrt' in methods:
+#         data = _sqrt_transform(*args)
     
-    if not return_all:
-        selected_cols = [col for col in data.columns if col not in columns]
-        data = data[selected_cols]
+#     if not return_all:
+#         selected_cols = [col for col in data.columns if col not in columns]
+#         data = data[selected_cols]
     
-    return data
+#     return data
 
 
 def remove_low_cardinity(data, dimension='date', smallest=10):
@@ -197,9 +198,9 @@ def remove_low_cardinity(data, dimension='date', smallest=10):
 
 def rescale(data, scaler, columns=None, dimension=None, prefit=False, return_all=True, suffix=''):
     if dimension:
-        data = _dimensional_rescale(data, scaler, columns, dimension, prefit)
+        data = _dimensional_rescale(data.copy(), scaler, columns, dimension, prefit)
     else:
-        data = _flat_rescale(data, scaler, columns, prefit)
+        data = _flat_rescale(data.copy(), scaler, columns, prefit)
 
     if columns and suffix:
         data = _rename_columns(data, columns, suffix)
@@ -212,11 +213,11 @@ def rescale(data, scaler, columns=None, dimension=None, prefit=False, return_all
 
 def _dimensional_rescale(data, scaler, columns, dimension, prefit):
     groups = list(data.groupby(dimension).groups.keys())
-    for i, group in enumerate(groups):
+    for group in groups:
         cust_query = f'{dimension} == {[group]}'
 
-        if isinstance(scaler, list):
-            sub_scaler = scaler[i]
+        if isinstance(scaler, dict):
+            sub_scaler = scaler[group]
         else:
             sub_scaler = scaler
 
@@ -258,7 +259,10 @@ def get_scalers(data, scaler, columns=None, dimension=None):
 
 
 def _get_dimensional_scalers(data, scaler, columns, dimension):
-    scalers = []
+    scalers = {
+        'scaled_columns': columns,
+        'scalers': {}
+    }
     groups = list(data.groupby(dimension).groups.keys())
     for group in groups:
         cust_query = f'{dimension} == {[group]}'
@@ -268,7 +272,7 @@ def _get_dimensional_scalers(data, scaler, columns, dimension):
         else:
             scaler.fit(data.query(cust_query))
         
-        scalers.append(copy.copy(scaler))
+        scalers['scalers'][group] = copy.copy(scaler)
     
     return scalers
 
@@ -285,7 +289,6 @@ def _get_flat_scalers(data, scaler, columns):
 def _rename_columns(data, columns, suffix):
     columns = {k: ''.join([v, suffix]) for (k, v) in zip(columns, columns)}
     data.rename(columns=columns, inplace=True)
-    columns = list(columns.values())
 
     return data
 
@@ -469,108 +472,3 @@ def _nclasses_decreases(classes_hist, min_nclasses, sequence):
         nclasses_is_decreasing = sum([c < min_nclasses for c in latest_items]) == sequence
 
     return min_nclasses_found & nclasses_is_decreasing
-
-
-def _substract_transform(data, columns, columns_2, max_combinations, largest_val=3.4028235e38, smallest_val=1.175494e-39):
-    if columns_2:
-        col_combs = ((col1, col2) for col1 in columns for col2 in columns_2)
-        data = __substract_lopp(data, col_combs, largest_val, smallest_val)
-    
-    else:
-        for i in range(2, max_combinations):
-            col_combs = combinations(columns, i)
-            data = __substract_lopp(data, col_combs, largest_val, smallest_val)
-    
-    return data
-
-
-def __substract_lopp(data, columns_combinations, largest_val, smallest_val):
-    for cols in columns_combinations:
-        subs_result = data[cols[0]].values
-        for col in cols[1:]:
-            subs_result -= data[col].values
-        
-        if _valid_xtrm(subs_result, largest_val, smallest_val):
-            col_result = '_'.join(cols) + '_subs'
-            data[col_result] = subs_result
-    
-    return data
-
-
-def _multiply_transform(data, columns, columns_2, max_combinations, largest_val=3.4028235e38, smallest_val=1.175494e-39):
-    if columns_2:
-        col_combs = ((col1, col2) for col1 in columns for col2 in columns_2)
-        data = __multiply_loop(data, col_combs, largest_val, smallest_val)
-    
-    else:
-        for i in range(2, max_combinations):
-            col_combs = combinations_with_replacement(columns, i)
-            data = __multiply_loop(data, col_combs, largest_val, smallest_val)
-    
-    return data
-
-
-def __multiply_loop(data, columns_combinations, largest_val, smallest_val):
-    for cols in columns_combinations:
-        mult_result = data[cols[0]].values
-        for col in cols[1:]:
-            mult_result *= data[col].values
-        
-        if _valid_xtrm(mult_result, largest_val, smallest_val):
-            col_result = '_'.join(cols) + '_mult'
-            data[col_result] = mult_result
-    
-    return data
-
-
-def _reciprocal_transform(data, columns, largest_val=3.4028235e38, smallest_val=1.175494e-39):
-    for col in columns:
-        if (data[col].values == 0).any():
-            continue
-
-        reci_result = 1/data[col].values
-        if _valid_xtrm(reci_result, largest_val, smallest_val):
-            data[f'{col}_reci'] = reci_result
-    
-    return data
-
-
-def _logarit_transform(data, columns, largest_val=3.4028235e38, smallest_val=1.175494e-39):
-    for col in columns:
-        if (data[col].values == 0).any():
-            continue
-
-        log_result = np.log(data[col].values)
-        if _valid_xtrm(log_result, largest_val, smallest_val):
-            data[f'{col}_log'] = log_result
-    
-    return data
-
-
-def _exp_transform(data, columns, largest_val=3.4028235e38, smallest_val=1.175494e-39):
-    for col in columns:
-        exp_result = np.exp(data[col].values)
-        if _valid_xtrm(exp_result, largest_val, smallest_val):
-            data[f'{col}_exp'] = exp_result
-    
-    return data
-
-
-def _sqrt_transform(data, columns, largest_val=3.4028235e38, smallest_val=1.175494e-39):
-    for col in columns:
-        if (data[col].values < 0).any():
-            continue
-        
-        sqrt_result = np.sqrt(data[col].values)
-        if _valid_xtrm(sqrt_result, largest_val, smallest_val):
-            data[f'{col}_sqrt'] = sqrt_result
-    
-    return data
-
-
-def _valid_xtrm(values, largest, smallest):
-    not_nan = ~(np.isnan(values).all())
-    not_exceed_max = ~((abs(values) >= largest).any())
-    not_exceed_min = ~(((abs(values) > 0) & (abs(values) < 1) & (abs(values) < smallest)).any())
-
-    return (not_nan & not_exceed_max & not_exceed_min).all()
