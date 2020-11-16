@@ -5,35 +5,52 @@ import numpy as np
 class Watchlist():
 
     def __init__(self, current_watchlist=None, new_watchlist=None):
-        self.current_watchlist = current_watchlist
-        self.new_watchlist = new_watchlist
         self.symbol_field = 'Symbol'
         self.start_date = 'Start Date'
         self.review_date = 'Review Date'
         self.nomination_field = 'Nomination'
         self.down_proba = 'Down Proba'
         self.up_proba = 'Up Proba'
-        self.volat = 'Volat (Risk)'
+        self.risk_profile = 'Volat (Risk)'
         self.previous_action = 'Previous Action'
         self.new_action = 'New Action'
         self.t0_price = 'T0 Price'
         self.curr_price = 'Curr. Price'
+        self.curr_vol = 'Curr. Vol'
         self.est_return = 'Est. Return'
         self.rev_suffix = ' Rev.'
-        self.nomination_lvl1 = 'Recommended'
+        self.nomination_lvl1 = 'Recommend'
         self.nomination_lvl2 = 'Potential'
-        self.nomination_lvl3 = 'Normal'
+        self.nomination_lvl3 = 'Sell'
         self.low_risk = 'Low'
         self.high_risk = 'High'
         self.action_buy = 'Buy & Hold'
         self.action_sell = 'Sell & Close'
         self.action_obs = 'Observe'
         self.action_drop = 'Drop'
+        self.new_watchlist = new_watchlist
+        if not current_watchlist:
+            self.current_watchlist = pd.DataFrame(columns=[
+                self.symbol_field,
+                self.nomination_field,
+                self.start_date,
+                self.down_proba,
+                self.up_proba,
+                self.risk_profile,
+                self.review_date,
+                self.down_proba + self.rev_suffix,
+                self.up_proba + self.rev_suffix,
+                self.risk_profile + self.rev_suffix,
+                self.previous_action,
+                self.new_action,
+                self.t0_price,
+                self.curr_price,
+                self.curr_vol,
+                self.est_return,
+            ])
 
-        return
 
-
-    def load_watchlist_csv(self, directory, parse_dates, infer_datetime_format=True, index_col=0):
+    def load_csv(self, directory, parse_dates, infer_datetime_format=True, index_col=0):
         self.current_watchlist = pd.read_csv(
             directory,
             parse_dates=parse_dates,
@@ -51,13 +68,21 @@ class Watchlist():
         symbol_field='symbol',
         date_field='date',
         price_field='adj_close',
-        ubound=0.7,
-        lbound=0.6,
-        elem_bound=0.5
+        vol_field='vol',
+        ubound=0.55,
+        lbound=0.5,
+        elem_bound=0.3,
+        risk_appetite=[2,],
+        min_price=5,
+        min_vol=30000
     ):
         # Create baseline for watchlist
-        base = origin_df.groupby([symbol_field, date_field, price_field]).groups.keys()
+        base = origin_df.groupby([symbol_field, date_field, price_field, vol_field]).groups.keys()
         base = np.array(list(base))
+        symbols = base[:, 0]
+        dates = base[:, 1]
+        price = base[:, 2]
+        vol = base[:, 3]
         
         # Sum Down & Up probabilities
         down_proba, up_proba = self._get_agg_proba(pred_result)
@@ -65,24 +90,25 @@ class Watchlist():
         # Define riskiness
         risk = self._get_risk_profile(pred_result)
         
-        # Define suggestion category: Recommended or Potential
-        category = self._get_nomination(pred_result, ubound, lbound, elem_bound)
+        # Define suggestion category: Recommend or Potential
+        category = self._get_nomination(price, vol, pred_result, ubound, lbound, elem_bound, risk_appetite, min_price, min_vol)
         
         # Action
         action = self._get_action(category)
 
         # Create watchlist
-        self.full_watchlist = pd.DataFrame(base[:, 0], columns=[self.symbol_field])
+        self.full_watchlist = pd.DataFrame(symbols, columns=[self.symbol_field])
         self.full_watchlist[self.nomination_field] = category
-        self.full_watchlist[self.start_date] = base[:, 1]
+        self.full_watchlist[self.start_date] = dates
         self.full_watchlist[self.down_proba] = down_proba
         self.full_watchlist[self.up_proba] = up_proba
-        self.full_watchlist[self.volat] = risk
+        self.full_watchlist[self.risk_profile] = risk
         self.full_watchlist[self.new_action] = action
-        self.full_watchlist[self.t0_price] = base[:, 2]
+        self.full_watchlist[self.t0_price] = price
+        self.full_watchlist[self.curr_vol] = vol
 
         # Filter new watchlist
-        self.new_watchlist = self.get_new_watchlist()
+        self.new_watchlist = self._get_new_watchlist()
         self.new_watchlist.reset_index(drop=True, inplace=True)
         
         return self.new_watchlist
@@ -100,12 +126,12 @@ class Watchlist():
         inactive_wl = self.get_inactive_watchlist()
         final_wl = pd.concat([self.sort_watchlist(final_wl), self.sort_watchlist(inactive_wl)])
         
-        self.final_watchlist = final_wl
+        self.final_watchlist = final_wl.reset_index(drop=True)
 
         return self.final_watchlist
     
 
-    def get_new_watchlist(self):
+    def _get_new_watchlist(self):
         # Define conditions
         is_being_watched = self.full_watchlist[self.symbol_field].isin(self.get_active_symbols())
         is_potential = self.full_watchlist[self.nomination_field].isin([self.nomination_lvl1, self.nomination_lvl2])
@@ -121,9 +147,9 @@ class Watchlist():
     
 
     def get_active_watchlist(self):
-        is_closed = self.current_watchlist[self.new_action] == self.action_sell
-        is_dropped = self.current_watchlist[self.new_action] == self.action_drop
-        active_wl = self.current_watchlist[~(is_closed | is_dropped)].copy()
+        is_bought = self.current_watchlist[self.new_action] == self.action_buy
+        is_observed = self.current_watchlist[self.new_action] == self.action_obs
+        active_wl = self.current_watchlist[is_bought | is_observed].copy()
 
         return active_wl
     
@@ -141,20 +167,20 @@ class Watchlist():
             watchlist = self.final_watchlist
         
         # Customize order of nominations
-        watchlist[self.nomination_field] = pd.Categorial(
+        watchlist[self.nomination_field] = pd.Categorical(
             watchlist[self.nomination_field],
             [self.nomination_lvl1, self.nomination_lvl2, self.nomination_lvl3]
         )
 
         # Customize order of new actions
-        watchlist[self.new_action] = pd.Categorial(
+        watchlist[self.new_action] = pd.Categorical(
             watchlist[self.new_action],
             [self.action_buy, self.action_sell, self.action_obs, self.action_drop]
         )
 
         # Sort watchlist
-        sort_columns = [self.nomination_field, self.start_date, self.new_action, self.up_proba]
-        asc = [True, False, True, False]
+        sort_columns = [self.new_action, self.nomination_field, self.up_proba + self.rev_suffix, self.curr_vol, self.start_date]
+        asc = [True, True, False, False, False]
         watchlist.sort_values(by=sort_columns, ascending=asc, inplace=True)
 
         return watchlist
@@ -167,15 +193,16 @@ class Watchlist():
             self.start_date,
             self.down_proba,
             self.up_proba,
-            self.volat,
+            self.risk_profile,
             self.review_date,
             self.down_proba + self.rev_suffix,
             self.up_proba + self.rev_suffix,
-            self.volat + self.rev_suffix,
+            self.risk_profile + self.rev_suffix,
             self.previous_action,
             self.new_action,
             self.t0_price,
             self.curr_price,
+            self.curr_vol,
             self.est_return,
         ]
 
@@ -202,9 +229,9 @@ class Watchlist():
             self.start_date,
             self.down_proba,
             self.up_proba,
-            self.volat,
+            self.risk_profile,
             self.new_action,
-            self.t0_price,
+            self.t0_price
         ]
 
         original_obs = self.get_active_watchlist()
@@ -220,12 +247,14 @@ class Watchlist():
     
 
     def _realign_col_names(self, final_wl):
+        final_wl.drop(columns=self.curr_vol, inplace=True)
         final_wl.rename(
             columns={
                 self.start_date + self.rev_suffix: self.review_date,
                 self.new_action: self.previous_action,
                 self.new_action + self.rev_suffix: self.new_action,
                 self.t0_price + self.rev_suffix: self.curr_price,
+                self.curr_vol + self.rev_suffix: self.curr_vol
             },
             inplace=True
         )
@@ -240,9 +269,9 @@ class Watchlist():
         final_wl[[origin_nom, new_nom]] = final_wl[[origin_nom, new_nom]].apply(self._update_nomination, axis=1)
 
         # Update action
-        origin_act = self.previous_action
+        previous_act = self.previous_action
         new_act = self.new_action
-        final_wl[[origin_act, new_act]] = final_wl[[origin_act, new_act]].apply(self._recorrect_action, axis=1)
+        final_wl[[previous_act, new_act]] = final_wl[[previous_act, new_act]].apply(self._recorrect_action, axis=1)
 
         # Update estimated return
         final_wl[self.est_return] = final_wl[self.curr_price]/final_wl[self.t0_price] - 1
@@ -284,10 +313,11 @@ class Watchlist():
     
 
     def _lower_nomination_lvl(self, columns):
+        former_lvl1 = columns[0] == self.nomination_lvl1
         former_lvl2 = columns[0] == self.nomination_lvl2
         later_lvl3 = columns[1] == self.nomination_lvl3
 
-        return former_lvl2 & later_lvl3
+        return (former_lvl1 | former_lvl2) & later_lvl3
     
 
     def _get_agg_proba(self, pred_result):
@@ -304,17 +334,22 @@ class Watchlist():
         return list(risk)
     
 
-    def _get_nomination(self, pred_result, ubound, lbound, elem_bound):
+    def _get_nomination(self, price, vol, pred_result, ubound, lbound, elem_bound, risk_appetite, min_price, min_vol):
+        # Get prediction values
+        pred_val = np.multiply([-2, -1, 1, 2], np.equal(pred_result, pred_result.max(axis=1).reshape(-1, 1))).sum(axis=1)
         # Define conditions
+        pred_val_cond = np.isin(pred_val, risk_appetite)
         nominated_cond = (pred_result[:, 2] + pred_result[:, 3]) >= ubound
         potential_cond_lb = (pred_result[:, 2] + pred_result[:, 3]) >= lbound
         potential_cond_ub = (pred_result[:, 2] + pred_result[:, 3]) < ubound
         elem_cond = (pred_result[:, 2] >= elem_bound) | (pred_result[:, 3] >= elem_bound)
+        price_cond = price >= min_price
+        vol_cond = vol >= min_vol
         
         # Categorize nominations
-        recommended = (nominated_cond & elem_cond) * 2
-        potential = (potential_cond_lb & potential_cond_ub & elem_cond) * 1
-        category = recommended + potential
+        recommend = (pred_val_cond & nominated_cond & elem_cond & price_cond & vol_cond) * 2
+        potential = (pred_val_cond & potential_cond_lb & potential_cond_ub & elem_cond & price_cond & vol_cond & vol_cond) * 1
+        category = recommend + potential
         category = map(
             lambda x: self.nomination_lvl1 if x == 2 else self.nomination_lvl2 if x == 1 else self.nomination_lvl3,
             category
