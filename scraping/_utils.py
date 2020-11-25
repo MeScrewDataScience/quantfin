@@ -485,7 +485,7 @@ def _set_columns(
     
     else:
         df.rename(columns=dict_cols, inplace=True)
-        df = df.loc[:, selected_cols]
+        df = df.reindex(columns=selected_cols)
 
         for date_col in date_cols:
             df[date_col] = pd.to_datetime(

@@ -13,34 +13,34 @@ from itertools import combinations, permutations
 
 
 class KBinsScaler(BaseEstimator, TransformerMixin):
-    def __init__(self, feature_names, n_bins=100, encode='ordinal', strategy='quantile', date_field='date'):
+    def __init__(self, feature_names, n_bins=100, encode='ordinal', strategy='quantile', date_field='date', from_n_day=100):
         self.feature_names = self._to_list(feature_names)
         self.bin_scalers = {}
         self.date_field = date_field
         self.distinct_dates = None
         self.base_scaler = KBinsDiscretizer(n_bins=n_bins, encode=encode, strategy=strategy)
         self.strategy = strategy
+        self.from_n_day = from_n_day
     
     
     def fit(self, X, y=None):
         self.distinct_dates = self._get_distinct_dates(X.copy())
 
-        return self.partial_fit(X)
+        return self.partial_fit(X.copy())
     
 
     def transform(self, X, y=None):
-        X_copy = X.copy()
+        X_copy = self._add_columns(X.copy())
         
-        for date in self.distinct_dates:
+        for date in self.distinct_dates[self.from_n_day:]:
             scaler = self.bin_scalers[date]
             query = f"{self.date_field} == '{date.strftime('%Y-%m-%d')}'"
-            X_copy.loc[X.eval(query), self.feature_names] = scaler.transform(X.query(query)[self.feature_names])
+            X_copy.loc[X.eval(query), self.new_features] = scaler.transform(X.query(query)[self.feature_names])
         
-        return self._rename_columns(X_copy)
-
+        return X_copy.drop(columns=self.feature_names)
 
     def partial_fit(self, X, y=None):
-        for date in self.distinct_dates:
+        for date in self.distinct_dates[self.from_n_day:]:
             scaler = copy.copy(self.base_scaler)
             query = f"{self.date_field} <= '{date.strftime('%Y-%m-%d')}'"
             scaler.fit(X.query(query)[self.feature_names])
@@ -53,10 +53,12 @@ class KBinsScaler(BaseEstimator, TransformerMixin):
         return list(X.groupby(self.date_field).groups.keys())
     
 
-    def _rename_columns(self, X):
-        columns = {feature: '_'.join([self.strategy, feature]) for feature in self.feature_names}
+    def _add_columns(self, X):
+        self.new_features = ['_'.join([self.strategy, feature]) for feature in self.feature_names]
+        new_columns = {feature: np.nan for feature in self.new_features}
+        X = X.assign(**new_columns)
         
-        return X.rename(columns=columns, inplace=True)
+        return X
     
 
     def _to_list(self, feature_names):

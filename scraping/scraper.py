@@ -35,7 +35,7 @@ class DataScraper():
         self,
         driver_exe=None,
         driver='chrome',
-        headless=True
+        headless=False
     ):
         
         self.symbol_index = 'symbol'
@@ -52,27 +52,28 @@ class DataScraper():
         self.vnd_symbols_array = []
         self.vnd_unloadables = []
         self.vnd_attrs = {
-            'url': 'https://www.vndirect.com.vn/portal/thong-ke-thi-truong-chung-khoan/lich-su-gia.shtml',
-            'symbol_xpath': '//*[@id="symbolID"]',
-            'symbol_verify_xpath': '//*[@id="symbolID"]',
-            'from_date_xpath': '//*[@id="fHistoricalPrice_FromDate"]',
-            'to_date_xpath': '//*[@id="fHistoricalPrice_ToDate"]',
-            'button_xpath': '//*[@id="fHistoricalPrice_View"]',
-            'pagination_xpath': '//*[@id="tab-1"]/div[1]',
+            'url': 'https://dstock.vndirect.com.vn/lich-su-gia/',
+            'symbol_xpath': '//*[@id="header"]/div/div/div[2]/form/div/input',
+            'symbol_verify_xpath': '//*[@id="sub-menu-content"]/div/div/div[2]/div[3]/div/div[1]/form/input',
+            'data_menu_xpath': '//*[@id="sub-menu"]/div/div[2]',
+            'from_date_xpath': '//*[@id="sub-menu-content"]/div/div/div[2]/div[3]/div/div[1]/form/div[1]/div/input',
+            'to_date_xpath': '//*[@id="sub-menu-content"]/div/div/div[2]/div[3]/div/div[1]/form/div[2]/div/input',
+            'button_xpath': '//*[@id="sub-menu-content"]/div/div/div[2]/div[3]/div/div[1]/form/button',
+            'pagination_xpath': '//*[@id="sub-menu-content"]/div/div/div[2]/div[3]/div/div[2]/nav/ul',
             'next_page': '>',
             'table_attr': [
                 {
-                    'tag_name': 'ul',
-                    'row_col_pair': ['li', 'div'],
+                    'tag_name': 'table',
+                    'row_col_pair': ['tr', 'td'],
                     'attr': 'class',
-                    'attr_val': 'list_tktt lichsugia',
+                    'attr_val': 'data-market__width hidden-desktop',
                     'idx': 0,
                     'lookup_type': 'find_all'
                 }
             ],
-            'header': [0],
-            'skiprows': [],
-            'result_date_format': '%Y-%m-%d',
+            'header': [],
+            'skiprows': [0],
+            'result_date_format': '%d/%m/%Y',
             'query_date_format': '%d/%m/%Y',
             'thousands': ',',
             'decimal': '.',
@@ -80,28 +81,28 @@ class DataScraper():
             'date_index': self.date_index,
             'dict_cols': {
                 'Mã CK': self.symbol_index,
-                'Ngày': self.date_index,
-                'Thayđổi(+-/%)': 'change_vnd',
-                'Giámởcửa': 'open_vnd',
-                'Giácaonhất': 'high_vnd',
-                'Giáthấpnhất': 'low_vnd',
-                'Giáđóngcửa': 'close_vnd',
-                'Giábìnhquân': 'avg_vnd',
-                'Giáđóngcửađiềuchỉnh': 'adj_close_vnd',
-                'KLkhớplệnh': 'vol_vnd',
-                'KLthỏathuận': 'vol_deal_vnd'
+                0: self.date_index,
+                1: 'change_vnd',
+                2: 'open_vnd',
+                3: 'low_vnd',
+                4: 'high_vnd',
+                5: 'close_vnd',
+                6: 'avg_vnd',
+                7: 'adj_close_vnd',
+                8: 'vol_vnd',
+                9: 'vol_deal_vnd'
             },
             'na_values': self.na_values
         }
         self.vnd_attrs['selected_cols'] = [
             self.symbol_index,
             self.date_index,
-            self.vnd_attrs['dict_cols']['Giáđóngcửađiềuchỉnh'],
-            self.vnd_attrs['dict_cols']['Giámởcửa'],
-            self.vnd_attrs['dict_cols']['Giácaonhất'],
-            self.vnd_attrs['dict_cols']['Giáthấpnhất'],
-            self.vnd_attrs['dict_cols']['Giáđóngcửa'],
-            self.vnd_attrs['dict_cols']['KLkhớplệnh']
+            self.vnd_attrs['dict_cols'][7],
+            self.vnd_attrs['dict_cols'][2],
+            self.vnd_attrs['dict_cols'][4],
+            self.vnd_attrs['dict_cols'][3],
+            self.vnd_attrs['dict_cols'][5],
+            self.vnd_attrs['dict_cols'][8]
         ]
 
         # CafeF attributes
@@ -222,7 +223,7 @@ class DataScraper():
         self.sb_symbols_array = []
         self.sb_unloadables = []
         self.sb_attrs = {
-            'url': 'https://www.stockbiz.vn/Stocks/A32/HistoricalQuotes.aspx',
+            'url': 'https://www.stockbiz.vn/Stocks/HAG/HistoricalQuotes.aspx',
             'symbol_xpath': '//*[@id="ctl00_webPartManager_wp1770166562_wp1427611561_symbolSearch_txtSymbol"]',
             'verify_symbol_xpath': '//*[@id="ctl00_PlaceHolderContentArea_MainZone"]/tbody/tr/td/table/tbody/tr[1]/td/table/tbody/tr/td/div/div[1]',
             'from_date_xpath': '//*[@id="ctl00_webPartManager_wp1770166562_wp1427611561_dtStartDate_picker_picker"]',

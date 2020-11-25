@@ -269,7 +269,7 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                             'It must be either "pandas" or "bs4"')
             raise ValueError
         
-        self._query_page(symbol_data)
+        self._query_page(symbol_data, records)
 
         # Get data
         temp_df, self.load_status = internal_method(
@@ -300,11 +300,11 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
         return temp_df
     
 
-    def _query_page(self, symbol_data, attempt_lim=5, attempts=0):
+    def _query_page(self, symbol_data, records=None, attempt_lim=5, attempts=0):
 
         try:
             self._query_symbol(symbol_data[0])
-            self._query_dates(symbol_data)
+            self._query_dates(symbol_data, records)
 
             # Wait for submit button to be clickable
             submit_button = WebDriverWait(self, 5).until(
@@ -333,44 +333,6 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                 return self._query_page(symbol_data, attempt_lim, attempts)
     
 
-    def _query_dates(self, symbol_data):
-
-        symbol = symbol_data[0]
-        from_date = symbol_data[1]
-        to_date = symbol_data[2]
-        
-        if self.caller in ['vcsc', 'vietstock'] and not from_date:
-            from_date = dt.date(2000, 1, 1)
-
-        try:
-            from_date_filter = WebDriverWait(self, 5).until(
-                EC.element_to_be_clickable((By.XPATH, self.attrs['from_date_xpath']))
-            )
-            to_date_filter = WebDriverWait(self, 5).until(
-                EC.element_to_be_clickable((By.XPATH, self.attrs['to_date_xpath']))
-            )
-
-            from_date_filter.clear()
-            if from_date:
-                from_date = from_date.strftime(self.attrs['query_date_format'])
-                for char in from_date:
-                    from_date_filter.send_keys(char)
-            
-            to_date_filter.clear()
-            if to_date:
-                to_date = to_date.strftime(self.attrs['query_date_format'])
-                for char in to_date:
-                    to_date_filter.send_keys(char)
-            
-            logger.info(f'{symbol} - Date query form filled')
-        
-        except:
-            logger.error(f'{symbol} - Unable to fill the Date query form', exc_info=True)
-            raise
-        
-        return
-    
-
     def _query_symbol(self, symbol):
         if not isinstance(self.attrs['symbol_xpath'], list) \
         and not isinstance(self.attrs['symbol_xpath'], tuple):
@@ -389,20 +351,72 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                 
                 if xpath == symbol_xpaths[-1]:
                     symbol_filter.clear()
+                    sleep(0.1)
                     symbol_filter.send_keys(symbol)
+                    sleep(0.2)
                     symbol_filter.send_keys(Keys.RETURN)
+                
+                if 'data_menu_xpath' in self.attrs:
+                    data_menu_button = WebDriverWait(self, 5).until(
+                        EC.element_to_be_clickable((By.XPATH, self.attrs['data_menu_xpath']))
+                    )
+                    data_menu_button.click()
+
         
         except:
             logger.error(f'{symbol} - Unable to fill the symbol query form', exc_info=True)
             raise
         
         symbol_verifier = self.find_element_by_xpath(verifier_xpath)
-        result_value = symbol_verifier.text
-        if symbol.upper() not in result_value.upper():
+        symbol_verifier_text = symbol_verifier.text
+        symbol_verifier_val = symbol_verifier.get_attribute('value')
+        if symbol.upper() not in symbol_verifier_text.upper() and symbol.upper() not in symbol_verifier_val.upper():
             logger.error(f'{symbol} - Symbol is not found in website\'s database')
             raise ValueError
 
         logger.info(f'{symbol} - Symbol query form filled')
+        
+        return
+    
+
+    def _query_dates(self, symbol_data, records=None):
+        symbol = symbol_data[0]
+        from_date = symbol_data[1]
+        to_date = symbol_data[2]
+        
+        if self.caller in ['vcsc', 'vietstock'] and not from_date:
+            from_date = dt.date(2000, 1, 1)
+        elif self.caller == 'vndirect' and not from_date and not to_date:
+            to_date = dt.date.today()
+            from_date = to_date - dt.timedelta(days=records*2)
+        
+        try:
+            from_date_filter = WebDriverWait(self, 5).until(
+                EC.element_to_be_clickable((By.XPATH, self.attrs['from_date_xpath']))
+            )
+            to_date_filter = WebDriverWait(self, 5).until(
+                EC.element_to_be_clickable((By.XPATH, self.attrs['to_date_xpath']))
+            )
+
+            from_date_filter.clear()
+            if from_date:
+                from_date = from_date.strftime(self.attrs['query_date_format'])
+                for char in from_date:
+                    from_date_filter.send_keys(char)
+                    sleep(0.1)
+            
+            to_date_filter.clear()
+            if to_date:
+                to_date = to_date.strftime(self.attrs['query_date_format'])
+                for char in to_date:
+                    to_date_filter.send_keys(char)
+                    sleep(0.1)
+            
+            logger.info(f'{symbol} - Date query form filled')
+        
+        except:
+            logger.error(f'{symbol} - Unable to fill the Date query form', exc_info=True)
+            raise
         
         return
     
@@ -498,9 +512,13 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
         na_values = self.attrs['na_values']
         
         try:
-            # Check current pagination
-            current_page, is_last_page = self._get_page_num(symbol)
-            logger.info(f'{symbol} - Page {current_page} is loaded')
+            try:
+                # Check current pagination
+                current_page, is_last_page = self._get_page_num(symbol)
+                logger.info(f'{symbol} - Page {current_page} is loaded')
+            except:
+                is_last_page = True
+                pass
 
             # Check page source
             page_source = self.page_source
