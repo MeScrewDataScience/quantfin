@@ -83,7 +83,7 @@ class SoupReader():
     def read_html_tabular_link(self, tag_attr, skiprows=[], skipcols=[]):
         
         if len(tag_attr['row_col_pair']) != 2:
-            logger.error('The tabular soup data should be 2 dimensional. '
+            logger.error('The tabular soup data should be 2 dimensional.'
                         'Check \'row_col_pair\' config!')
             raise ValueError
 
@@ -122,7 +122,7 @@ class SoupReader():
     def _read_soup(self, tag_attr):
 
         if not self.soup and isinstance(self.soup, BeautifulSoup):
-            logger.error('The provided object is not '
+            logger.error('The provided object is not'
                         'a bs4.BeautifulSoup object!')
             raise ValueError
 
@@ -242,8 +242,8 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                 caller for caller in callers if caller in url_hostname
             ][0]
         else:
-            logger.error(f'The provied URL {url} in page '
-                        f'attributes is not supported. '
+            logger.error(f'The provied URL {url} in page'
+                        f'attributes is not supported.'
                         f'See below for full page attributes\n'
                         f'{self.attrs}')
             raise ValueError
@@ -265,7 +265,7 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
         elif method == 'bs4':
             internal_method = self._bs4_get_tabular_data
         else:
-            logger.error(f'Method {method} is not recognized. '
+            logger.error(f'Method {method} is not recognized.'
                             'It must be either "pandas" or "bs4"')
             raise ValueError
         
@@ -313,10 +313,11 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
             submit_button.click()
             
             # Check if website is loaded if after click operation
-            WebDriverWait(self, 5).until(
-                EC.visibility_of_element_located((By.XPATH, self.attrs['pagination_xpath']))
-            )
-            logger.info(f'{symbol_data[0]} - Page successfully loaded after form submission')
+            # WebDriverWait(self, 5).until(
+            #     EC.visibility_of_element_located((By.XPATH, self.attrs['pagination_xpath']))
+            # )
+            # logger.info(f'{symbol_data[0]} - Page successfully loaded after form submission')
+            sleep(0.5)
         
         except:
             if attempts == attempt_lim:
@@ -489,8 +490,8 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                 logger.info(f'{symbol} - Successfully reach to last page')
 
                 if records and df_length < records:
-                    logger.warning(f'{symbol} - Only {df_length} records '
-                                    f'are extracted while the requiremnt '
+                    logger.warning(f'{symbol} - Only {df_length} records'
+                                    f'are extracted while the requirement'
                                     f'is {records}')
             else:
                 self._to_next_page(symbol)
@@ -575,7 +576,7 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
             if records and df_length >= records:
                 df = df.iloc[:records]
                 is_fully_load = True
-                logger.info(f'{symbol} - Successfully extract '
+                logger.info(f'{symbol} - Successfully extract'
                             f'{records} records')
 
                 return df, is_fully_load
@@ -586,8 +587,8 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                 logger.info(f'{symbol} - Successfully reach to last page')
 
                 if records and df_length < records:
-                    logger.warning(f'{symbol} - Only {df_length} records '
-                                    f' are extracted while the requiremnt '
+                    logger.warning(f'{symbol} - Only {df_length} records'
+                                    f' are extracted while the requiremnt'
                                     f' is {records}')
             else:
                 self._to_next_page(symbol)
@@ -608,7 +609,7 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
         
         except:
             if attempts == attempt_lim:
-                logger.error(f'{symbol} - Cannot go to next page '
+                logger.error(f'{symbol} - Cannot go to next page'
                              f'after {attempts} tries', exc_info=True)
                 raise
             
@@ -774,8 +775,8 @@ class Bs4Browser(mechanicalsoup.StatefulBrowser):
                 break
         
         if not self.caller:
-            logger.error(f'The provied URL {url} in page '
-                         f'attributes is not supported. '
+            logger.error(f'The provied URL {url} in page'
+                         f'attributes is not supported.'
                          f'See below for full page attributes\n'
                          f'{self.attrs}')
             raise ValueError
@@ -784,15 +785,15 @@ class Bs4Browser(mechanicalsoup.StatefulBrowser):
     def load_page(self):
 
         if not self.attrs['login_url'] and self.attrs['login_form']:
-            logger.error('Form URL is not provided! Note: Form URL could be '
-                        'the same as main URL if the form(s) is/are located '
+            logger.error('Form URL is not provided! Note: Form URL could be'
+                        'the same as main URL if the form(s) is/are located'
                         'in the same main URL')
             raise ValueError
 
         if self.attrs['login_url'] and not self.attrs['login_form']:
-            logger.error('Form attributes are not provided: form\'s index '
-                        '(integer), form\'s field name (string) and form\'s '
-                        'field value. It should be in dictionary format. '
+            logger.error('Form attributes are not provided: form\'s index'
+                        '(integer), form\'s field name (string) and form\'s'
+                        'field value. It should be in dictionary format.'
                         'Example: yform = {1: {"username": "abc@gmail.com",'
                         '"password": "xYz"}}')
             raise ValueError
@@ -837,7 +838,7 @@ class Bs4Browser(mechanicalsoup.StatefulBrowser):
                 self._to_folder(web_data, filename, to_folder)
             except:
                 self.load_status = False
-                logger.error(f'{self.symbol} - Cannot save file '
+                logger.error(f'{self.symbol} - Cannot save file'
                              f'{filename} to folder {to_folder}')
             
             return
@@ -855,7 +856,7 @@ class Bs4Browser(mechanicalsoup.StatefulBrowser):
                     ignore_index=True
                 )
             except:
-                logger.warning(f'{self.symbol} - Cannot append result data '
+                logger.warning(f'{self.symbol} - Cannot append result data'
                                'to class dataframe')
 
             return df
@@ -889,7 +890,7 @@ class Bs4Browser(mechanicalsoup.StatefulBrowser):
                 f.write(web_data.content)
                 logger.info(f'{self.symbol} - File {filename} is created')
         except:
-            logger.error(f'{self.symbol} - Unable to download data from web. '
+            logger.error(f'{self.symbol} - Unable to download data from web.'
                          f'Filename: {filename}',
                          exc_info=True)
         
@@ -914,7 +915,7 @@ class Bs4Browser(mechanicalsoup.StatefulBrowser):
             if not records:
                 records = len(df)
             
-            logger.info(f'{self.symbol} - Successfully extract '
+            logger.info(f'{self.symbol} - Successfully extract'
                         f'{records} records')
         
         except:
@@ -929,7 +930,7 @@ class Bs4Browser(mechanicalsoup.StatefulBrowser):
             web_data = self.get(dwl_link)
             return web_data
         except:
-            logger.error(f'{self.symbol} - Unable to download '
+            logger.error(f'{self.symbol} - Unable to download'
                          f'data from web. Link: {dwl_link}',
                          exc_info=True)
             raise ValueError
@@ -941,7 +942,7 @@ class Bs4Browser(mechanicalsoup.StatefulBrowser):
             dwl_link = ''.join([self.url_hostname, link])
             return dwl_link
         except:
-            logger.warning(f'{self.symbol} - There is no '
+            logger.warning(f'{self.symbol} - There is no'
                            f'downloadable data')
             raise ValueError
     

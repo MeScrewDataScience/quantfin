@@ -4,7 +4,7 @@ import numpy as np
 
 class Watchlist():
 
-    def __init__(self, current_watchlist=None, new_watchlist=None):
+    def __init__(self, current_watchlist=None, holidays=[]):
         self.symbol_field = 'Symbol'
         self.start_date = 'Start Date'
         self.review_date = 'Review Date'
@@ -26,9 +26,9 @@ class Watchlist():
         self.high_risk = 'High'
         self.action_buy = 'Buy & Hold'
         self.action_sell = 'Sell & Close'
+        self.holidays = holidays
         # self.action_obs = 'Observe'
         # self.action_drop = 'Drop'
-        self.new_watchlist = new_watchlist
         if not current_watchlist:
             self.current_watchlist = pd.DataFrame(columns=[
                 self.symbol_field,
@@ -69,20 +69,23 @@ class Watchlist():
         date_field='date',
         price_field='adj_close',
         vol_field='vol',
-        ubound=0.55,
-        lbound=0.5,
-        elem_bound=0.3,
-        risk_appetite=[2,],
+        proba_ubound=0.0,
+        proba_lbound=0.0,
+        low_risk_proba_lbound=0.5,
+        high_risk_proba_lbound=0.3,
         min_price=10,
         min_vol=30000,
+        risk_appetite=[1, 2],
+        stoploss=0.1,
+        max_holding_days=20,
         portfolio_size=10,
-        low_risk_prop=0.5
+        low_risk_prop=0.7,
     ):
         # Create baseline for watchlist
         base = origin_df.groupby([symbol_field, date_field, price_field, vol_field]).groups.keys()
         base = np.array(list(base))
         symbols = base[:, 0]
-        dates = pd.to_datetime(base[:, 1]).strftime('%Y-%m-%d')
+        dates = pd.to_datetime(base[:, 1])
         price = base[:, 2]
         vol = base[:, 3]
         
@@ -92,54 +95,116 @@ class Watchlist():
         # Define riskiness
         risk = self._get_risk_profile(pred_result)
         
-        # Define suggestion category: Recommend or Potential
-        category = self._get_nomination(price, vol, pred_result, ubound, lbound, elem_bound, risk_appetite, min_price, min_vol)
+        # Define nominations
+        nominations = self._get_nomination(
+            price,
+            vol,
+            pred_result,
+            proba_ubound,
+            proba_lbound,
+            low_risk_proba_lbound,
+            high_risk_proba_lbound,
+            min_price,
+            min_vol,
+            risk_appetite,
+        )
         
         # Action
-        action = self._get_action(category)
+        action = self._get_action(nominations)
 
         # Create full list
-        full_list = pd.DataFrame(symbols, columns=[self.symbol_field])
-        full_list[self.nomination_field] = category
-        full_list[self.start_date] = dates
-        full_list[self.down_proba] = down_proba
-        full_list[self.up_proba] = up_proba
-        full_list[self.risk_profile] = risk
-        full_list[self.new_action] = action
-        full_list[self.t0_price] = price
-        full_list[self.curr_vol] = vol
+        full_obs = pd.DataFrame(symbols, columns=[self.symbol_field])
+        full_obs[self.nomination_field] = nominations
+        full_obs[self.start_date] = dates
+        full_obs[self.down_proba] = down_proba
+        full_obs[self.up_proba] = up_proba
+        full_obs[self.risk_profile] = risk
+        full_obs[self.new_action] = action
+        full_obs[self.t0_price] = price
+        full_obs[self.curr_vol] = vol
 
         # Filter new watchlist
-        self.new_watchlist = self._get_new_watchlist(full_list)
-        self.new_watchlist.reset_index(drop=True, inplace=True)
+        new_obs = self._get_new_obs(full_obs)
+        new_obs.reset_index(drop=True, inplace=True)
         
-        return self.new_watchlist
+        return self._update_watchlist(new_obs, portfolio_size, low_risk_prop, stoploss, max_holding_days)
     
 
-    def integrate_watchlists(self):
-        final_wl = self._get_original_obs()
-        new_comers = self._get_new_comers()
-        final_wl = final_wl.append(new_comers)
+    def _update_watchlist(self, new_obs, portfolio_size, low_risk_prop, stoploss, max_holding_days):
+        original_obs = self._get_original_obs()
+        new_comers = self._get_new_comers(new_obs)
+        original_obs = original_obs.append(new_comers)
 
-        final_wl = self._update_review_obs(final_wl)
-        final_wl = self._realign_col_names(final_wl)
-        final_wl = self._realign_col_values(final_wl)
-        final_wl = self._rearrange_columns(final_wl)
+        full_obs = self._join_obs(original_obs, new_obs)
+        full_obs = self._realign_col_names(full_obs)
+        full_obs = self._realign_col_values(full_obs, stoploss, max_holding_days)
+        full_obs = self._rearrange_columns(full_obs)
+        selected_obs = self._filter_obs(full_obs, portfolio_size, low_risk_prop)
+        
         inactive_wl = self.get_inactive_watchlist()
-        final_wl = pd.concat([self.sort_watchlist(final_wl), self.sort_watchlist(inactive_wl)])
+        final_wl = pd.concat([self.sort_watchlist(selected_obs), self.sort_watchlist(inactive_wl)])
         
         self.final_watchlist = final_wl.reset_index(drop=True)
 
         return self.final_watchlist
     
 
-    def _get_new_watchlist(self, full_list):
-        # Define conditions
-        is_being_watched = full_list[self.symbol_field].isin(self.get_active_symbols())
-        # is_potential = full_list[self.nomination_field].isin([self.nomination_lvl1, self.nomination_lvl2])
-        is_potential = full_list[self.nomination_field].isin([self.nomination_lvl1])
+    def _filter_obs(self, obs, portfolio_size, low_risk_prop):
+        # Proba columns
+        risk_profile_column = self.risk_profile + self.rev_suffix
+        proba_column = self.up_proba + self.rev_suffix
         
-        return full_list[is_being_watched | is_potential]
+        # Initiate conditions
+        is_new = obs[self.start_date] == obs[self.review_date]
+        is_nominated = obs[self.nomination_field] == self.nomination_lvl1
+        is_low_risk = obs[risk_profile_column] == self.low_risk
+        is_high_risk = obs[risk_profile_column] == self.high_risk
+        
+        # Get current positions
+        holding_days = obs[[self.start_date, self.review_date]].apply(self._biz_days_count, args=('C', self.holidays), axis=1)
+        low_risk_slots = round(portfolio_size * low_risk_prop)
+        high_risk_slots = portfolio_size - low_risk_slots
+        curr_low_risk_positions = len(obs[(~is_new) & is_nominated & is_low_risk])
+        curr_high_risk_positions = len(obs[(~is_new) & is_nominated & is_high_risk])
+
+        # Calculate available slots
+        if curr_low_risk_positions > low_risk_slots:
+            excess_slots = curr_low_risk_positions - low_risk_slots
+            curr_low_risk = (obs[proba_column] * (~is_new & is_nominated & is_low_risk & (holding_days >= 3)))
+            curr_low_risk_ranking = curr_low_risk.replace(0, np.nan).rank()
+            obs.loc[curr_low_risk_ranking <= excess_slots, [self.nomination_field, self.new_action]] = [self.nomination_lvl3, self.action_sell]
+            avail_low_risk_postions = 0
+        else: 
+            avail_low_risk_postions = low_risk_slots - curr_low_risk_positions
+        
+        if curr_high_risk_positions > high_risk_slots:
+            excess_slots = curr_high_risk_positions - high_risk_slots
+            curr_high_risk = (obs[proba_column] * (~is_new & is_nominated & is_high_risk & (holding_days >= 3)))
+            curr_high_risk_ranking = curr_high_risk.replace(0, np.nan).rank()
+            obs.loc[curr_high_risk_ranking <= excess_slots, [self.nomination_field, self.new_action]] = [self.nomination_lvl3, self.action_sell]
+            avail_high_risk_postions = 0
+        else:
+            avail_high_risk_postions = high_risk_slots - curr_high_risk_positions
+        
+        # Rank prediction proba
+        low_risk_ranking = (obs[proba_column] * (is_new & is_nominated & is_low_risk)).rank(ascending=False)
+        high_risk_ranking = (obs[proba_column] * (is_new & is_nominated & is_high_risk)).rank(ascending=False)
+        
+        # Select stocks
+        selected_low_risk = obs[low_risk_ranking <= avail_low_risk_postions]
+        selected_high_risk = obs[high_risk_ranking <= avail_high_risk_postions]
+        
+        # Return selected observations
+        return pd.concat([selected_low_risk, selected_high_risk, obs[~is_new]])
+    
+
+    def _get_new_obs(self, full_obs):
+        # Define conditions
+        is_being_watched = full_obs[self.symbol_field].isin(self.get_active_symbols())
+        # is_potential = full_obs[self.nomination_field].isin([self.nomination_lvl1, self.nomination_lvl2])
+        is_nominated = full_obs[self.nomination_field].isin([self.nomination_lvl1])
+        
+        return full_obs[is_being_watched | is_nominated]
 
 
     def get_active_symbols(self):
@@ -199,7 +264,7 @@ class Watchlist():
         return watchlist
     
 
-    def _rearrange_columns(self, final_wl):
+    def _rearrange_columns(self, observations):
         columns = [
             self.symbol_field,
             self.nomination_field,
@@ -219,20 +284,20 @@ class Watchlist():
             self.est_return,
         ]
 
-        final_wl = final_wl[columns]
+        observations = observations[columns]
 
-        return final_wl
+        return observations
     
 
-    def _update_review_obs(self, final_wl):
-        final_wl = final_wl.merge(
-            self.new_watchlist,
+    def _join_obs(self, original_obs, new_obs):
+        full_obs = original_obs.merge(
+            new_obs,
             how='left',
             on=self.symbol_field,
             suffixes=('', self.rev_suffix)
         )
 
-        return final_wl
+        return full_obs
     
 
     def _get_original_obs(self):
@@ -252,11 +317,11 @@ class Watchlist():
         return original_obs[columns]
     
 
-    def _get_new_comers(self):
+    def _get_new_comers(self, new_obs):
         active_symbols = self.get_active_symbols()
-        is_current = self.new_watchlist[self.symbol_field].isin(active_symbols)
+        is_current = new_obs[self.symbol_field].isin(active_symbols)
         
-        return self.new_watchlist[~is_current]
+        return new_obs[~is_current]
     
 
     def _realign_col_names(self, final_wl):
@@ -275,42 +340,53 @@ class Watchlist():
         return final_wl
     
 
-    def _realign_col_values(self, final_wl):
-        # Update nomination
-        origin_nom = self.nomination_field
-        new_nom = self.nomination_field + self.rev_suffix
-        final_wl[[origin_nom, new_nom]] = final_wl[[origin_nom, new_nom]].apply(self._update_nomination, axis=1)
-
-        # # Update action
-        # previous_act = self.previous_action
-        # new_act = self.new_action
-        # final_wl[[previous_act, new_act]] = final_wl[[previous_act, new_act]].apply(self._update_action, axis=1)
-
+    def _realign_col_values(self, final_wl, stoploss, max_holding_days):
         # Update estimated return
         final_wl[self.est_return] = final_wl[self.curr_price]/final_wl[self.t0_price] - 1
+
+        # Update nomination
+        columns = [
+            self.nomination_field,
+            self.nomination_field + self.rev_suffix,
+            self.start_date,
+            self.review_date,
+            self.est_return,
+        ]
+        final_wl[columns] = final_wl[columns].apply(
+            self._update_nomination, args=(stoploss, max_holding_days), axis=1
+        )
+
+        # Update action
+        columns = [
+            self.nomination_field + self.rev_suffix,
+            self.new_action,
+        ]
+        final_wl[columns] = final_wl[columns].apply(self._update_action, axis=1)
 
         return final_wl
     
 
     def _update_action(self, columns):
-        # former_buy = columns[0] == self.action_buy
-        # former_obs = columns[0] == self.action_obs
-        # later_obs = columns[1] == self.action_obs
-        # later_sell = columns[1] == self.action_sell
-
-        # if former_buy and later_obs:
-        #     columns[1] = self.action_buy
-        # elif former_obs and later_sell:
-        #     columns[1] = self.action_drop
+        if columns[0] == self.nomination_lvl3:
+            columns[1] = self.action_sell
         
         return columns
     
 
-    def _update_nomination(self, columns):
+    def _update_nomination(self, columns, stoploss, max_holding_days):
         former_buy = columns[0] == self.nomination_lvl1
         later_sell = columns[1] == self.nomination_lvl3
-        if former_buy and later_sell:
+        holding_days = self._biz_days_count(columns[2:4], freq='C', holidays=self.holidays)
+        if former_buy and later_sell and holding_days >= 3:
             columns[0] = self.nomination_lvl3
+        
+        if holding_days >= max_holding_days:
+            columns[0] = self.nomination_lvl3
+            columns[1] = self.nomination_lvl3
+        
+        if columns[4] <= -stoploss:
+            columns[0] = self.nomination_lvl3
+            columns[1] = self.nomination_lvl3
 
         return columns
     
@@ -350,26 +426,41 @@ class Watchlist():
         return list(risk)
     
 
-    def _get_nomination(self, price, vol, pred_result, ubound, lbound, elem_bound, risk_appetite, min_price, min_vol):
+    def _get_nomination(
+        self,
+        price,
+        vol,
+        pred_result,
+        proba_ubound,
+        proba_lbound,
+        low_risk_proba_lbound,
+        high_risk_proba_lbound,
+        min_price,
+        min_vol,
+        risk_appetite,
+    ):
         # Get prediction values
         pred_val = np.multiply([-2, -1, 1, 2], np.equal(pred_result, pred_result.max(axis=1).reshape(-1, 1))).sum(axis=1)
-        # Define conditions
-        buy_cond_1 = np.isin(pred_val, risk_appetite)
-        buy_cond_2 = (pred_result[:, 2] + pred_result[:, 3]) >= ubound
-        elem_cond = (pred_result[:, 2] >= elem_bound) | (pred_result[:, 3] >= elem_bound)
+        
+        # Define buy conditions
+        pred_val_cond = np.isin(pred_val, risk_appetite)
+        pred_proba_cond = (pred_result[:, 2] + pred_result[:, 3]) >= proba_ubound
+        elem_cond = (pred_result[:, 2] >= low_risk_proba_lbound) | (pred_result[:, 3] >= high_risk_proba_lbound)
         price_cond = price >= min_price
         vol_cond = vol >= min_vol
-        hold_cond = (pred_result[:, 2] + pred_result[:, 3]) >= lbound
-        sell_cond_1 = pred_val < 0
-        sell_cond_2 = ~hold_cond
+        hold_cond = (pred_result[:, 2] + pred_result[:, 3]) >= proba_lbound
+        
+        # Define sell conditions
+        sell_pred_val_cond = pred_val < 0
+        sell_pred_proba_cond = ~hold_cond
         
         # Categorize nominations
-        buy = (buy_cond_1 & buy_cond_2 & elem_cond & price_cond & vol_cond) * 1
+        buy = (pred_val_cond & pred_proba_cond & elem_cond & price_cond & vol_cond) * pred_val
         hold = hold_cond * 0
-        sell = (sell_cond_1 & sell_cond_2) * (-1)
+        sell = (sell_pred_val_cond & sell_pred_proba_cond) * (-1)
         category = buy + hold + sell
         category = map(
-            lambda x: self.nomination_lvl1 if x == 1 else self.nomination_lvl2 if x == 0 else self.nomination_lvl3,
+            lambda x: self.nomination_lvl1 if x > 0 else self.nomination_lvl2 if x == 0 else self.nomination_lvl3,
             category
         )
         category = list(category)
@@ -384,3 +475,7 @@ class Watchlist():
         )
 
         return list(action)
+    
+
+    def _biz_days_count(self, columns, freq='C', holidays=[]):
+        return len(pd.bdate_range(columns[0], columns[1], freq='C', holidays=holidays))
