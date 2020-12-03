@@ -35,7 +35,7 @@ class DataScraper():
         self,
         driver_exe=None,
         driver='chrome',
-        headless=True
+        headless=False
     ):
         
         self.symbol_index = 'symbol'
@@ -55,7 +55,8 @@ class DataScraper():
             'url': 'https://dstock.vndirect.com.vn/lich-su-gia/',
             'symbol_xpath': '//*[@id="header"]/div/div/div[2]/form/div/input',
             'symbol_verify_xpath': '//*[@id="sub-menu-content"]/div/div/div[2]/div[3]/div/div[1]/form/input',
-            'data_menu_xpath': '//*[@id="sub-menu"]/div/div[2]',
+            # 'symbol_verify_xpath': '//*[@id="__next"]/div/div[1]/div/div/div/div[1]/div[2]/div[1]/div[1]/h3',
+            'data_menu_xpath': '//*[@id="sub-menu"]/div/div[2]/a',
             'from_date_xpath': '//*[@id="sub-menu-content"]/div/div/div[2]/div[3]/div/div[1]/form/div[1]/div/input',
             'to_date_xpath': '//*[@id="sub-menu-content"]/div/div/div[2]/div[3]/div/div[1]/form/div[2]/div/input',
             'button_xpath': '//*[@id="sub-menu-content"]/div/div/div[2]/div[3]/div/div[1]/form/button',
