@@ -9,7 +9,8 @@ class Watchlist():
         self.start_date = 'Start Date'
         self.review_date = 'Review Date'
         self.nomination_field = 'Nomination'
-        self.down_proba = 'Down Proba'
+        self.up_proba_low_risk = 'Up Proba - LR'
+        self.up_proba_high_risk = 'Up Proba - HR'
         self.up_proba = 'Up Proba'
         self.risk_profile = 'Volat (Risk)'
         self.previous_action = 'Previous Action'
@@ -34,11 +35,13 @@ class Watchlist():
                 self.symbol_field,
                 self.nomination_field,
                 self.start_date,
-                self.down_proba,
+                self.up_proba_low_risk,
+                self.up_proba_high_risk,
                 self.up_proba,
                 self.risk_profile,
                 self.review_date,
-                self.down_proba + self.rev_suffix,
+                self.up_proba_low_risk + self.rev_suffix,
+                self.up_proba_high_risk + self.rev_suffix,
                 self.up_proba + self.rev_suffix,
                 self.risk_profile + self.rev_suffix,
                 self.previous_action,
@@ -90,7 +93,7 @@ class Watchlist():
         vol = base[:, 3]
         
         # Sum Down & Up probabilities
-        down_proba, up_proba = self._get_agg_proba(pred_result)
+        up_proba_lr, up_proba_hr, up_proba = self._get_agg_proba(pred_result)
         
         # Define riskiness
         risk = self._get_risk_profile(pred_result)
@@ -116,7 +119,8 @@ class Watchlist():
         full_obs = pd.DataFrame(symbols, columns=[self.symbol_field])
         full_obs[self.nomination_field] = nominations
         full_obs[self.start_date] = dates
-        full_obs[self.down_proba] = down_proba
+        full_obs[self.up_proba_low_risk] = up_proba_lr
+        full_obs[self.up_proba_high_risk] = up_proba_hr
         full_obs[self.up_proba] = up_proba
         full_obs[self.risk_profile] = risk
         full_obs[self.new_action] = action
@@ -152,7 +156,8 @@ class Watchlist():
     def _filter_obs(self, obs, portfolio_size, low_risk_prop):
         # Proba columns
         risk_profile_column = self.risk_profile + self.rev_suffix
-        proba_column = self.up_proba + self.rev_suffix
+        proba_lr_column = self.up_proba_low_risk + self.rev_suffix
+        proba_hr_column = self.up_proba_high_risk + self.rev_suffix
         
         # Initiate conditions
         is_new = obs[self.start_date] == obs[self.review_date]
@@ -170,7 +175,7 @@ class Watchlist():
         # Calculate available slots
         if curr_low_risk_positions > low_risk_slots:
             excess_slots = curr_low_risk_positions - low_risk_slots
-            curr_low_risk = (obs[proba_column] * (~is_new & is_nominated & is_low_risk & (holding_days >= 3)))
+            curr_low_risk = (obs[proba_lr_column] * (~is_new & is_nominated & is_low_risk & (holding_days >= 3)))
             curr_low_risk_ranking = curr_low_risk.replace(0, np.nan).rank()
             obs.loc[curr_low_risk_ranking <= excess_slots, [self.nomination_field, self.new_action]] = [self.nomination_lvl3, self.action_sell]
             avail_low_risk_postions = 0
@@ -179,7 +184,7 @@ class Watchlist():
         
         if curr_high_risk_positions > high_risk_slots:
             excess_slots = curr_high_risk_positions - high_risk_slots
-            curr_high_risk = (obs[proba_column] * (~is_new & is_nominated & is_high_risk & (holding_days >= 3)))
+            curr_high_risk = (obs[proba_hr_column] * (~is_new & is_nominated & is_high_risk & (holding_days >= 3)))
             curr_high_risk_ranking = curr_high_risk.replace(0, np.nan).rank()
             obs.loc[curr_high_risk_ranking <= excess_slots, [self.nomination_field, self.new_action]] = [self.nomination_lvl3, self.action_sell]
             avail_high_risk_postions = 0
@@ -187,8 +192,8 @@ class Watchlist():
             avail_high_risk_postions = high_risk_slots - curr_high_risk_positions
         
         # Rank prediction proba
-        low_risk_ranking = (obs[proba_column] * (is_new & is_nominated & is_low_risk)).rank(ascending=False)
-        high_risk_ranking = (obs[proba_column] * (is_new & is_nominated & is_high_risk)).rank(ascending=False)
+        low_risk_ranking = (obs[proba_lr_column] * (is_new & is_nominated & is_low_risk)).rank(ascending=False)
+        high_risk_ranking = (obs[proba_hr_column] * (is_new & is_nominated & is_high_risk)).rank(ascending=False)
         
         # Select stocks
         selected_low_risk = obs[low_risk_ranking <= avail_low_risk_postions]
@@ -269,11 +274,13 @@ class Watchlist():
             self.symbol_field,
             self.nomination_field,
             self.start_date,
-            self.down_proba,
+            self.up_proba_low_risk,
+            self.up_proba_high_risk,
             self.up_proba,
             self.risk_profile,
             self.review_date,
-            self.down_proba + self.rev_suffix,
+            self.up_proba_low_risk + self.rev_suffix,
+            self.up_proba_high_risk + self.rev_suffix,
             self.up_proba + self.rev_suffix,
             self.risk_profile + self.rev_suffix,
             self.previous_action,
@@ -305,7 +312,8 @@ class Watchlist():
             self.symbol_field,
             self.nomination_field,
             self.start_date,
-            self.down_proba,
+            self.up_proba_low_risk,
+            self.up_proba_high_risk,
             self.up_proba,
             self.risk_profile,
             self.new_action,
@@ -413,10 +421,11 @@ class Watchlist():
     
 
     def _get_agg_proba(self, pred_result):
-        down_prob = pred_result[:, 0] + pred_result[:, 1]
-        up_prob = pred_result[:, 2] + pred_result[:, 3]
+        up_proba_lr = pred_result[:, 2]
+        up_proba_hr = pred_result[:, 3]
+        up_proba = pred_result[:, 2] + pred_result[:, 3]
 
-        return down_prob, up_prob
+        return up_proba_lr, up_proba_hr, up_proba
     
 
     def _get_risk_profile(self, pred_result):

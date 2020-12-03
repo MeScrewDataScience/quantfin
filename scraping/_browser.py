@@ -354,7 +354,7 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                     symbol_filter.clear()
                     sleep(0.1)
                     symbol_filter.send_keys(symbol)
-                    sleep(0.2)
+                    sleep(0.3)
                     symbol_filter.send_keys(Keys.RETURN)
                 
                 if 'data_menu_xpath' in self.attrs:

@@ -35,7 +35,7 @@ class DataScraper():
         self,
         driver_exe=None,
         driver='chrome',
-        headless=False
+        headless=True
     ):
         
         self.symbol_index = 'symbol'
