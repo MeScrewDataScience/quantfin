@@ -321,12 +321,12 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
         
         except:
             if attempts == attempt_lim:
-                logger.error(f'{symbol_data[0]} - Unable to query the page after {attempts} tries', exc_info=True)
+                logger.error(f'{symbol_data[0]} - Unable to query the page after {attempts} tries')
                 return
             
             else:
                 attempts += 1
-                logger.warning(f'Unable to query the page. Refresh and load again. '
+                logger.warning(f'{symbol_data[0]} - Unable to query the page. Refresh and load again. '
                                f'Attempt {attempts}')
                 
                 self.refresh()
@@ -340,8 +340,6 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
             symbol_xpaths = [self.attrs['symbol_xpath']]
         else:
             symbol_xpaths = self.attrs['symbol_xpath']
-
-        verifier_xpath = self.attrs['symbol_verify_xpath']
 
         try:
             for xpath in symbol_xpaths:
@@ -357,27 +355,35 @@ class SelBrowser(webdriver.Chrome, webdriver.Firefox, webdriver.PhantomJS):
                     symbol_filter.send_keys(symbol)
                     sleep(0.3)
                     symbol_filter.send_keys(Keys.RETURN)
-                    sleep(0.3)
-                
-            if 'data_menu_xpath' in self.attrs:
-                data_menu_button = WebDriverWait(self, 5).until(
-                    EC.element_to_be_clickable((By.XPATH, self.attrs['data_menu_xpath']))
-                )
-                data_menu_button.click()
-                sleep(0.3)
-
-        
         except:
             logger.error(f'{symbol} - Unable to fill the symbol query form', exc_info=True)
             raise
         
-        symbol_verifier = self.find_element_by_xpath(verifier_xpath)
-        symbol_verifier_text = symbol_verifier.text
-        symbol_verifier_val = symbol_verifier.get_attribute('value')
+        try:
+            if 'data_menu_xpath' in self.attrs:
+                sleep(4)
+                data_menu_button = WebDriverWait(self, 5).until(
+                    EC.element_to_be_clickable((By.XPATH, self.attrs['data_menu_xpath']))
+                )
+                data_menu_button.click()
+                sleep(0.5)
+        except:
+            logger.error(f'{symbol} - Unable to select the data menu', exc_info=True)
+            raise
         
-        if symbol.upper() not in symbol_verifier_text.upper() and symbol.upper() not in symbol_verifier_val.upper():
-            logger.error(f'{symbol} - Symbol is not found in website\'s database')
-            raise ValueError
+        try:
+            symbol_verifier = WebDriverWait(self, 5).until(
+                    EC.visibility_of_element_located((By.XPATH, self.attrs['symbol_verify_xpath']))
+            )
+            symbol_verifier_text = symbol_verifier.text
+            symbol_verifier_val = symbol_verifier.get_attribute('value')
+            
+            if symbol.upper() not in symbol_verifier_text.upper() and symbol.upper() not in symbol_verifier_val.upper():
+                logger.error(f'{symbol} - Symbol is not found in website\'s database')
+                raise ValueError
+        except:
+            logger.error(f'{symbol} - Unable to verify the symbol', exc_info=True)
+            raise
 
         logger.info(f'{symbol} - Symbol query form filled')
         

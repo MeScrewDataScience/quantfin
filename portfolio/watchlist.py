@@ -80,7 +80,7 @@ class Watchlist():
         min_vol=30000,
         risk_appetite=[1, 2],
         stoploss=0.1,
-        max_holding_days=20,
+        max_holding_days=10,
         portfolio_size=10,
         low_risk_prop=0.7,
     ):
