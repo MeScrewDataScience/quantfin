@@ -17,43 +17,47 @@ def train_backtest_split(data, level=0, from_year=None):
 
 
 def calculate_target_sharpe(data, groupby, input_field, forward_look=5):
-    data['daily_ret'] = data.groupby(groupby)[input_field].pct_change()
-    data['exp_ret'] = data.groupby(groupby)['daily_ret'].shift(-1).rolling(forward_look).mean().shift(-forward_look + 1)
-    data['exp_ret_std'] = data.groupby(groupby)['daily_ret'].shift(-1).rolling(forward_look).apply(lambda x: np.std(x, ddof=1)).shift(-forward_look + 1)
-    temp_exp_ret_std = data['exp_ret_std'].replace(0, 10e-20)
-    data['exp_sharpe'] = data['exp_ret'].values/temp_exp_ret_std.values
+    exp_sharpes = pd.DataFrame(columns=['daily_ret', 'exp_ret', 'exp_ret_std', 'exp_sharpe'], index=data.index)
+    exp_sharpes['daily_ret'] = data.groupby(groupby)[input_field].pct_change()
+    exp_sharpes['exp_ret'] = exp_sharpes.groupby(groupby)['daily_ret'].shift(-1).rolling(forward_look).mean().shift(-forward_look + 1)
+    exp_sharpes['exp_ret_std'] = exp_sharpes.groupby(groupby)['daily_ret'].shift(-1).rolling(forward_look).apply(lambda x: np.std(x, ddof=1)).shift(-forward_look + 1)
+    temp_exp_ret_std = exp_sharpes['exp_ret_std'].replace(0, 10e-20)
+    exp_sharpes['exp_sharpe'] = exp_sharpes['exp_ret'].values/temp_exp_ret_std.values
     
-    return data
+    return exp_sharpes
 
 
 def calculate_hist_sharpe(data, groupby, input_field, *windows):
     if not windows:
         windows = [10]
     
+    hist_sharpe = pd.DataFrame(index=data.index)
     # groups = data.groupby(groupby).groups.keys()
-    data['daily_ret'] = data.groupby(groupby)[input_field].pct_change()
+    hist_sharpe['daily_ret'] = data.groupby(groupby)[input_field].pct_change()
     
     # for group in groups:
         # cust_query = f'{groupby} == {[group]}'
         # query_eval = data.eval
     for window in windows:
-        data[f'daily_ret_avg_{window}'] = data.groupby(groupby)['daily_ret'].shift(0).rolling(window).mean()
-        data[f'daily_ret_std_{window}'] = data.groupby(groupby)['daily_ret'].shift(0).rolling(window).apply(lambda x: np.std(x, ddof=1))
-        temp_daily_ret_std = data[f'daily_ret_std_{window}'].replace(0, 10e-20)
-        data[f'sharpe_{window}'] = data[f'daily_ret_avg_{window}'].values/temp_daily_ret_std.values
+        hist_sharpe[f'daily_ret_avg_{window}'] = hist_sharpe.groupby(groupby)['daily_ret'].shift(0).rolling(window).mean()
+        hist_sharpe[f'daily_ret_std_{window}'] = hist_sharpe.groupby(groupby)['daily_ret'].shift(0).rolling(window).apply(lambda x: np.std(x, ddof=1))
+        temp_daily_ret_std = hist_sharpe[f'daily_ret_std_{window}'].replace(0, 10e-20)
+        hist_sharpe[f'sharpe_{window}'] = hist_sharpe[f'daily_ret_avg_{window}'].values/temp_daily_ret_std.values
 
-    return data
+    return hist_sharpe
 
 
 def calculate_hist_volume(data, groupby, input_field, *windows):
     if not windows:
         windows = [10]
     
+    hist_vol = pd.DataFrame(index=data.index)
+
     for window in windows:
-        data[f'vol_avg_{window}'] = data.groupby(groupby)[input_field].shift(0).rolling(window).mean()
-        data[f'vol_std_{window}'] = data.groupby(groupby)[input_field].shift(0).rolling(window).apply(lambda x: np.std(x, ddof=1))
+        hist_vol[f'vol_avg_{window}'] = data.groupby(groupby)[input_field].shift(0).rolling(window).mean()
+        hist_vol[f'vol_std_{window}'] = data.groupby(groupby)[input_field].shift(0).rolling(window).apply(lambda x: np.std(x, ddof=1))
     
-    return data
+    return hist_vol
 
 
 def filter_volume(data, date_field, volume_field, symbol_field='symbol', window=None, quantile=0.25, unaffected=None):
@@ -112,10 +116,11 @@ def get_date_partittion(data, date_field):
         except Exception as e:
             raise ValueError(e)
     
-    data['wd'] = dates.dt.dayofweek.values
-    data['month'] = dates.dt.month.values
+    partitioned_data = pd.DataFrame(index=data.index)
+    partitioned_data['wd'] = dates.dt.dayofweek.values
+    partitioned_data['month'] = dates.dt.month.values
 
-    return data
+    return partitioned_data
 
 
 def classify_sharpe(exp_ret, std, boundaries):

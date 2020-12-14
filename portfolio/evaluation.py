@@ -1,9 +1,22 @@
 # -*- coding: utf-8 -*-
 
+# Data manipulation
+import pandas as pd
 import numpy as np
+
+# Stats models
 from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.stattools import coint
 from statsmodels.tsa.vector_ar.vecm import coint_johansen
+
+# Sk-learn
+from sklearn.metrics import make_scorer, accuracy_score, f1_score, precision_score, recall_score, log_loss
+
+# Visualization
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.set(style='whitegrid')
 
 
 def adf_test(series, alpha=0.05):
@@ -122,3 +135,38 @@ def portfolio_val(matrix, eigenvector):
     portfolio_val = np.sum(np.multiply(temp, matrix), 1)
 
     return portfolio_val
+
+
+def visualize_validation(true_values, predictions, exp_ret, exp_ret_std, average='macro'):
+    summarized_pred = _summarize_predictions(true_values, predictions, exp_ret, exp_ret_std)
+    _evaluate_model(true_values, predictions, average=average)
+    _plot_predictions(summarized_pred)
+    
+    return
+
+
+def _evaluate_model(true_values, predictions, average='macro'):
+    print('CV Accuracy score:', accuracy_score(true_values, predictions).mean())
+    print('CV F1-score:', f1_score(true_values, predictions, average=average).mean())
+    print('CV Precision score:', precision_score(true_values, predictions, average=average).mean())
+    print('CV Recall score:', recall_score(true_values, predictions, average=average).mean())
+    
+    return f1_score(true_values, predictions, average=average).mean()
+
+
+def _summarize_predictions(true_values, predictions, exp_ret, exp_ret_std):
+    df = pd.DataFrame(true_values, columns=['true_values'])
+    df['predictions'] = predictions
+    df['exp_ret'] = exp_ret
+    df['exp_ret_std'] = exp_ret_std
+    
+    return df
+
+
+def _plot_predictions(df):
+    # Plot results
+    plt.figure(figsize=(16, 16))
+    sns.scatterplot(x='exp_ret', y='exp_ret_std', hue='predictions', palette='rainbow', data=df)
+    df    
+    
+    return

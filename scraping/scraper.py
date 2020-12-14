@@ -54,7 +54,7 @@ class DataScraper():
         self.vnd_attrs = {
             'url': 'https://dstock.vndirect.com.vn/lich-su-gia/',
             'symbol_xpath': '//*[@id="header"]/div/div/div[2]/form/div/input',
-            'symbol_verify_xpath': '//*[@id="sub-menu-content"]/div/div/div[2]/div[3]/div/div[1]/form/input',
+            'symbol_verify_xpath': '/html/body/div[1]/div/div[1]/div/div/div/div[1]/div[2]/div[1]/div[1]/h3',
             # 'symbol_verify_xpath': '//*[@id="__next"]/div/div[1]/div/div/div/div[1]/div[2]/div[1]/div[1]/h3',
             'data_menu_xpath': '/html/body/div[1]/div/div[1]/div/div/div/div[3]/div[1]/div/div[2]/a',
             'from_date_xpath': '/html/body/div[1]/div/div[1]/div/div/div/div[3]/div[2]/div/div/div[2]/div[3]/div/div[1]/form/div[1]/div/input',
