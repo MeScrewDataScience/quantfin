@@ -6,6 +6,9 @@ import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, Normalizer, KBinsDiscretizer
 
+# Stats library
+from statsmodels.tsa.stattools import adfuller
+
 # Other libraries
 import copy
 import warnings
@@ -438,4 +441,112 @@ class ArithTransformer(BaseEstimator, TransformerMixin):
         return result
     
 
-    # def _drop_repeated(self, pairs):
+class RollingStatsCalculator():
+    def __init__(self, feature_names, symbol_col, stats_val):
+        self.feature_names = self._to_list(feature_names)
+        self.symbol_col = symbol_col
+        self.stats_val = stats_val
+    
+
+    def transform(self, data, *windows):
+        data_copy = data.copy()
+        symbols = data_copy.index.get_level_values(self.symbol_col).unique()
+        features = [self._engineer_features(data.loc[symbol, self.feature_names], *windows) for symbol in symbols]
+        features = np.concatenate(features, axis=0)
+
+        feat_window_combinations = [(feature, window) for feature in self.feature_names for window in windows ]
+        for i, (feature, window) in enumerate(feat_window_combinations):
+            new_col = f'{feature}_rolling_{self.stats_val}_n{window}'
+            data_copy[new_col] = features[:, i]
+
+        return data_copy
+    
+
+    def _engineer_features(self, data, *windows):
+        cols = data.columns
+        features = [self._run_pipeline(data[col].values, *windows) for col in cols]
+        
+        return self._combine_features(*features)
+
+    
+    def _run_pipeline(self, values, *windows):
+        features = []
+        for window in windows:
+            if len(values) <= window:
+                vectors = np.zeros((len(values), 1))
+                vectors.fill(np.nan)
+                features.append(vectors)
+            else:
+                series = self._get_rolling_subsets(values, window)
+                series = self._get_stats_val(series)
+                nan_array = np.empty((window-1, 1))
+                nan_array.fill(np.nan)
+                features.append(np.concatenate((nan_array, series.reshape(-1, 1))))
+        
+        return self._combine_features(*features)
+    
+
+    def _get_stats_val(self, series):
+        if self.stats_val == 'percentile':
+            return self._get_percentile_val(series)
+        elif self.stats_val == 'adf_pvalue':
+            return self._get_adf_val(np.ravel(series))
+        elif self.stats_val == 'hurst':
+            return self._get_hurst_val(series)
+    
+
+    def _get_percentile_val(self, series):
+        return np.nan_to_num((series[:, -1] - series.min(axis=1)) / (series.max(axis=1) - series.min(axis=1)))
+    
+
+    def _get_adf_val(self, series):
+        adf_val = adfuller(series)
+        
+        return adf_val[1]
+
+
+    def _get_hurst_val(self, series):
+        lag_vector = range(2, len(series)-1)
+
+        # Calculate the array of the variances of the lagged differences
+        tau = [
+            np.sqrt(
+                np.std(np.subtract(series[lag:], series[:-lag]))
+            ) for lag in lag_vector
+        ]
+
+        # Use a linear fit to estimate the Hurst Exponent
+        poly = np.polyfit(np.log(lag_vector), np.log(tau), 1)
+        return poly[0] * 2
+    
+
+    def _get_rolling_subsets(self, values, window):
+        as_strided = np.lib.stride_tricks.as_strided
+        v = as_strided(values, (len(values) - (window - 1), window), (values.strides * 2))
+        
+        return v
+    
+
+    def _combine_features(self, *features):
+        features = np.asarray(features)
+        lens = list(map(len, features))
+        idx = lens.index(min(lens))
+        last_axis = len(np.shape(features[idx])) - 1
+
+        for i, __ in enumerate(features):
+            features[i] = np.asarray(features[i])
+            
+            if i != idx:
+                excess_rows = lens[i] - min(lens)
+                features[i] = features[i][excess_rows:]
+        
+        result = np.concatenate(features, axis=last_axis)
+        
+        return result
+    
+
+    def _to_list(self, feature_names):
+        if isinstance(feature_names, str):
+            return [feature_names]
+        else:
+            return list(feature_names)

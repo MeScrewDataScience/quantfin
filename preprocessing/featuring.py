@@ -40,7 +40,7 @@ def calculate_hist_sharpe(data, groupby, input_field, *windows):
         # query_eval = data.eval
     for window in windows:
         hist_sharpe[f'daily_ret_avg_{window}'] = hist_sharpe.groupby(groupby)['daily_ret'].shift(0).rolling(window).mean()
-        hist_sharpe[f'daily_ret_std_{window}'] = hist_sharpe.groupby(groupby)['daily_ret'].shift(0).rolling(window).apply(lambda x: np.std(x, ddof=1))
+        hist_sharpe[f'daily_ret_std_{window}'] = hist_sharpe.groupby(groupby)['daily_ret'].shift(0).rolling(window).std(ddof=1)
         temp_daily_ret_std = hist_sharpe[f'daily_ret_std_{window}'].replace(0, 10e-20)
         hist_sharpe[f'sharpe_{window}'] = hist_sharpe[f'daily_ret_avg_{window}'].values/temp_daily_ret_std.values
 
@@ -55,7 +55,7 @@ def calculate_hist_volume(data, groupby, input_field, *windows):
 
     for window in windows:
         hist_vol[f'vol_avg_{window}'] = data.groupby(groupby)[input_field].shift(0).rolling(window).mean()
-        hist_vol[f'vol_std_{window}'] = data.groupby(groupby)[input_field].shift(0).rolling(window).apply(lambda x: np.std(x, ddof=1))
+        hist_vol[f'vol_std_{window}'] = data.groupby(groupby)[input_field].shift(0).rolling(window).std(ddof=1)
     
     return hist_vol
 
