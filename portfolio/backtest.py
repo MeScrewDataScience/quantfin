@@ -30,17 +30,17 @@ class Backtest():
         pred_col='pred_val',
         pred_proba_col='up_proba',
         buy_strats=[
+            # {
+            #     'type': 'simple_compare',
+            #     'col': 'vol_cv_100',
+            #     'operation': '<=',
+            #     'threshold': [1, 2, 5],
+            # },
             {
                 'type': 'simple_compare',
-                'col': 'vol_cv_100',
-                'operation': '<=',
-                'threshold': [1],
-            },
-            {
-                'type': 'columns_compare',
                 'col': 'vol_avg_100',
                 'operation': '>=',
-                'threshold': ['vol_avg_100_q0.5_by_date']
+                'threshold': [30000,]
             },
             {
                 'type': 'simple_compare',
@@ -48,47 +48,47 @@ class Backtest():
                 'operation': 'in',
                 'threshold': [[1, 2],]
             },
-            {
-                'type': 'simple_compare',
-                'col': 'adj_close',
-                'operation': '>=',
-                'threshold': [10]
-            },
-            {
-                'type': 'simple_compare',
-                'col': 'vol',
-                'operation': '>=',
-                'threshold': [30000]
-            },
-            {
-                'type': 'double_compare',
-                'col': ['up_proba_lr', 'up_proba_hr'],
-                'operation': ['>=', '>='],
-                'threshold': [[0.3, 0.3],]
-            }
+            # {
+            #     'type': 'simple_compare',
+            #     'col': 'adj_close',
+            #     'operation': '>=',
+            #     'threshold': [0, 5, 10]
+            # },
+            # {
+            #     'type': 'simple_compare',
+            #     'col': 'vol',
+            #     'operation': '>=',
+            #     'threshold': [30000]
+            # },
+            # {
+            #     'type': 'double_compare',
+            #     'col': ['up_proba_lr', 'up_proba_hr'],
+            #     'operation': ['>=', '>='],
+            #     'threshold': [[0.3, 0.3], ]
+            # }
         ],
         sell_strats=[
             {
                 'type': 'simple_compare',
                 'col': 'pred_val',
                 'operation': '<',
-                'threshold': [0]
+                'threshold': [0,]
             },
             {
                 'type': 'holding_days',
                 'col': None,
                 'operation': '>=',
-                'threshold': [3, 10, 20]
+                'threshold': [3]
             },
             {
                 'type': 'trailing_stoploss',
                 'col': None,
                 'operation': '>=',
-                'threshold': [0.05, 0.1, 0.15]
+                'threshold': [2]
             }
         ],
-        portfolio_size=[5, 10, 20],
-        low_risk_prop=[0.6, 0.7, 0.8, None],
+        portfolio_size=[25],
+        low_risk_prop=[0.25],
         min_holding_days=3
     ):
         self.data = dataframe

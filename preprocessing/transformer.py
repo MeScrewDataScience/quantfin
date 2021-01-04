@@ -150,7 +150,7 @@ class DimScaler(BaseEstimator, TransformerMixin):
         return X
 
 
-class DimQuantile(BaseEstimator, TransformerMixin):
+class DimQuantileCalculator(BaseEstimator, TransformerMixin):
     def __init__(self, feature_names, dimension, quantile, on_collision='remove_old'):
         self.feature_names = list(feature_names)
         self.dimension = dimension
@@ -442,10 +442,11 @@ class ArithTransformer(BaseEstimator, TransformerMixin):
     
 
 class RollingStatsCalculator():
-    def __init__(self, feature_names, symbol_col, stats_val):
+    def __init__(self, feature_names, symbol_col, stats_val, hurst_max_range=0.05):
         self.feature_names = self._to_list(feature_names)
         self.symbol_col = symbol_col
         self.stats_val = stats_val
+        self.hurst_max_range = hurst_max_range
     
 
     def transform(self, data, *windows):
@@ -478,10 +479,10 @@ class RollingStatsCalculator():
                 features.append(vectors)
             else:
                 series = self._get_rolling_subsets(values, window)
-                series = self._get_stats_val(series)
+                stats_vals = self._get_stats_val(series)
                 nan_array = np.empty((window-1, 1))
                 nan_array.fill(np.nan)
-                features.append(np.concatenate((nan_array, series.reshape(-1, 1))))
+                features.append(np.concatenate((nan_array, stats_vals.reshape(-1, 1))))
         
         return self._combine_features(*features)
     
@@ -490,7 +491,7 @@ class RollingStatsCalculator():
         if self.stats_val == 'percentile':
             return self._get_percentile_val(series)
         elif self.stats_val == 'adf_pvalue':
-            return self._get_adf_val(np.ravel(series))
+            return self._get_adf_val(series)
         elif self.stats_val == 'hurst':
             return self._get_hurst_val(series)
     
@@ -500,24 +501,39 @@ class RollingStatsCalculator():
     
 
     def _get_adf_val(self, series):
-        adf_val = adfuller(series)
-        
-        return adf_val[1]
-
+        return np.apply_along_axis(self.__adf_sub_func, 1, series)
+    
 
     def _get_hurst_val(self, series):
-        lag_vector = range(2, len(series)-1)
+        return np.apply_along_axis(self.__hurst_sub_func, 1, series)
+    
 
+    def __adf_sub_func(self, sub_series):
+        adf_val = adfuller(sub_series)
+        if not adf_val[1]:
+            return 1.00
+        else:
+            return adf_val[1]
+
+    def __hurst_sub_func(self, sub_series):
+        lags = range(2, int(len(sub_series)*self.hurst_max_range))
         # Calculate the array of the variances of the lagged differences
-        tau = [
-            np.sqrt(
-                np.std(np.subtract(series[lag:], series[:-lag]))
-            ) for lag in lag_vector
-        ]
+        tau = [self.__tau_sub_func(sub_series, lag) for lag in lags]
 
         # Use a linear fit to estimate the Hurst Exponent
-        poly = np.polyfit(np.log(lag_vector), np.log(tau), 1)
+        poly = np.polyfit(np.log(lags), np.log(tau), 1)
+        
         return poly[0] * 2
+    
+
+    def __tau_sub_func(self, sub_series, lag):
+        lags_var = np.sqrt(
+            np.std(np.subtract(sub_series[lag:], sub_series[:-lag]))
+        )
+        if lags_var == 0:
+            return 1e-10
+        else:
+            return lags_var
     
 
     def _get_rolling_subsets(self, values, window):

@@ -17,12 +17,12 @@ def train_backtest_split(data, level=0, from_year=None):
 
 
 def calculate_target_sharpe(data, groupby, input_field, forward_look=5):
-    exp_sharpes = pd.DataFrame(columns=['daily_ret', 'exp_ret', 'exp_ret_std', 'exp_sharpe'], index=data.index)
-    exp_sharpes['daily_ret'] = data.groupby(groupby)[input_field].pct_change()
-    exp_sharpes['exp_ret'] = exp_sharpes.groupby(groupby)['daily_ret'].shift(-1).rolling(forward_look).mean().shift(-forward_look + 1)
-    exp_sharpes['exp_ret_std'] = exp_sharpes.groupby(groupby)['daily_ret'].shift(-1).rolling(forward_look).apply(lambda x: np.std(x, ddof=1)).shift(-forward_look + 1)
+    exp_sharpes = pd.DataFrame(columns=['exp_daily_ret', 'exp_ret', 'exp_ret_std', 'exp_sharpe'], index=data.index)
+    exp_sharpes['exp_daily_ret'] = data.groupby(groupby)[input_field].pct_change().shift(-1)
+    exp_sharpes['exp_ret'] = exp_sharpes.groupby(groupby)['exp_daily_ret'].rolling(forward_look).mean().shift(-forward_look + 1)
+    exp_sharpes['exp_ret_std'] = exp_sharpes.groupby(groupby)['exp_daily_ret'].rolling(forward_look).apply(lambda x: np.std(x, ddof=1)).shift(-forward_look + 1)
     temp_exp_ret_std = exp_sharpes['exp_ret_std'].replace(0, 10e-20)
-    exp_sharpes['exp_sharpe'] = exp_sharpes['exp_ret'].values/temp_exp_ret_std.values
+    exp_sharpes['exp_sharpe'] = exp_sharpes['exp_ret'].values/(temp_exp_ret_std.values * np.sqrt(forward_look))
     
     return exp_sharpes
 
@@ -42,7 +42,7 @@ def calculate_hist_sharpe(data, groupby, input_field, *windows):
         hist_sharpe[f'daily_ret_avg_{window}'] = hist_sharpe.groupby(groupby)['daily_ret'].shift(0).rolling(window).mean()
         hist_sharpe[f'daily_ret_std_{window}'] = hist_sharpe.groupby(groupby)['daily_ret'].shift(0).rolling(window).std(ddof=1)
         temp_daily_ret_std = hist_sharpe[f'daily_ret_std_{window}'].replace(0, 10e-20)
-        hist_sharpe[f'sharpe_{window}'] = hist_sharpe[f'daily_ret_avg_{window}'].values/temp_daily_ret_std.values
+        hist_sharpe[f'sharpe_{window}'] = hist_sharpe[f'daily_ret_avg_{window}'].values/(temp_daily_ret_std.values * np.sqrt(window))
 
     return hist_sharpe
 

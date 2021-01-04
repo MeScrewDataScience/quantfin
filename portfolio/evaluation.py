@@ -170,3 +170,10 @@ def _plot_predictions(df):
     df    
     
     return
+
+"""
+https://docs.google.com/document/d/e/2PACX-1vRX3fSsFhhQLInqAD1swVCEdCTmDTk6p5gwOdN20KA4tvNBqr5PvF6OT6gQP790KxyRa9SIiwUSWwFP/pub?fbclid=IwAR0Ke142QCK9h_kW3QoHcXzzP_AR5rgv5D6t8aauYw8FTe2wonrJWUcps2M
+https://docs.google.com/document/d/e/2PACX-1vTTldxUdrsCKFDDqmLEO17c1wwnkLkNeb-XwiwXfvTKJpJZqIkzwAXUCMpA_x8ICIYEEm5so3ET929f/pub?fbclid=IwAR2phbhtcsI58xjsIMXcgawks4PKQndfAdg3lXSUeGq0hmxmdvAu3nh2Evo
+https://www.vietnamworks.com/research-analyst-26-1316412-jd/?utm_source=OrganicSearch&utm_campaign=Www.google
+https://www.vietnamworks.com/junior-analyst-analyst-strong-researching-skill-business-intelligence-analyst-1316449-jd/?utm_source=jobalertemail&utm_medium=JobDescription&utm_campaign=PeopleAlsoView&utm_content=SmartNaviIOP&utm_term=VB
+"""
